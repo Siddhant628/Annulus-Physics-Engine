@@ -1,6 +1,6 @@
 #include "pch.h"
-#include "Foo.h"
 #include <SFML/Graphics.hpp>
+#include "Foo.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -10,8 +10,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	UNREFERENCED_PARAMETER(nCmdShow);
 
 	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	sf::CircleShape shape(10.f);
+	shape.setPosition(90, 90);
+	shape.setFillColor(sf::Color::Blue);
 
 	while (window.isOpen())
 	{
