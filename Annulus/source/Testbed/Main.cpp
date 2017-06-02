@@ -15,10 +15,10 @@ int  main()
 	shape.setPosition(90, 90);
 	shape.setFillColor(sf::Color::Blue);
 
-	// Create a clock and game time objecs.
+	// Create a clock and game time objecs
 	Annulus::GameClock gameClock;
 	Annulus::GameTime gameTime;
-	// Create a world.
+	// Create a world with default settings
 	Annulus::Settings settings;
 	Annulus::World world(settings);
 

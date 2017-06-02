@@ -18,15 +18,15 @@ namespace Annulus
 		static const glm::vec2 sDefaultGravity;
 	public:
 		/**
-		* A duration of time represented as an unsigned integer which is 1/60th of a second.		
+		* A duration of time represented as an unsigned integer which is 1/3600th of a second.		
 		*/
-		typedef std::chrono::duration<std::uint32_t, std::ratio<1, 60>> DurationSixtiethsOfSecond;
+		typedef std::chrono::duration<std::uint32_t, std::ratio<1, 3600>> ThirtySixHundredthOfSecond;
 		/**
 		* Constructor.
 		* @param timeStep The amount of time after which the world should perform a physics update. Default value corresponds to 60 times per second.
 		* @param gravity The gravitational force for the world.
 		*/
-		Settings(DurationSixtiethsOfSecond timeStep = std::chrono::duration<std::uint32_t, std::ratio<1, 60>>(1), glm::vec2 gravity = sDefaultGravity);
+		Settings(ThirtySixHundredthOfSecond timeStep = std::chrono::duration<std::uint32_t, std::ratio<1, 3600>>(60), glm::vec2 gravity = sDefaultGravity);
 		/**
 		* Default destructor.
 		*/
@@ -35,7 +35,7 @@ namespace Annulus
 		* Get the amount of time after which a physic update should be performed on the world.
 		* @return The duration of time step as a sixtieth of a second.
 		*/
-		const DurationSixtiethsOfSecond& GetTimeStep() const;
+		const ThirtySixHundredthOfSecond& GetTimeStep() const;
 		/*
 		* Set the amount of time after which a physics update should be performed on the world.
 		* @param updateRate The number of times a physics update should occur in a second. The value should be either 30 or 60.
@@ -55,7 +55,7 @@ namespace Annulus
 		/**
 		* The amount of fixed time after which a physics update should be performed for a world.
 		*/
-		DurationSixtiethsOfSecond mTimeStep;
+		ThirtySixHundredthOfSecond mTimeStep;
 		/**
 		* The gravitational force which acts on all non-static rigid bodies present in the associated world.
 		*/

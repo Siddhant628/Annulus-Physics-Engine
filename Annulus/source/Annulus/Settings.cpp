@@ -7,12 +7,12 @@ namespace Annulus
 {
 	const glm::vec2 Settings::sDefaultGravity = glm::vec2(0.0f, -10.0f);
 
-	Settings::Settings(DurationSixtiethsOfSecond timeStep /* = std::chrono::duration<std::uint32_t, std::ratio<1, 60>>(1) */, glm::vec2 gravity /* = glm::vec2(0.0f, -10.0f) */) : mTimeStep(timeStep), mGravity(gravity)
+	Settings::Settings(ThirtySixHundredthOfSecond timeStep /* = std::chrono::duration<std::uint32_t, std::ratio<1, 3600>>(1) */, glm::vec2 gravity /* = glm::vec2(0.0f, -10.0f) */) : mTimeStep(timeStep), mGravity(gravity)
 	{
 
 	}
 
-	const Settings::DurationSixtiethsOfSecond& Settings::GetTimeStep() const
+	const Settings::ThirtySixHundredthOfSecond& Settings::GetTimeStep() const
 	{
 		return  mTimeStep;
 	}
@@ -23,11 +23,11 @@ namespace Annulus
 
 		if(updateRate == 30)
 		{
-			mTimeStep = std::chrono::duration<std::uint32_t, std::ratio<1, 60>>(2);
+			mTimeStep = std::chrono::duration<std::uint32_t, std::ratio<1, 3600>>(120);
 		}
 		else if(updateRate == 60)
 		{
-			mTimeStep = std::chrono::duration<std::uint32_t, std::ratio<1, 60>>(1);
+			mTimeStep = std::chrono::duration<std::uint32_t, std::ratio<1, 3600>>(60);
 		}
 	}
 
