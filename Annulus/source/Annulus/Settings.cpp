@@ -35,4 +35,9 @@ namespace Annulus
 	{
 		return  mGravity;
 	}
+
+	void Settings::SetGravity(const glm::vec2& gravity)
+	{
+		mGravity = gravity;
+	}
 }

@@ -8,6 +8,12 @@
     <ClInclude Include="Settings.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="GameTime.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClock.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -17,10 +23,19 @@
     <ClCompile Include="Settings.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="GameTime.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="GameClock.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
       <UniqueIdentifier>{7176ee7a-fc39-46af-aafb-fbd3cfb17b0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Misc">
+      <UniqueIdentifier>{e1349ccf-788e-49fa-8404-f718f818a81b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -46,6 +46,11 @@ namespace Annulus
 		* @return The constant graviational force for this world.
 		*/
 		const glm::vec2& GetGravity() const;
+		/**
+		* Set the gravity for the associated world.
+		* @param gravity The gravitational force to set for the associated world.
+		*/
+		void SetGravity(const glm::vec2& gravity);
 	private:
 		/**
 		* The amount of fixed time after which a physics update should be performed for a world.

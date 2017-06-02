@@ -2,9 +2,12 @@
 
 #include <chrono>
 
+#include "GameClock.h"
+#include "GameTime.h"
+
 namespace Annulus
 {
-	class Settings;
+	class Settings;	
 
 	/**
 	* A class which manages all physics entities.
@@ -16,7 +19,7 @@ namespace Annulus
 		* Constructor.
 		* @param settings The settings for the world which are used to be used by it to perform update of all of its contained bodies.
 		*/
-		World(const Settings& settings);
+		World(Settings& settings);
 		/**
 		* Destructor.
 		*/
@@ -27,6 +30,12 @@ namespace Annulus
 		*/
 		void Update(std::chrono::milliseconds milliseconds);
 	private:
+		std::chrono::high_resolution_clock::time_point mLastUpdate;
+		
+		Settings* mSettings;
 
+		GameClock clock;
+		GameTime time;
+		std::uint32_t count;
 	};
 }
