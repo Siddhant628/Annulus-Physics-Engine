@@ -1,6 +1,7 @@
 #include "pch.h"
 #include <SFML/Graphics.hpp>
-#include "Foo.h"
+
+#include "World.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {

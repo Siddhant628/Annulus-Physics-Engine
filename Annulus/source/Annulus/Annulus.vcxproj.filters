@@ -2,9 +2,25 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Foo.h" />
+    <ClInclude Include="World.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="World.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{7176ee7a-fc39-46af-aafb-fbd3cfb17b0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
