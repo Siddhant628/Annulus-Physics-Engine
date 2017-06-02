@@ -30,7 +30,7 @@ namespace Annulus
 		*/
 		void Update(std::chrono::milliseconds milliseconds);
 	private:
-		std::chrono::high_resolution_clock::time_point mLastUpdate;
+		std::chrono::milliseconds mTimeSinceLastUpdate;
 		
 		Settings* mSettings;
 

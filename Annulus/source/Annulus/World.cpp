@@ -15,15 +15,13 @@ namespace Annulus
 
 	void World::Update(std::chrono::milliseconds milliseconds)
 	{
-		milliseconds;
+		mTimeSinceLastUpdate += milliseconds;
 		clock.UpdateGameTime(time);
-		
-		if( (high_resolution_clock::now() - mLastUpdate ) > mSettings->GetTimeStep())
+		if( mTimeSinceLastUpdate > mSettings->GetTimeStep())
 		{
 			++count;
 			std::cout << "Frame: " << count << "  Elapsed Time: " << time.ElapsedGameTime().count() << "  Total time: " <<time.TotalGameTime().count() << std::endl;
-			mLastUpdate = high_resolution_clock::now();
-
+			mTimeSinceLastUpdate = std::chrono::milliseconds(0);
 		}
 	}
 }
