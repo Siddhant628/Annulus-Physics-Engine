@@ -7,12 +7,12 @@ namespace Annulus
 {
 	const glm::vec2 Settings::sDefaultGravity = glm::vec2(0.0f, -10.0f);
 
-	Settings::Settings(ThirtySixHundredthOfSecond timeStep /* = std::chrono::duration<std::uint32_t, std::ratio<1, 3600>>(1) */, glm::vec2 gravity /* = glm::vec2(0.0f, -10.0f) */) : mTimeStep(timeStep), mGravity(gravity)
+	Settings::Settings(std::chrono::milliseconds timeStep /* = std::chrono::milliseconds(16) */, glm::vec2 gravity /* = glm::vec2(0.0f, -10.0f) */) : mTimeStep(timeStep), mGravity(gravity)
 	{
 
 	}
 
-	const Settings::ThirtySixHundredthOfSecond& Settings::GetTimeStep() const
+	const std::chrono::milliseconds& Settings::GetTimeStep() const
 	{
 		return  mTimeStep;
 	}
@@ -23,11 +23,11 @@ namespace Annulus
 
 		if(updateRate == 30)
 		{
-			mTimeStep = std::chrono::duration<std::uint32_t, std::ratio<1, 3600>>(120);
+			mTimeStep = std::chrono::milliseconds(33);	// 33 milliseconds correspond to 30 updates per second.
 		}
 		else if(updateRate == 60)
 		{
-			mTimeStep = std::chrono::duration<std::uint32_t, std::ratio<1, 3600>>(60);
+			mTimeStep = std::chrono::milliseconds(16);	// 16 milliseconds correspond to 60 updates per second.
 		}
 	}
 

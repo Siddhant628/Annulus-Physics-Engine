@@ -31,9 +31,9 @@ int  main()
 				window.close();
 		}
 		gameClock.UpdateGameTime(gameTime);
+		std::chrono::nanoseconds deltaNanoseconds = gameTime.ElapsedGameTime();
 		
-		std::chrono::milliseconds deltaMilliseconds = gameTime.ElapsedGameTime();
-		world.Update(deltaMilliseconds);
+		world.Update(deltaNanoseconds);
 
 		window.clear();
 		window.draw(shape);

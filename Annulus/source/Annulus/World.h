@@ -26,16 +26,17 @@ namespace Annulus
 		~World() = default;
 		/**
 		* The actual physics update method which performs an update on all the bodies present in this world.
-		* @param The amount of time that has passed since last frame of the game loop.
+		* @param The amount of time that has passed since last update of the game loop.
 		*/
-		void Update(std::chrono::milliseconds milliseconds);
+		void Update(std::chrono::nanoseconds nanoseconds);
 	private:
-		std::chrono::high_resolution_clock::time_point mLastUpdate;
-		
+		/**
+		* The settings with which this world was initialized.
+		*/
 		Settings* mSettings;
-
-		GameClock clock;
-		GameTime time;
-		std::uint32_t count;
+		/**
+		* The amount of time that has passed since the last physics update call was made.
+		*/
+		std::chrono::nanoseconds mTimeSinceLastUpdate;
 	};
 }

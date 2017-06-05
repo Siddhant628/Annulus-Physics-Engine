@@ -13,15 +13,15 @@ namespace Annulus
 		const std::chrono::high_resolution_clock::time_point& CurrentTime() const;
 		void SetCurrentTime(const std::chrono::high_resolution_clock::time_point& currentTime);
 
-		const std::chrono::milliseconds& TotalGameTime() const;
-		void SetTotalGameTime(const std::chrono::milliseconds& totalGameTime);
+		const std::chrono::nanoseconds& TotalGameTime() const;
+		void SetTotalGameTime(const std::chrono::nanoseconds& totalGameTime);
 
-		const std::chrono::milliseconds& ElapsedGameTime() const;
-		void SetElapsedGameTime(const std::chrono::milliseconds& elapsedGameTime);
+		const std::chrono::nanoseconds& ElapsedGameTime() const;
+		void SetElapsedGameTime(const std::chrono::nanoseconds& elapsedGameTime);
 
 	private:
 		std::chrono::high_resolution_clock::time_point mCurrentTime;
-		std::chrono::milliseconds mTotalGameTime;
-		std::chrono::milliseconds mElapsedGameTime;
+		std::chrono::nanoseconds mTotalGameTime;
+		std::chrono::nanoseconds mElapsedGameTime;
 	};
 }

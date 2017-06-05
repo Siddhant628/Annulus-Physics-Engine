@@ -8,22 +8,18 @@ using namespace std::chrono;
 
 namespace Annulus
 {
-	World::World(Settings& settings) : mSettings(&settings), count(0)
+	World::World(Settings& settings) : mSettings(&settings)
 	{
 
 	}
 
-	void World::Update(std::chrono::milliseconds milliseconds)
+	void World::Update(std::chrono::nanoseconds nanoseconds)
 	{
-		milliseconds;
-		clock.UpdateGameTime(time);
-		
-		if( (high_resolution_clock::now() - mLastUpdate ) > mSettings->GetTimeStep())
-		{
-			++count;
-			std::cout << "Frame: " << count << "  Elapsed Time: " << time.ElapsedGameTime().count() << "  Total time: " <<time.TotalGameTime().count() << std::endl;
-			mLastUpdate = high_resolution_clock::now();
+		mTimeSinceLastUpdate += nanoseconds;
 
+		if( mTimeSinceLastUpdate > mSettings->GetTimeStep())
+		{
+			mTimeSinceLastUpdate = std::chrono::nanoseconds(0);
 		}
 	}
 }

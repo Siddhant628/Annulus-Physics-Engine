@@ -39,8 +39,8 @@ namespace Annulus
 		mCurrentTime = high_resolution_clock::now();
 
 		gameTime.SetCurrentTime(mCurrentTime);
-		gameTime.SetTotalGameTime(duration_cast<milliseconds>(mCurrentTime - mStartTime));
-		gameTime.SetElapsedGameTime(duration_cast<milliseconds>(mCurrentTime - mLastTime));
+		gameTime.SetTotalGameTime((mCurrentTime - mStartTime));
+		gameTime.SetElapsedGameTime((mCurrentTime - mLastTime));
 		mLastTime = mCurrentTime;
 	}
 }

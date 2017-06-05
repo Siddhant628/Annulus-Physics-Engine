@@ -21,22 +21,22 @@ namespace Annulus
 		mCurrentTime = currentTime;
 	}
 
-	const milliseconds& GameTime::TotalGameTime() const
+	const nanoseconds& GameTime::TotalGameTime() const
 	{
 		return mTotalGameTime;
 	}
 
-	void GameTime::SetTotalGameTime(const std::chrono::milliseconds& totalGameTime)
+	void GameTime::SetTotalGameTime(const std::chrono::nanoseconds& totalGameTime)
 	{
 		mTotalGameTime = totalGameTime;
 	}
 
-	const milliseconds& GameTime::ElapsedGameTime() const
+	const nanoseconds& GameTime::ElapsedGameTime() const
 	{
 		return mElapsedGameTime;
 	}
 
-	void GameTime::SetElapsedGameTime(const std::chrono::milliseconds& elapsedGameTime)
+	void GameTime::SetElapsedGameTime(const std::chrono::nanoseconds& elapsedGameTime)
 	{
 		mElapsedGameTime = elapsedGameTime;
 	}
