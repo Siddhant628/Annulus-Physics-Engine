@@ -22,7 +22,7 @@ namespace Annulus
 		* @param timeStep The amount of time after which the world should perform a physics update. Default value corresponds to 60 (roughly 16 milliseconds) times per second.
 		* @param gravity The gravitational force for the world.
 		*/
-		Settings(std::chrono::milliseconds timeStep = std::chrono::milliseconds(16), glm::vec2 gravity = sDefaultGravity);
+		Settings(std::chrono::milliseconds timeStep = std::chrono::milliseconds(sTimeFor60FPS), glm::vec2 gravity = sDefaultGravity);
 		/**
 		* Default destructor.
 		*/
@@ -56,5 +56,13 @@ namespace Annulus
 		* The gravitational force which acts on all non-static rigid bodies present in the associated world.
 		*/
 		glm::vec2 mGravity;
+		/**
+		* The amount of time in milliseconds for 30 frames to execute in 1 second.
+		*/
+		static const std::int32_t sTimeFor30FPS;
+		/**
+		* The amount of time in milliseconds for 60 frames to execute in 1 second.
+		*/
+		static const std::int32_t sTimeFor60FPS;
 	};
 }

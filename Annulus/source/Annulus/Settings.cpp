@@ -5,9 +5,12 @@ using namespace  std::chrono;
 
 namespace Annulus
 {
+	const std::int32_t Settings::sTimeFor30FPS = 33;
+	const std::int32_t Settings::sTimeFor60FPS = 16;
+
 	const glm::vec2 Settings::sDefaultGravity = glm::vec2(0.0f, -10.0f);
 
-	Settings::Settings(std::chrono::milliseconds timeStep /* = std::chrono::milliseconds(16) */, glm::vec2 gravity /* = glm::vec2(0.0f, -10.0f) */) : mTimeStep(timeStep), mGravity(gravity)
+	Settings::Settings(std::chrono::milliseconds timeStep /* = std::chrono::milliseconds(sTimeFor60FPS) */, glm::vec2 gravity /* = glm::vec2(0.0f, -10.0f) */) : mTimeStep(timeStep), mGravity(gravity)
 	{
 
 	}

@@ -24,6 +24,7 @@ namespace Annulus
 		* Destructor.
 		*/
 		~World() = default;
+		// TODO Discuss fixed time stamping with Paul.
 		/**
 		* The actual physics update method which performs an update on all the bodies present in this world.
 		* @param The amount of time that has passed since last update of the game loop.

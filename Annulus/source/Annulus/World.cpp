@@ -8,7 +8,7 @@ using namespace std::chrono;
 
 namespace Annulus
 {
-	World::World(Settings& settings) : mSettings(&settings)
+	World::World(Settings& settings) : mSettings(&settings), mTimeSinceLastUpdate(nanoseconds(0))
 	{
 
 	}
