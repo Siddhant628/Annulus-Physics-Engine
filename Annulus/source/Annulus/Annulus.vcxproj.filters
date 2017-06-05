@@ -14,6 +14,12 @@
     <ClInclude Include="GameClock.h">
       <Filter>Misc</Filter>
     </ClInclude>
+    <ClInclude Include="Body.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -28,6 +34,12 @@
     </ClCompile>
     <ClCompile Include="GameClock.cpp">
       <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Body.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

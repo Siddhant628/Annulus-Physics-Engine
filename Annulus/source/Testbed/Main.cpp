@@ -2,11 +2,10 @@
 #include <SFML/Graphics.hpp>
 #include <chrono>
 
-#include "World.h"
-#include "Settings.h"
 #include "GameClock.h"
 #include "GameTime.h"
-
+#include "World.h"
+#include "Settings.h"
 
 int  main()
 {
