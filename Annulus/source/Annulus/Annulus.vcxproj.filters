@@ -20,6 +20,9 @@
     <ClInclude Include="Shape.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -39,6 +42,9 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Shape.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>

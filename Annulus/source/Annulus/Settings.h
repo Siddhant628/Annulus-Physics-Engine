@@ -3,7 +3,7 @@
 #include <chrono>
 
 #define GLM_FORCE_CXX98
-#include "glm/vec2.hpp"
+#include "glm/glm.hpp"
 
 namespace Annulus
 {

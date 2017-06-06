@@ -7,6 +7,10 @@
 #include "World.h"
 #include "Settings.h"
 
+#include "Particle.h"
+
+using namespace Annulus;
+
 int  main()
 {
 	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
@@ -15,11 +19,13 @@ int  main()
 	shape.setFillColor(sf::Color::Blue);
 
 	// Create a clock and game time objecs
-	Annulus::GameClock gameClock;
-	Annulus::GameTime gameTime;
+	GameClock gameClock;
+	GameTime gameTime;
 	// Create a world with default settings
-	Annulus::Settings settings;
-	Annulus::World world(settings);
+	Settings settings;
+	World world(settings);
+
+	Particle particle;
 
 	while (window.isOpen())
 	{
