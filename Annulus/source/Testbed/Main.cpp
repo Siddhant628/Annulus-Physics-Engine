@@ -1,13 +1,14 @@
 #include "pch.h"
-#include <SFML/Graphics.hpp>
-#include <chrono>
-
 #include "GameClock.h"
 #include "GameTime.h"
 #include "World.h"
 #include "Settings.h"
 
 #include "Particle.h"
+
+#include <SFML/Graphics.hpp>
+#include <chrono>
+#include <iostream>
 
 using namespace Annulus;
 
@@ -24,7 +25,10 @@ int  main()
 	// Create a world with default settings
 	Settings settings;
 	World world(settings);
-	world.CreateParticle();
+	
+	Particle* particle = world.CreateParticle();
+	particle->SetAcceleration(glm::vec2(-1.0f, 0.0f));
+	particle->SetVelocity(glm::vec2(1.0f, 0.0f));
 
 	while (window.isOpen())
 	{
@@ -40,6 +44,7 @@ int  main()
 		
 		// Perform physics update, rendering, etc.
 		world.Update(deltaNanoseconds);
+		std::cout << "Total Time: " << (gameTime.TotalGameTime().count() / 1000000000.0f) << std::endl;
 
 		window.clear();
 		window.draw(shape);

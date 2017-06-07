@@ -68,7 +68,6 @@ namespace Annulus
 		if(mMassInverse > 0.0f)
 		{
 			std::float_t seconds = nanoseconds.count() / 1000000000.0f;
-			std::cout << "Seconds in Integrator: " << seconds << std::endl;
 
 			// Update position
 			mPosition = mPosition + (mVelocity*seconds);
@@ -76,7 +75,7 @@ namespace Annulus
 			// Estimate acceleration
 
 			// Update velocity
-			mVelocity *= glm::pow(mDamping, seconds);
+			//mVelocity *= glm::pow(mDamping, seconds);
 			mVelocity += mAcceleration*seconds;
 
 			// Clear the forces
