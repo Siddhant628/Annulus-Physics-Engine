@@ -75,7 +75,7 @@ namespace Annulus
 			// Estimate acceleration
 
 			// Update velocity
-			//mVelocity *= glm::pow(mDamping, seconds);
+			mVelocity *= glm::pow(mDamping, seconds);
 			mVelocity += mAcceleration*seconds;
 
 			// Clear the forces
