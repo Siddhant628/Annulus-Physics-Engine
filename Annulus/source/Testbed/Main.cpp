@@ -24,8 +24,7 @@ int  main()
 	// Create a world with default settings
 	Settings settings;
 	World world(settings);
-
-	Particle particle;
+	world.CreateParticle();
 
 	while (window.isOpen())
 	{
@@ -35,9 +34,11 @@ int  main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
+		// Update game time
 		gameClock.UpdateGameTime(gameTime);
 		std::chrono::nanoseconds deltaNanoseconds = gameTime.ElapsedGameTime();
 		
+		// Perform physics update, rendering, etc.
 		world.Update(deltaNanoseconds);
 
 		window.clear();

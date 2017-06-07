@@ -7,13 +7,8 @@ namespace Annulus
 {
 	class Particle
 	{
+		friend class World;
 	public:
-		// TODO Make the constructor private after testing
-		/**
-		* Constructor.
-		* Initialzes the member with default values.
-		*/
-		Particle();
 		/**
 		* Destructor.
 		*/
@@ -38,17 +33,41 @@ namespace Annulus
 		* @param damping The damping factor which has to be set for this particle.
 		*/
 		void SetDamping(std::float_t damping);
+		/**
+		* Set the position of this particle.
+		* @param position The position to set.
+		*/
+		void SetPosition(const glm::vec2& position);
+		/**
+		* Set the velocity of this particle.
+		* @param velocity The velocity to set.
+		*/
+		void SetVelocity(const glm::vec2& velocity);
+		/**
+		* Set the acceleration of this particle.
+		* @param acceleration The acceleration to set.
+		*/
+		void SetAcceleration(const glm::vec2& acceleration);
+		/**
+		* Output the data for this particle.
+		*/
+		void DebugParticle();
 	protected:
 		/**
-		* The position of the particle in the world space.
+		* Updates the position and velocity of the particle based on its acceleration. (Integrator)
+		* @param nanoseconds The amount of time over which the integration is taking place. (Delta Time - dt)
+		*/
+		void Integrate(std::chrono::nanoseconds nanoseconds);
+		/**
+		* The position of the particle in the world space. Defaults to origin.
 		*/
 		glm::vec2 mPosition;
 		/**
-		* The veolcity of the particle in the world space.
+		* The veolcity of the particle in the world space. Defaults to zero.
 		*/
 		glm::vec2 mVelocity;
 		/**
-		* The constant acceleration acting on the particle, like gravity, etc.
+		* The constant acceleration acting on the particle, like gravity, etc. Defaults to gravity.
 		* It is assumed that the force acting on the particle is constant.
 		*/
 		glm::vec2 mAcceleration;
@@ -63,6 +82,12 @@ namespace Annulus
 		* Useful for both calculations, as well as representing infinite mass.
 		*/
 		std::float_t mMassInverse;
+	private:
+		/**
+		* Constructor.
+		* Initialzes the member with default values.
+		*/
+		Particle();
 	public:
 		static const std::float_t sDefaultDamping;
 		static const std::float_t sDefaultMassInverse;

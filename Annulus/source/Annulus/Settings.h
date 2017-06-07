@@ -12,10 +12,6 @@ namespace Annulus
 	*/
 	class Settings
 	{
-		/**
-		* Default gravity vector for a world.
-		*/
-		static const glm::vec2 sDefaultGravity;
 	public:
 		/**
 		* Constructor.
@@ -56,6 +52,7 @@ namespace Annulus
 		* The gravitational force which acts on all non-static rigid bodies present in the associated world.
 		*/
 		glm::vec2 mGravity;
+	public:
 		/**
 		* The amount of time in milliseconds for 30 frames to execute in 1 second.
 		*/
@@ -64,5 +61,9 @@ namespace Annulus
 		* The amount of time in milliseconds for 60 frames to execute in 1 second.
 		*/
 		static const std::int32_t sTimeFor60FPS;
+		/**
+		* Default gravity vector for a world.
+		*/
+		static const glm::vec2 sDefaultGravity;
 	};
 }
