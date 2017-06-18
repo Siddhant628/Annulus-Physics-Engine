@@ -2,6 +2,7 @@
 #include "World.h"
 #include "Settings.h"
 #include "Particle.h"
+#include "ParticleForceGenerator.h"
 
 #include <iostream>
 
@@ -32,6 +33,7 @@ namespace Annulus
 		{
 			std::float_t seconds = mTimeSinceLastUpdate.count() / 1000000000.0f;
 			// Update particles
+			ParticleForceGenerator::UpdateForces(seconds);
 			auto end = mParticles.end();
 			for (auto it = mParticles.begin(); it != end; ++it)
 			{
@@ -47,5 +49,10 @@ namespace Annulus
 		Particle* newParticle = new Particle();
 		mParticles.push_back(newParticle);
 		return newParticle;
+	}
+
+	const Settings& World::GetSettings() const
+	{
+		return *mSettings;
 	}
 }

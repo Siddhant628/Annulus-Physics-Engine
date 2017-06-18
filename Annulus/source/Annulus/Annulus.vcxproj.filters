@@ -26,6 +26,9 @@
     <ClInclude Include="ParticleForceGenerator.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="ParticleGravity.h">
+      <Filter>Engine\ForceGenerators</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -53,6 +56,9 @@
     <ClCompile Include="ParticleForceGenerator.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="ParticleGravity.cpp">
+      <Filter>Engine\ForceGenerators</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -60,6 +66,9 @@
     </Filter>
     <Filter Include="Misc">
       <UniqueIdentifier>{e1349ccf-788e-49fa-8404-f718f818a81b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\ForceGenerators">
+      <UniqueIdentifier>{63bd603d-3de5-4a45-be9a-d3b4ef7ddc9a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

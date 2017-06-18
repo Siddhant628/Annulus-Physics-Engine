@@ -10,7 +10,7 @@ namespace Annulus
 
 	const glm::vec2 Settings::sDefaultGravity = glm::vec2(0.0f, -10.0f);
 
-	Settings::Settings(std::chrono::milliseconds timeStep /* = std::chrono::milliseconds(sTimeFor60FPS) */, glm::vec2 gravity /* = glm::vec2(0.0f, -10.0f) */) : mTimeStep(timeStep), mGravity(gravity)
+	Settings::Settings(std::chrono::milliseconds timeStep /* = std::chrono::milliseconds(sTimeFor60FPS) */, glm::vec2 gravity /* = sDefaultGravity */) : mTimeStep(timeStep), mGravity(gravity)
 	{
 
 	}

@@ -34,6 +34,8 @@ namespace Annulus
 		void Update(std::chrono::nanoseconds nanoseconds);
 
 		Particle* CreateParticle();
+
+		const Settings& GetSettings() const;
 	private:
 		/**
 		* The settings with which this world was initialized.

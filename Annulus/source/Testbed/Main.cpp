@@ -5,6 +5,7 @@
 #include "Settings.h"
 
 #include "Particle.h"
+#include "ParticleGravity.h"
 
 #include <SFML/Graphics.hpp>
 #include <chrono>
@@ -29,6 +30,8 @@ int  main()
 	Particle* particle = world.CreateParticle();
 	particle->SetVelocity(glm::vec2(1.0f, 0.0f));
 	particle->SetDamping(0.9f);
+	ParticleGravity particleGravity(world);
+	particleGravity.RegisterParticle(*particle);
 
 	while (window.isOpen())
 	{
