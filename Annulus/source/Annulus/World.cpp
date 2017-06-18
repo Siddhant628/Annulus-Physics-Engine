@@ -30,11 +30,12 @@ namespace Annulus
 
 		if( mTimeSinceLastUpdate > mSettings->GetTimeStep())
 		{
+			std::float_t seconds = mTimeSinceLastUpdate.count() / 1000000000.0f;
 			// Update particles
 			auto end = mParticles.end();
 			for (auto it = mParticles.begin(); it != end; ++it)
 			{
-				(*it)->Integrate(mTimeSinceLastUpdate);
+				(*it)->Integrate(seconds);
 			}
 
 			mTimeSinceLastUpdate = std::chrono::nanoseconds(0);

@@ -62,23 +62,20 @@ namespace Annulus
 		std::cout << std::endl;
 	}
 
-	void Particle::Integrate(std::chrono::nanoseconds nanoseconds)
+	void Particle::Integrate(const std::float_t& seconds)
 	{
 		// In case the mass isn't infinite, integrate.
 		if(mMassInverse > 0.0f)
 		{
-			std::float_t seconds = nanoseconds.count() / 1000000000.0f;
-
 			// Update position
 			mPosition = mPosition + (mVelocity*seconds);
 
 			// Estimate acceleration
-			AddForce(glm::vec2(-1.0f, 0.0f));
 			glm::vec2 acceleration = mForceAccumulator * mMassInverse;
 
 			// Update velocity
-			//mVelocity *= glm::pow(mDamping, seconds);
 			mVelocity += acceleration*seconds;
+			mVelocity *= glm::pow(mDamping, seconds);
 
 			// Clear the forces
 			DebugParticle();

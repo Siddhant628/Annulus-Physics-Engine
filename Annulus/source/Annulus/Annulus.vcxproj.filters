@@ -23,6 +23,9 @@
     <ClInclude Include="Particle.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="ParticleForceGenerator.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -45,6 +48,9 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Particle.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleForceGenerator.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>

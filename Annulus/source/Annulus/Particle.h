@@ -55,9 +55,9 @@ namespace Annulus
 	protected:
 		/**
 		* Updates the position and velocity of the particle based on its acceleration. (Integrator)
-		* @param nanoseconds The amount of time over which the integration is taking place. (Delta Time - dt)
+		* @param seconds The amount of time over which the integration is taking place. (Delta Time or dt)
 		*/
-		void Integrate(std::chrono::nanoseconds nanoseconds);
+		void Integrate(const std::float_t& seconds);
 		/**
 		* The position of the particle in the world space. Defaults to origin.
 		*/
