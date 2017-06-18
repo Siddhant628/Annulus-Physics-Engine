@@ -9,7 +9,7 @@ namespace Annulus
 	const std::float_t Particle::sDefaultDamping = 0.999f;
 	const std::float_t Particle::sDefaultMassInverse = 1;
 
-	Particle::Particle() : mMassInverse(sDefaultMassInverse), mDamping(sDefaultDamping), mAcceleration(Settings::sDefaultGravity)
+	Particle::Particle() : mMassInverse(sDefaultMassInverse), mDamping(sDefaultDamping)
 	{
 
 	}
@@ -48,9 +48,9 @@ namespace Annulus
 		mVelocity = velocity;
 	}
 
-	void Particle::SetAcceleration(const glm::vec2& acceleration)
+	void Particle::AddForce(const glm::vec2& force)
 	{
-		mAcceleration = acceleration;
+		mForceAccumulator += force;
 	}
 
 	void Particle::DebugParticle()
@@ -58,7 +58,7 @@ namespace Annulus
 		std::cout << std::endl;
 		std::cout << "Position: " << mPosition.x << " " << mPosition.y << std::endl;
 		std::cout << "Velocity: " << mVelocity.x << " " << mVelocity.y << std::endl;
-		std::cout << "Acceleration: " << mAcceleration.x << " " << mAcceleration.y << std::endl;
+		std::cout << "Acceleration: " << mForceAccumulator.x * mMassInverse << " " << mForceAccumulator.y * mMassInverse << std::endl;
 		std::cout << std::endl;
 	}
 
@@ -73,12 +73,16 @@ namespace Annulus
 			mPosition = mPosition + (mVelocity*seconds);
 
 			// Estimate acceleration
+			AddForce(glm::vec2(-1.0f, 0.0f));
+			glm::vec2 acceleration = mForceAccumulator * mMassInverse;
 
 			// Update velocity
-			mVelocity *= glm::pow(mDamping, seconds);
-			mVelocity += mAcceleration*seconds;
+			//mVelocity *= glm::pow(mDamping, seconds);
+			mVelocity += acceleration*seconds;
 
 			// Clear the forces
+			DebugParticle();
+			mForceAccumulator = glm::vec2(0.0f, 0.0f);
 		}
 	}
 }

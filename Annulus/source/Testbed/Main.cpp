@@ -27,7 +27,6 @@ int  main()
 	World world(settings);
 	
 	Particle* particle = world.CreateParticle();
-	particle->SetAcceleration(glm::vec2(0.0f, 0.0f));
 	particle->SetVelocity(glm::vec2(1.0f, 0.0f));
 	particle->SetDamping(0.9f);
 

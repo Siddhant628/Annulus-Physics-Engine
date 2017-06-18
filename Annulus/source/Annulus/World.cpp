@@ -35,7 +35,6 @@ namespace Annulus
 			for (auto it = mParticles.begin(); it != end; ++it)
 			{
 				(*it)->Integrate(mTimeSinceLastUpdate);
-				(*it)->DebugParticle();
 			}
 
 			mTimeSinceLastUpdate = std::chrono::nanoseconds(0);

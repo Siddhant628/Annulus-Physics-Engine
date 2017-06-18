@@ -44,10 +44,10 @@ namespace Annulus
 		*/
 		void SetVelocity(const glm::vec2& velocity);
 		/**
-		* Set the acceleration of this particle.
-		* @param acceleration The acceleration to set.
+		* Add a force to the particle which is applied in the next iteration only.
+		* @param force The force to add.
 		*/
-		void SetAcceleration(const glm::vec2& acceleration);
+		void AddForce(const glm::vec2& force);
 		/**
 		* Output the data for this particle.
 		*/
@@ -67,21 +67,21 @@ namespace Annulus
 		*/
 		glm::vec2 mVelocity;
 		/**
+		* The inverse of the mass of the particle.
+		* Useful for both calculations, as well as representing infinite mass.
+		*/
+		std::float_t mMassInverse;
+		/**
 		* The constant acceleration acting on the particle, like gravity, etc. Defaults to gravity.
 		* It is assumed that the force acting on the particle is constant.
 		*/
-		glm::vec2 mAcceleration;
+		glm::vec2 mForceAccumulator;
 		/**
 		* The amount of damping applied to the linear motion.
 		* Ranges between 0 to 1, 1 being without any damping. And 0 being the case when a particle can't move at all without an external force.
 		* Damping is required to remove energy added through numerical instability in the integrator.
 		*/
 		std::float_t mDamping;
-		/**
-		* The inverse of the mass of the particle.
-		* Useful for both calculations, as well as representing infinite mass.
-		*/
-		std::float_t mMassInverse;
 	private:
 		/**
 		* Constructor.
