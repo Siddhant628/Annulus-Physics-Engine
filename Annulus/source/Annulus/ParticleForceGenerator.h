@@ -11,6 +11,7 @@ namespace Annulus
 	*/
 	class ParticleForceGenerator
 	{
+		friend class World;
 	public:
 		/**
 		* Destructor.
@@ -37,10 +38,6 @@ namespace Annulus
 		* Deregister all the particles associated with this particle force generator.
 		*/
 		void ClearParticles();
-		/**
-		* Calls UpdateForce for all the force generators, on all other their associated particles.
-		*/
-		static void UpdateForces(const std::float_t& seconds);
 	protected:
 		/**
 		* Constructor.
@@ -52,6 +49,10 @@ namespace Annulus
 		*/
 		std::vector<Particle*> mParticleList;
 	private:
+		/**
+		* Calls UpdateForce for all the force generators, on all other their associated particles.
+		*/
+		static void UpdateForces(const std::float_t& seconds);
 		/**
 		* The list of force generators maintained by the static manager.
 		*/

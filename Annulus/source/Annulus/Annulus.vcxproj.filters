@@ -29,6 +29,9 @@
     <ClInclude Include="ParticleGravity.h">
       <Filter>Engine\ForceGenerators</Filter>
     </ClInclude>
+    <ClInclude Include="ParticleSpring.h">
+      <Filter>Engine\ForceGenerators</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -57,6 +60,9 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="ParticleGravity.cpp">
+      <Filter>Engine\ForceGenerators</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSpring.cpp">
       <Filter>Engine\ForceGenerators</Filter>
     </ClCompile>
   </ItemGroup>

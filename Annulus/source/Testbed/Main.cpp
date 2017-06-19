@@ -6,6 +6,7 @@
 
 #include "Particle.h"
 #include "ParticleGravity.h"
+#include "ParticleSpring.h"
 
 #include <SFML/Graphics.hpp>
 #include <chrono>
@@ -28,10 +29,18 @@ int  main()
 	World world(settings);
 	
 	Particle* particle = world.CreateParticle();
-	particle->SetVelocity(glm::vec2(1.0f, 0.0f));
+	particle->SetVelocity(glm::vec2(0.0f, 0.0f));
+	particle->SetPosition(glm::vec2(-5.0f, 0.0f));
 	particle->SetDamping(0.9f);
-	ParticleGravity particleGravity(world);
-	particleGravity.RegisterParticle(*particle);
+	
+	Particle* particle2 = world.CreateParticle();
+	particle2->SetVelocity(glm::vec2(0.0f, 0.0f));
+	particle2->SetPosition(glm::vec2(5.0f, 0.0f));
+	particle2->SetDamping(0.9f);
+
+	ParticleSpring spring(*particle, *particle2);
+	spring.SetRestLength(5.0f);
+	spring.SetSpringConstant(1.0f);
 
 	while (window.isOpen())
 	{
@@ -47,7 +56,8 @@ int  main()
 		
 		// Perform physics update, rendering, etc.
 		world.Update(deltaNanoseconds);
-		std::cout << "Total Time: " << (gameTime.TotalGameTime().count() / 1000000000.0f) << std::endl;
+		//std::cout << "Total Time: " << (gameTime.TotalGameTime().count() / 1000000000.0f) << std::endl;
+		std::cout << "Distance: " << glm::length(particle->GetPosition() - particle2->GetPosition()) << std::endl;
 
 		window.clear();
 		window.draw(shape);

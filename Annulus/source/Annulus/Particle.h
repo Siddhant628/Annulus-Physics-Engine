@@ -39,10 +39,20 @@ namespace Annulus
 		*/
 		void SetPosition(const glm::vec2& position);
 		/**
+		* Get the position of this particle.
+		* @return The position of this particle.
+		*/
+		const glm::vec2& GetPosition() const;
+		/**
 		* Set the velocity of this particle.
 		* @param velocity The velocity to set.
 		*/
 		void SetVelocity(const glm::vec2& velocity);
+		/**
+		* Get the velocity of this particle.
+		* @return The current velocity of this particle.
+		*/
+		const glm::vec2& GetVelocity() const;
 		/**
 		* Add a force to the particle which is applied in the next iteration only.
 		* @param force The force to add.

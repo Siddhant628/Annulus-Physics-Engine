@@ -43,9 +43,19 @@ namespace Annulus
 		mPosition = position;
 	}
 
+	const glm::vec2& Particle::GetPosition() const
+	{
+		return mPosition;
+	}
+
 	void Particle::SetVelocity(const glm::vec2& velocity)
 	{
 		mVelocity = velocity;
+	}
+
+	const glm::vec2& Particle::GetVelocity() const
+	{
+		return mVelocity;
 	}
 
 	void Particle::AddForce(const glm::vec2& force)
