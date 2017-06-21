@@ -5,21 +5,22 @@
 #include "Settings.h"
 
 #include "Particle.h"
-#include "ParticleGravity.h"
-#include "ParticleSpring.h"
 
 #include <SFML/Graphics.hpp>
 #include <chrono>
 #include <iostream>
 
+#include "BasicSpringDemo.h"
+
+#define SCREEN_WIDTH 1600
+#define SCREEN_HEIGHT 900
+
 using namespace Annulus;
+using namespace Demos;
 
 int  main()
 {
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-	sf::CircleShape shape(10.f);
-	shape.setPosition(90, 90);
-	shape.setFillColor(sf::Color::Blue);
+	sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Annulus Physics Engine Testbed");
 
 	// Create a clock and game time objecs
 	GameClock gameClock;
@@ -27,28 +28,27 @@ int  main()
 	// Create a world with default settings
 	Settings settings;
 	World world(settings);
-	
-	Particle* particle = world.CreateParticle();
-	particle->SetVelocity(glm::vec2(0.0f, 0.0f));
-	particle->SetPosition(glm::vec2(-5.0f, 0.0f));
-	particle->SetDamping(0.9f);
-	
-	Particle* particle2 = world.CreateParticle();
-	particle2->SetVelocity(glm::vec2(0.0f, 0.0f));
-	particle2->SetPosition(glm::vec2(5.0f, 0.0f));
-	particle2->SetDamping(0.9f);
 
-	ParticleSpring spring(*particle, *particle2);
-	spring.SetRestLength(5.0f);
-	spring.SetSpringConstant(1.0f);
+	// Create the demo
+	BasicSpringDemo springDemo(window, world);
+	springDemo.Initialize();
 
 	while (window.isOpen())
 	{
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
+			// Handle closing of the window
 			if (event.type == sf::Event::Closed)
+			{ 
 				window.close();
+			}
+			// Handle resizing of screen to not affect the scaling and treat the world to be bigger than the viewport
+			if (event.type == sf::Event::Resized)
+			{
+				sf::FloatRect visibleArea(0, 0, static_cast<std::float_t>(event.size.width), static_cast<std::float_t>(event.size.height));
+				window.setView(sf::View(visibleArea));
+			}
 		}
 		// Update game time
 		gameClock.UpdateGameTime(gameTime);
@@ -56,13 +56,17 @@ int  main()
 		
 		// Perform physics update, rendering, etc.
 		world.Update(deltaNanoseconds);
-		//std::cout << "Total Time: " << (gameTime.TotalGameTime().count() / 1000000000.0f) << std::endl;
-		std::cout << "Distance: " << glm::length(particle->GetPosition() - particle2->GetPosition()) << std::endl;
+		std::cout << "Total Time: " << (gameTime.TotalGameTime().count() / 1000000000.0f) << std::endl;
+		
+		// Update the demo scene
+		springDemo.Update(deltaNanoseconds);
 
-		window.clear();
-		window.draw(shape);
+		// Rendering
+		window.clear(sf::Color(100, 149, 237, 1));
+		
+		springDemo.Draw();
+		
 		window.display();
 	}
-
 	return 0;
 }

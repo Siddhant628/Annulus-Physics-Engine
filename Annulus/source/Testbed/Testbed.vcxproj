@@ -187,6 +187,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BasicSpringDemo.cpp" />
+    <ClCompile Include="Demo.cpp" />
     <ClCompile Include="Main.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">pch.h</PrecompiledHeaderFile>
@@ -209,6 +211,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BasicSpringDemo.h" />
+    <ClInclude Include="Demo.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>

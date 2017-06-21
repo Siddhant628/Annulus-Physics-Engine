@@ -3,11 +3,28 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="BasicSpringDemo.cpp">
+      <Filter>Demos</Filter>
+    </ClCompile>
+    <ClCompile Include="Demo.cpp">
+      <Filter>Demos</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="BasicSpringDemo.h">
+      <Filter>Demos</Filter>
+    </ClInclude>
+    <ClInclude Include="Demo.h">
+      <Filter>Demos</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Demos">
+      <UniqueIdentifier>{4609bbe4-252c-4107-bc29-ea36b8d695cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

@@ -55,4 +55,9 @@ namespace Annulus
 	{
 		return *mSettings;
 	}
+
+	const std::vector<Particle*>& World::GetParticles() const
+	{
+		return mParticles;
+	}
 }

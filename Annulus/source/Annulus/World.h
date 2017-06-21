@@ -36,6 +36,8 @@ namespace Annulus
 		Particle* CreateParticle();
 
 		const Settings& GetSettings() const;
+
+		const std::vector<Particle*>& GetParticles() const;
 	private:
 		/**
 		* The settings with which this world was initialized.
@@ -45,7 +47,9 @@ namespace Annulus
 		* The amount of time that has passed since the last physics update call was made.
 		*/
 		std::chrono::nanoseconds mTimeSinceLastUpdate;
-
+		/**
+		* A vector of particles present in this world.
+		*/
 		std::vector<Particle*> mParticles;
 	};
 }
