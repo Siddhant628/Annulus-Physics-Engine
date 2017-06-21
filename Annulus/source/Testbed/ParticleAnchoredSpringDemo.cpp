@@ -21,6 +21,7 @@ namespace Demos
 	ParticleAnchoredSpringDemo::~ParticleAnchoredSpringDemo()
 	{
 		delete mSpring;
+		delete mGravity;
 	}
 
 	void ParticleAnchoredSpringDemo::Initialize()
@@ -40,6 +41,9 @@ namespace Demos
 		mSpring->SetSpringConstant(sSpringConstant);
 		mSpring->SetAnchorPoint(mParticle2->GetPosition());
 
+		// Create gravitational force generator
+		mGravity = new ParticleGravity(mWorld);
+		mGravity->RegisterParticle(*mParticle1);
 
 		// Create circles to visualize particles
 		mCircle1 = new sf::CircleShape(sParticleRadius);

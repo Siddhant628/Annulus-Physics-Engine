@@ -2,6 +2,7 @@
 #include "Demo.h"
 
 #include "ParticleAnchoredSpring.h"
+#include "ParticleGravity.h"
 
 #define GLM_FORCE_CXX98
 #include <glm/glm.hpp>
@@ -56,6 +57,10 @@ namespace Demos
 		* The spring force generator between the two particles.
 		*/
 		Annulus::ParticleAnchoredSpring* mSpring;
+		/**
+		* The gravitational force generator,
+		*/
+		Annulus::ParticleGravity* mGravity;
 		/**
 		* The initial position of the particle.
 		*/
