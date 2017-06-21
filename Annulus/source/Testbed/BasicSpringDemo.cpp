@@ -12,7 +12,7 @@ using namespace Annulus;
 namespace Demos
 {
 	const std::float_t BasicSpringDemo::sSpringRestLength = 300.0f;
-	const std::float_t BasicSpringDemo::sSpringConstant = 5.0f;
+	const std::float_t BasicSpringDemo::sSpringConstant = 1.5f;
 	const glm::vec2 BasicSpringDemo::sParticlePosition1 = glm::vec2(-140.0f, 0.0f);
 	const glm::vec2 BasicSpringDemo::sParticlePosition2 = glm::vec2(140.0f, 0.0f);
 
