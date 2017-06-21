@@ -1,18 +1,15 @@
 #pragma once
 #include "Demo.h"
 
+#include "ParticleAnchoredSpring.h"
+
 #define GLM_FORCE_CXX98
 #include <glm/glm.hpp>
 
-namespace Annulus
-{
-	class Particle;
-	class ParticleSpring;
-}
-
 namespace Demos
 {
-	class BasicSpringDemo : public Demo
+
+	class ParticleAnchoredSpringDemo : public Demo
 	{
 	public:
 		/**
@@ -20,11 +17,11 @@ namespace Demos
 		* @param renderWindow A reference to the RenderWindow for which this demo is created.
 		* @param world A reference to the world for which this demo is created.
 		*/
-		BasicSpringDemo(sf::RenderWindow& renderWindow, Annulus::World& world);
+		ParticleAnchoredSpringDemo(sf::RenderWindow& renderWindow, Annulus::World& world);
 		/**
 		* Destructor.
 		*/
-		~BasicSpringDemo();
+		~ParticleAnchoredSpringDemo();
 		/**
 		* Initialize this demo.
 		*/
@@ -47,11 +44,6 @@ namespace Demos
 		* Particle in demo.
 		*/
 		Annulus::Particle* mParticle2;
-
-		/**
-		* The spring force generator between the two particles.
-		*/
-		Annulus::ParticleSpring* mSpring;
 		/**
 		* Circle representing a particle.
 		*/
@@ -61,13 +53,9 @@ namespace Demos
 		*/
 		sf::CircleShape* mCircle2;
 		/**
-		* The length of the spring in the rest state.
+		* The spring force generator between the two particles.
 		*/
-		const static std::float_t sSpringRestLength;
-		/**
-		* The spring constant for the spring.
-		*/
-		const static std::float_t sSpringConstant;
+		Annulus::ParticleAnchoredSpring* mSpring;
 		/**
 		* The initial position of the particle.
 		*/
@@ -76,5 +64,14 @@ namespace Demos
 		* The initial position of the particle.
 		*/
 		const static glm::vec2 sParticlePosition2;
+		/**
+		* The length of the spring in the rest state.
+		*/
+		const static std::float_t sSpringRestLength;
+		/**
+		* The spring constant for the spring.
+		*/
+		const static std::float_t sSpringConstant;
+
 	};
 }

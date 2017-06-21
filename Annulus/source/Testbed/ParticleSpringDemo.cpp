@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "BasicSpringDemo.h"
+#include "ParticleSpringDemo.h"
 
 #include "Particle.h"
 #include "World.h"
@@ -11,31 +11,29 @@ using namespace Annulus;
 
 namespace Demos
 {
-	const std::float_t BasicSpringDemo::sSpringRestLength = 300.0f;
-	const std::float_t BasicSpringDemo::sSpringConstant = 1.5f;
-	const glm::vec2 BasicSpringDemo::sParticlePosition1 = glm::vec2(-140.0f, 0.0f);
-	const glm::vec2 BasicSpringDemo::sParticlePosition2 = glm::vec2(140.0f, 0.0f);
+	const std::float_t ParticleSpringDemo::sSpringRestLength = 300.0f;
+	const std::float_t ParticleSpringDemo::sSpringConstant = 1.5f;
+	const glm::vec2 ParticleSpringDemo::sParticlePosition1 = glm::vec2(-140.0f, 0.0f);
+	const glm::vec2 ParticleSpringDemo::sParticlePosition2 = glm::vec2(140.0f, 0.0f);
 
-	BasicSpringDemo::BasicSpringDemo(sf::RenderWindow& renderWindow, Annulus::World& world) : Demo(renderWindow, world), mParticle1(nullptr), mParticle2(nullptr), mSpring(nullptr), mCircle1(nullptr), mCircle2(nullptr)
+	ParticleSpringDemo::ParticleSpringDemo(sf::RenderWindow& renderWindow, Annulus::World& world) : Demo(renderWindow, world), mParticle1(nullptr), mParticle2(nullptr), mSpring(nullptr), mCircle1(nullptr), mCircle2(nullptr)
 	{
 
 	}
 
-	BasicSpringDemo::~BasicSpringDemo()
+	ParticleSpringDemo::~ParticleSpringDemo()
 	{
 		delete mSpring;
 	}
 
-	void BasicSpringDemo::Initialize()
+	void ParticleSpringDemo::Initialize()
 	{
 		// Create particles
 		mParticle1 = mWorld.CreateParticle();
-		mParticle1->SetVelocity(glm::vec2(0.0f, 0.0f));
 		mParticle1->SetPosition(sParticlePosition1);
 		mParticle1->SetDamping(0.9f);
 
 		mParticle2 = mWorld.CreateParticle();
-		mParticle2->SetVelocity(glm::vec2(0.0f, 0.0f));
 		mParticle2->SetPosition(sParticlePosition2);
 		mParticle2->SetDamping(0.9f);
 
@@ -54,7 +52,7 @@ namespace Demos
 		mCircle2->setFillColor(sf::Color::Black);
 	}
 
-	void BasicSpringDemo::Update(std::chrono::nanoseconds nanoseconds)
+	void ParticleSpringDemo::Update(std::chrono::nanoseconds nanoseconds)
 	{
 		nanoseconds;
 		std::float_t centerX = mView->getSize().x / 2;
@@ -63,7 +61,7 @@ namespace Demos
 		mCircle2->setPosition(centerX + mParticle2->GetPosition().x * sPixelPositionScaler, centerY - mParticle2->GetPosition().y * sPixelPositionScaler);
 	}
 
-	void BasicSpringDemo::Draw()
+	void ParticleSpringDemo::Draw()
 	{
 		mRenderWindow.draw(*mCircle1);
 		mRenderWindow.draw(*mCircle2);

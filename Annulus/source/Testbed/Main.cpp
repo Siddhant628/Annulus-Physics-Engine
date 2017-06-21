@@ -10,10 +10,13 @@
 #include <chrono>
 #include <iostream>
 
-#include "BasicSpringDemo.h"
+#include "ParticleSpringDemo.h"
+#include "ParticleAnchoredSpringDemo.h"
 
 #define SCREEN_WIDTH 1600
 #define SCREEN_HEIGHT 900
+
+#define DEMO_COUNT 2
 
 using namespace Annulus;
 using namespace Demos;
@@ -29,9 +32,14 @@ int  main()
 	Settings settings;
 	World world(settings);
 
-	// Create the demo
-	BasicSpringDemo springDemo(window, world);
+	// Create the demo scene
+#if DEMO_COUNT == 1
+	ParticleSpringDemo springDemo(window, world);
 	springDemo.Initialize();
+#elif DEMO_COUNT == 2
+	ParticleAnchoredSpringDemo anchoredSpringDemo(window, world);
+	anchoredSpringDemo.Initialize();
+#endif
 
 	while (window.isOpen())
 	{
@@ -59,13 +67,20 @@ int  main()
 		std::cout << "Total Time: " << (gameTime.TotalGameTime().count() / 1000000000.0f) << std::endl;
 		
 		// Update the demo scene
+#if DEMO_COUNT == 1
 		springDemo.Update(deltaNanoseconds);
-
+#elif DEMO_COUNT == 2
+		anchoredSpringDemo.Update(deltaNanoseconds);
+#endif
 		// Rendering
 		window.clear(sf::Color(100, 149, 237, 1));
 		
+#if DEMO_COUNT == 1
 		springDemo.Draw();
-		
+#elif DEMO_COUNT == 2
+		anchoredSpringDemo.Draw();
+#endif	
+
 		window.display();
 	}
 	return 0;

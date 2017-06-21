@@ -3,19 +3,25 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="BasicSpringDemo.cpp">
+    <ClCompile Include="Demo.cpp">
       <Filter>Demos</Filter>
     </ClCompile>
-    <ClCompile Include="Demo.cpp">
+    <ClCompile Include="ParticleAnchoredSpringDemo.cpp">
+      <Filter>Demos</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSpringDemo.cpp">
       <Filter>Demos</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="BasicSpringDemo.h">
+    <ClInclude Include="Demo.h">
       <Filter>Demos</Filter>
     </ClInclude>
-    <ClInclude Include="Demo.h">
+    <ClInclude Include="ParticleAnchoredSpringDemo.h">
+      <Filter>Demos</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSpringDemo.h">
       <Filter>Demos</Filter>
     </ClInclude>
   </ItemGroup>

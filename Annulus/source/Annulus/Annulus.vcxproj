@@ -167,6 +167,7 @@
     <ClInclude Include="GameClock.h" />
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="Particle.h" />
+    <ClInclude Include="ParticleAnchoredSpring.h" />
     <ClInclude Include="ParticleForceGenerator.h" />
     <ClInclude Include="ParticleGravity.h" />
     <ClInclude Include="ParticleSpring.h" />
@@ -180,6 +181,7 @@
     <ClCompile Include="GameClock.cpp" />
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="ParticleAnchoredSpring.cpp" />
     <ClCompile Include="ParticleForceGenerator.cpp" />
     <ClCompile Include="ParticleGravity.cpp" />
     <ClCompile Include="ParticleSpring.cpp" />
