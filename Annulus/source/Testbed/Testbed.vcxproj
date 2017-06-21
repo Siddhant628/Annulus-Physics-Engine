@@ -187,6 +187,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ParticleBungeeDemo.cpp" />
     <ClCompile Include="ParticleSpringDemo.cpp" />
     <ClCompile Include="Demo.cpp" />
     <ClCompile Include="Main.cpp">
@@ -212,6 +213,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ParticleBungeeDemo.h" />
     <ClInclude Include="ParticleSpringDemo.h" />
     <ClInclude Include="Demo.h" />
     <ClInclude Include="ParticleAnchoredSpringDemo.h" />

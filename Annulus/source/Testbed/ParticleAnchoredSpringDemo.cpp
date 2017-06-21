@@ -10,7 +10,7 @@ namespace Demos
 {
 	const std::float_t ParticleAnchoredSpringDemo::sSpringRestLength = 100.0f;
 	const std::float_t ParticleAnchoredSpringDemo::sSpringConstant = 1.5f;
-	const glm::vec2 ParticleAnchoredSpringDemo::sParticlePosition1 = glm::vec2(-100.0f, -100.0f);
+	const glm::vec2 ParticleAnchoredSpringDemo::sParticlePosition1 = glm::vec2(-50.0f, 50.0f);
 	const glm::vec2 ParticleAnchoredSpringDemo::sParticlePosition2 = glm::vec2(0.0f, 0.0f);
 
 	ParticleAnchoredSpringDemo::ParticleAnchoredSpringDemo(sf::RenderWindow& renderWindow, Annulus::World& world) : Demo(renderWindow, world), mParticle1(nullptr), mParticle2(nullptr), mCircle1(nullptr), mCircle2(nullptr), mSpring(nullptr)

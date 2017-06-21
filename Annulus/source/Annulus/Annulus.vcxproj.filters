@@ -35,6 +35,9 @@
     <ClInclude Include="ParticleAnchoredSpring.h">
       <Filter>Engine\ForceGenerators</Filter>
     </ClInclude>
+    <ClInclude Include="ParticleBungee.h">
+      <Filter>Engine\ForceGenerators</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -69,6 +72,9 @@
       <Filter>Engine\ForceGenerators</Filter>
     </ClCompile>
     <ClCompile Include="ParticleAnchoredSpring.cpp">
+      <Filter>Engine\ForceGenerators</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleBungee.cpp">
       <Filter>Engine\ForceGenerators</Filter>
     </ClCompile>
   </ItemGroup>

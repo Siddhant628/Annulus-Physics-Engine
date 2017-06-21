@@ -12,6 +12,9 @@
     <ClCompile Include="ParticleSpringDemo.cpp">
       <Filter>Demos</Filter>
     </ClCompile>
+    <ClCompile Include="ParticleBungeeDemo.cpp">
+      <Filter>Demos</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -22,6 +25,9 @@
       <Filter>Demos</Filter>
     </ClInclude>
     <ClInclude Include="ParticleSpringDemo.h">
+      <Filter>Demos</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleBungeeDemo.h">
       <Filter>Demos</Filter>
     </ClInclude>
   </ItemGroup>

@@ -12,11 +12,12 @@
 
 #include "ParticleSpringDemo.h"
 #include "ParticleAnchoredSpringDemo.h"
+#include "ParticleBungeeDemo.h"
 
 #define SCREEN_WIDTH 1600
 #define SCREEN_HEIGHT 900
 
-#define DEMO_COUNT 2
+#define DEMO_COUNT 3
 
 using namespace Annulus;
 using namespace Demos;
@@ -39,6 +40,9 @@ int  main()
 #elif DEMO_COUNT == 2
 	ParticleAnchoredSpringDemo anchoredSpringDemo(window, world);
 	anchoredSpringDemo.Initialize();
+#elif DEMO_COUNT == 3
+	ParticleBungeeDemo bungeeDemo(window, world);
+	bungeeDemo.Initialize();
 #endif
 
 	while (window.isOpen())
@@ -71,14 +75,19 @@ int  main()
 		springDemo.Update(deltaNanoseconds);
 #elif DEMO_COUNT == 2
 		anchoredSpringDemo.Update(deltaNanoseconds);
+#elif DEMO_COUNT == 3
+		bungeeDemo.Update(deltaNanoseconds);
 #endif
 		// Rendering
 		window.clear(sf::Color(100, 149, 237, 1));
 		
+		// Draw the demo scene
 #if DEMO_COUNT == 1
 		springDemo.Draw();
 #elif DEMO_COUNT == 2
 		anchoredSpringDemo.Draw();
+#elif DEMO_COUNT == 3
+		bungeeDemo.Draw();
 #endif	
 
 		window.display();
