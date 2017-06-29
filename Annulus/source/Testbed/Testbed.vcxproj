@@ -188,6 +188,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ParticleBungeeDemo.cpp" />
+    <ClCompile Include="ParticleContactDemo.cpp" />
     <ClCompile Include="ParticleSpringDemo.cpp" />
     <ClCompile Include="Demo.cpp" />
     <ClCompile Include="Main.cpp">
@@ -214,6 +215,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ParticleBungeeDemo.h" />
+    <ClInclude Include="ParticleContactDemo.h" />
     <ClInclude Include="ParticleSpringDemo.h" />
     <ClInclude Include="Demo.h" />
     <ClInclude Include="ParticleAnchoredSpringDemo.h" />
