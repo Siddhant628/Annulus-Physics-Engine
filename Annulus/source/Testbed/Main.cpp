@@ -72,7 +72,7 @@ int  main()
 		
 		// Perform physics update, rendering, etc.
 		world.Update(deltaNanoseconds);
-		std::cout << "Total Time: " << (gameTime.TotalGameTime().count() / 1000000000.0f) << std::endl;
+		//std::cout << "Total Time: " << (gameTime.TotalGameTime().count() / 1000000000.0f) << std::endl;
 		
 		// Update the demo scene
 #if DEMO_COUNT == 1

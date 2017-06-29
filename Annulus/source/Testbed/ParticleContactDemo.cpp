@@ -2,6 +2,11 @@
 #include "ParticleContactDemo.h"
 #include "Particle.h"
 #include "World.h"
+#include "ParticleRod.h"
+#include "ParticleCable.h"
+#include "ParticleGravity.h"
+
+using namespace Annulus;
 
 namespace Demos
 {
@@ -23,10 +28,14 @@ namespace Demos
 		mParticle1 = mWorld.CreateParticle();
 		mParticle1->SetPosition(sParticlePosition1);
 		mParticle1->SetDamping(0.9f);
+		mParticle1->SetMass(10.0f);
+		
 
 		mParticle2 = mWorld.CreateParticle();
 		mParticle2->SetPosition(sParticlePosition2);
 		mParticle2->SetDamping(0.9f);
+		mParticle2->SetMass(10.0f);
+		mParticle2->SetInverseMass(0);
 
 		// Create circles to visualize particles
 		mCircle1 = new sf::CircleShape(sParticleRadius);
@@ -36,6 +45,17 @@ namespace Demos
 		mCircle2 = new sf::CircleShape(sParticleRadius);
 		mCircle2->setPosition(0, 0);
 		mCircle2->setFillColor(sf::Color::Black);
+
+		ParticleRod* rod = new ParticleRod(*mParticle1, *mParticle2);
+		rod->SetLength(200);
+
+		//ParticleCable* cable = new ParticleCable(*mParticle1, *mParticle2);
+		//cable->SetMaxLength(200);
+		//cable->SetRestitution(0.8f);
+
+		ParticleGravity* gravity = new ParticleGravity(mWorld);
+		gravity->RegisterParticle(*mParticle1);
+
 	}
 
 	void ParticleContactDemo::Update(std::chrono::nanoseconds nanoseconds)

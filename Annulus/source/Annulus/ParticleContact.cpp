@@ -14,7 +14,7 @@ namespace Annulus
 	}
 
 	ParticleContact::ParticleContact(Particle* particle1, Particle* particle2, std::float_t restitution, std::float_t penetration, const glm::vec2& contactNormal) :
-		mParticle{particle1, particle2},
+		mParticle{ particle1, particle2 },
 		mRestitution(restitution),
 		mPenetration(penetration),
 		mContactNormal(contactNormal)
@@ -32,20 +32,20 @@ namespace Annulus
 		{
 			// Calculate the separating velocity after the collision.
 			std::float_t newSeparatingVelocity = -separatingVelocity * mRestitution;
-			
+
 
 			// Estimate the velocity build up just because of acceleration.
 			glm::vec2 accelerationCausedVelocity = mParticle[0]->GetAcceleration();
-			if(mParticle[1])
+			if (mParticle[1])
 			{
 				accelerationCausedVelocity -= mParticle[1]->GetAcceleration();
 			}
 			std::float_t accelerationCausedSeparatingVelocity = glm::dot(accelerationCausedVelocity, mContactNormal) * seconds;
 			// If the separating velocity due to acceleration will lead to interpenetration, then remove its effect from the separating velocity.
-			if(accelerationCausedSeparatingVelocity < 0)
+			if (accelerationCausedSeparatingVelocity < 0)
 			{
 				newSeparatingVelocity += mRestitution * accelerationCausedSeparatingVelocity;
-				if(newSeparatingVelocity < 0)
+				if (newSeparatingVelocity < 0)
 				{
 					newSeparatingVelocity = 0;
 				}
@@ -54,8 +54,11 @@ namespace Annulus
 			std::float_t deltaVelocity = newSeparatingVelocity - separatingVelocity;
 
 			// Apply the change in velocity to each object in proportion to their inverse masses.
-			std::float_t totalInverseMass = mParticle[0]->GetMassInverse() + mParticle[1]->GetMassInverse();
-
+			std::float_t totalInverseMass = mParticle[0]->GetMassInverse();
+			if (mParticle[1])
+			{
+				mParticle[1]->GetMassInverse();
+			}
 			// Proceed to resolving velocity only if both the particles aren't of infinite mass.
 			if (totalInverseMass > 0)
 			{
@@ -78,23 +81,23 @@ namespace Annulus
 	{
 		seconds;
 		// Resolve interpenetration only if there is penetration.
-		if(mPenetration > 0)
+		if (mPenetration > 0)
 		{
 			std::float_t totalInverseMass = mParticle[0]->GetMassInverse();
-			if(mParticle[1] != nullptr)
+			if (mParticle[1])
 			{
 				totalInverseMass += mParticle[1]->GetMassInverse();
 			}
 			// Resolve only if both the particles aren't of infinite mass.
-			if(totalInverseMass > 0)
+			if (totalInverseMass > 0)
 			{
 				glm::vec2 movementPerIMass = mContactNormal * (mPenetration / totalInverseMass);
 
 				// Update the positions in order to resolve interpenetrations. (Resolution)
-				mParticle[0]->SetPosition(mParticle[0]->GetPosition() + movementPerIMass * mParticle[0]->GetMassInverse());
+				mParticle[0]->SetPosition(mParticle[0]->GetPosition() + (movementPerIMass * mParticle[0]->GetMassInverse()));
 				if (mParticle[1] != nullptr)
 				{
-					mParticle[1]->SetPosition(mParticle[1]->GetPosition() + movementPerIMass * mParticle[1]->GetMassInverse());
+					mParticle[1]->SetPosition(mParticle[1]->GetPosition() + (movementPerIMass * mParticle[1]->GetMassInverse()));
 				}
 
 			}
