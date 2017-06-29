@@ -12,7 +12,7 @@ namespace Annulus
 		mParticleList.push_back(&particle2);
 	}
 
-	void ParticleSpring::UpdateForce(Particle& particle, const std::float_t& seconds)
+	void ParticleSpring::UpdateForce(Particle& particle, std::float_t seconds)
 	{
 		seconds;
 		// Get the other particle
@@ -44,12 +44,12 @@ namespace Annulus
 		particle.AddForce(force);
 	}
 
-	void ParticleSpring::SetRestLength(const std::float_t& restLength)
+	void ParticleSpring::SetRestLength(std::float_t restLength)
 	{
 		mRestLength = restLength;
 	}
 
-	void ParticleSpring::SetSpringConstant(const std::float_t& springConstant)
+	void ParticleSpring::SetSpringConstant(std::float_t springConstant)
 	{
 		mSpringConstant = springConstant;
 	}

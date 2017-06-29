@@ -27,7 +27,7 @@ namespace Annulus
 		mParticleList.clear();
 	}
 
-	void ParticleForceGenerator::UpdateForces(const std::float_t& seconds)
+	void ParticleForceGenerator::UpdateForces(std::float_t seconds)
 	{
 		for(auto it = mForceGenerators.begin(); it != mForceGenerators.end(); ++it)
 		{

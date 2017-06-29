@@ -10,7 +10,7 @@ namespace Annulus
 		mParticleList.push_back(&particle);
 	}
 
-	void ParticleAnchoredSpring::UpdateForce(Particle& particle, const std::float_t& seconds)
+	void ParticleAnchoredSpring::UpdateForce(Particle& particle, std::float_t seconds)
 	{
 		seconds;
 		assert(&particle == mParticleList[0]);

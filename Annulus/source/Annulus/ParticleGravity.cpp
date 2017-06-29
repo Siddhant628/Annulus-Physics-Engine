@@ -11,7 +11,7 @@ namespace Annulus
 
 	}
 
-	void ParticleGravity::UpdateForce(Particle& particle, const std::float_t& seconds)
+	void ParticleGravity::UpdateForce(Particle& particle, std::float_t seconds)
 	{
 		seconds;
 		std::float_t massInverse = particle.GetMassInverse();

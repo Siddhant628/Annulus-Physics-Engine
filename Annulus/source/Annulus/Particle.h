@@ -17,7 +17,7 @@ namespace Annulus
 		* Get the inverse of mass of this particle.
 		* @return The inverse of mass.
 		*/
-		const std::float_t& GetMassInverse() const;
+		const std::float_t GetMassInverse() const;
 		/**
 		* Set the inverse of mass of this particle.
 		* @param inverseMass The inverse of mass to set for this particle.
@@ -67,7 +67,7 @@ namespace Annulus
 		* Updates the position and velocity of the particle based on its acceleration. (Integrator)
 		* @param seconds The amount of time over which the integration is taking place. (Delta Time or dt)
 		*/
-		void Integrate(const std::float_t& seconds);
+		void Integrate(const std::float_t seconds);
 		/**
 		* The position of the particle in the world space. Defaults to origin.
 		*/

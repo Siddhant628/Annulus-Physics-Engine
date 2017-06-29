@@ -11,7 +11,7 @@ namespace Annulus
 		mParticleList.push_back(&particle2);
 	}
 
-	void ParticleBungee::UpdateForce(Particle& particle, const std::float_t& seconds)
+	void ParticleBungee::UpdateForce(Particle& particle, std::float_t seconds)
 	{
 		seconds;
 		// Get the other particle

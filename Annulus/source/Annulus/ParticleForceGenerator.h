@@ -23,7 +23,7 @@ namespace Annulus
 		* @param particle The particle on which the force needs to be applied.
 		* @param seconds The duration of the frame over which the force is updated.
 		*/
-		virtual void UpdateForce(Particle& particle, const std::float_t& seconds) = 0;
+		virtual void UpdateForce(Particle& particle, std::float_t seconds) = 0;
 		/**
 		* Register a particle to this force generator. The force generator will apply force to this particle.
 		* @param particle The particle to register.
@@ -52,7 +52,7 @@ namespace Annulus
 		/**
 		* Calls UpdateForce for all the force generators, on all other their associated particles.
 		*/
-		static void UpdateForces(const std::float_t& seconds);
+		static void UpdateForces(std::float_t seconds);
 		/**
 		* The list of force generators maintained by the static manager.
 		*/

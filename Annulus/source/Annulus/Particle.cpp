@@ -14,7 +14,7 @@ namespace Annulus
 
 	}
 
-	const std::float_t& Particle::GetMassInverse() const
+	const std::float_t Particle::GetMassInverse() const
 	{
 		return mMassInverse;
 	}
@@ -72,7 +72,7 @@ namespace Annulus
 		std::cout << std::endl;
 	}
 
-	void Particle::Integrate(const std::float_t& seconds)
+	void Particle::Integrate(const std::float_t seconds)
 	{
 		// In case the mass isn't infinite, integrate.
 		if(mMassInverse > 0.0f)

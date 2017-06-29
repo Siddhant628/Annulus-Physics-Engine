@@ -38,6 +38,9 @@
     <ClInclude Include="ParticleBungee.h">
       <Filter>Engine\ForceGenerators</Filter>
     </ClInclude>
+    <ClInclude Include="ParticleContact.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -76,6 +79,9 @@
     </ClCompile>
     <ClCompile Include="ParticleBungee.cpp">
       <Filter>Engine\ForceGenerators</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleContact.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -24,17 +24,17 @@ namespace Annulus
 		* @param particle The particle on which the force needs to be applied.
 		* @param seconds The duration of the frame over which the force is updated.
 		*/
-		void UpdateForce(Particle& particle, const std::float_t& seconds) override;
+		void UpdateForce(Particle& particle, std::float_t seconds) override;
 		/**
 		* Set the rest length for this spring force generator.
 		* @param restLength The length to set.
 		*/
-		void SetRestLength(const std::float_t& restLength);
+		void SetRestLength(std::float_t restLength);
 		/**
 		* Set the spring constant for this spring force generator.
 		* @param springConstant The spring constant value to set.
 		*/
-		void SetSpringConstant(const std::float_t& springConstant);
+		void SetSpringConstant(std::float_t springConstant);
 	private:
 		/**
 		* The length of the spring, i.e. the length at which no force is exerted on either of the particles.
