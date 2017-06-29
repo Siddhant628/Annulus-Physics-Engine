@@ -170,6 +170,7 @@
     <ClInclude Include="ParticleAnchoredSpring.h" />
     <ClInclude Include="ParticleBungee.h" />
     <ClInclude Include="ParticleContact.h" />
+    <ClInclude Include="ParticleContactResolver.h" />
     <ClInclude Include="ParticleForceGenerator.h" />
     <ClInclude Include="ParticleGravity.h" />
     <ClInclude Include="ParticleSpring.h" />
@@ -186,6 +187,7 @@
     <ClCompile Include="ParticleAnchoredSpring.cpp" />
     <ClCompile Include="ParticleBungee.cpp" />
     <ClCompile Include="ParticleContact.cpp" />
+    <ClCompile Include="ParticleContactResolver.cpp" />
     <ClCompile Include="ParticleForceGenerator.cpp" />
     <ClCompile Include="ParticleGravity.cpp" />
     <ClCompile Include="ParticleSpring.cpp" />

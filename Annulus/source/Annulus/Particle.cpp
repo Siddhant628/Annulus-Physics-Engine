@@ -14,7 +14,7 @@ namespace Annulus
 
 	}
 
-	const std::float_t Particle::GetMassInverse() const
+	std::float_t Particle::GetMassInverse() const
 	{
 		return mMassInverse;
 	}
@@ -70,6 +70,11 @@ namespace Annulus
 		std::cout << "Velocity: " << mVelocity.x << " " << mVelocity.y << std::endl;
 		std::cout << "Acceleration: " << mForceAccumulator.x * mMassInverse << " " << mForceAccumulator.y * mMassInverse << std::endl;
 		std::cout << std::endl;
+	}
+
+	glm::vec2 Particle::GetAcceleration() const
+	{
+		return (mForceAccumulator * mMassInverse);
 	}
 
 	void Particle::Integrate(const std::float_t seconds)

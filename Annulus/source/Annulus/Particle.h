@@ -17,7 +17,7 @@ namespace Annulus
 		* Get the inverse of mass of this particle.
 		* @return The inverse of mass.
 		*/
-		const std::float_t GetMassInverse() const;
+		std::float_t GetMassInverse() const;
 		/**
 		* Set the inverse of mass of this particle.
 		* @param inverseMass The inverse of mass to set for this particle.
@@ -62,6 +62,10 @@ namespace Annulus
 		* Output the data for this particle.
 		*/
 		void DebugParticle();
+		/**
+		* Get the current acceleration of the particle.
+		*/
+		glm::vec2 GetAcceleration() const;
 	protected:
 		/**
 		* Updates the position and velocity of the particle based on its acceleration. (Integrator)

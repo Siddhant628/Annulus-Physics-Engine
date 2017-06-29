@@ -41,6 +41,7 @@
     <ClInclude Include="ParticleContact.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="ParticleContactResolver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -83,6 +84,7 @@
     <ClCompile Include="ParticleContact.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="ParticleContactResolver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">

@@ -10,13 +10,15 @@ using namespace std::chrono;
 
 namespace Annulus
 {
-	World::World(Settings& settings) : mSettings(&settings), mTimeSinceLastUpdate(nanoseconds(0))
+	World::World(Settings& settings) : mSettings(&settings), mTimeSinceLastUpdate(nanoseconds(0)), mParticleContactResolver(nullptr)
 	{
-
+		mParticleContactResolver = new ParticleContactResolver(*this);
+		mParticleContactResolver->SetIterations(mSettings->mParticleContactResolverIterations);
 	}
 
 	World::~World()
 	{
+		delete mParticleContactResolver;
 		// Destroy all particles
 		auto end = mParticles.end();
 		for(auto it = mParticles.begin(); it != end; ++it)

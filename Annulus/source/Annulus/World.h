@@ -4,6 +4,7 @@
 
 #include <chrono>
 #include <vector>
+#include "ParticleContactResolver.h"
 
 namespace Annulus
 {
@@ -51,5 +52,9 @@ namespace Annulus
 		* A vector of particles present in this world.
 		*/
 		std::vector<Particle*> mParticles;
+		/**
+		* The particle contact resolver associated with this world. Created on contruction of the world.
+		*/
+		ParticleContactResolver* mParticleContactResolver;
 	};
 }

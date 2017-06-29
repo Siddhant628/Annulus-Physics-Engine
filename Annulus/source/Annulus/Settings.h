@@ -12,6 +12,7 @@ namespace Annulus
 	*/
 	class Settings
 	{
+		friend class World;
 	public:
 		/**
 		* Constructor.
@@ -43,6 +44,11 @@ namespace Annulus
 		* @param gravity The gravitational force to set for the associated world.
 		*/
 		void SetGravity(const glm::vec2& gravity);
+		/**
+		* Set the maximum amount of iterations the particle contact resolver will have.
+		* @param iterations The count of iterations.
+		*/
+		void SetParticleContactResolverIterations(std::uint32_t iterations);
 	private:
 		/**
 		* The amount of fixed time after which a physics update should be performed for a world.
@@ -52,6 +58,10 @@ namespace Annulus
 		* The gravitational force which acts on all non-static rigid bodies present in the associated world.
 		*/
 		glm::vec2 mGravity;
+		/**
+		* The maximum amount of iterations the particle contact resolver will have.
+		*/
+		std::uint32_t mParticleContactResolverIterations;
 	public:
 		/**
 		* The amount of time in milliseconds for 30 frames to execute in 1 second.
@@ -65,5 +75,9 @@ namespace Annulus
 		* Default gravity vector for a world.
 		*/
 		static const glm::vec2 sDefaultGravity;
+		/**
+		* The default maximum amount of iterations the particle contact resolver will have.
+		*/
+		static const std::uint32_t sDefaultParticleContactResolverIterations;
 	};
 }
