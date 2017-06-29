@@ -169,10 +169,14 @@
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleAnchoredSpring.h" />
     <ClInclude Include="ParticleBungee.h" />
+    <ClInclude Include="ParticleCable.h" />
     <ClInclude Include="ParticleContact.h" />
+    <ClInclude Include="ParticleContactGenerator.h" />
     <ClInclude Include="ParticleContactResolver.h" />
     <ClInclude Include="ParticleForceGenerator.h" />
     <ClInclude Include="ParticleGravity.h" />
+    <ClInclude Include="ParticleLink.h" />
+    <ClInclude Include="ParticleRod.h" />
     <ClInclude Include="ParticleSpring.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Settings.h" />
@@ -186,10 +190,13 @@
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleAnchoredSpring.cpp" />
     <ClCompile Include="ParticleBungee.cpp" />
+    <ClCompile Include="ParticleCable.cpp" />
     <ClCompile Include="ParticleContact.cpp" />
     <ClCompile Include="ParticleContactResolver.cpp" />
     <ClCompile Include="ParticleForceGenerator.cpp" />
     <ClCompile Include="ParticleGravity.cpp" />
+    <ClCompile Include="ParticleLink.cpp" />
+    <ClCompile Include="ParticleRod.cpp" />
     <ClCompile Include="ParticleSpring.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

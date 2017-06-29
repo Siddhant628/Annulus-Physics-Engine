@@ -41,7 +41,21 @@
     <ClInclude Include="ParticleContact.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleContactResolver.h" />
+    <ClInclude Include="ParticleContactGenerator.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactResolver.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleLink.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleCable.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleRod.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -84,7 +98,18 @@
     <ClCompile Include="ParticleContact.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleContactResolver.cpp" />
+    <ClCompile Include="ParticleContactResolver.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleLink.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleCable.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleRod.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">

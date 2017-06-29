@@ -13,7 +13,8 @@ namespace Annulus
 	*/
 	class ParticleContact
 	{
-		// TODO Add appropriate friend class.
+		friend class ParticleCable;
+		friend class ParticleRod;
 	public:
 		/**
 		* Resloves this contact for both velocity and interpenetration.
