@@ -15,6 +15,7 @@ namespace Annulus
 	{
 		friend class ParticleCable;
 		friend class ParticleRod;
+		friend class World;
 	public:
 		/**
 		* Resloves this contact for both velocity and interpenetration.
@@ -38,7 +39,7 @@ namespace Annulus
 		* @param penetration The penetration depth for this collision.
 		* @param contactNormal The vector between the particles relative to particle1.
 		*/
-		ParticleContact(Particle* particle1, Particle* particle2, std::float_t restitution, std::float_t penetration, const glm::vec2& contactNormal);
+		ParticleContact(Particle* particle1 = nullptr, Particle* particle2 = nullptr, std::float_t restitution = 1.0f, std::float_t penetration = 0.0f, const glm::vec2& contactNormal = glm::vec2(0, 0));
 		/**
 		* Resloves this contact for both velocity.
 		* @seconds The amount of time for this frame.

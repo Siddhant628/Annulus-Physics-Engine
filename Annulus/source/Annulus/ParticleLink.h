@@ -23,6 +23,10 @@ namespace Annulus
 		* @return The number of contacts which did get some data written into them.
 		*/
 		virtual std::uint32_t AddContact(ParticleContact* contacts, std::uint32_t limit) const = 0;
+		/**
+		* Destructor.
+		*/
+		virtual ~ParticleLink() = default;
 	protected:
 		/**
 		* The current length of the link.

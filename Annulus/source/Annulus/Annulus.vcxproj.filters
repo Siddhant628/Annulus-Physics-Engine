@@ -110,6 +110,9 @@
     <ClCompile Include="ParticleRod.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="ParticleContactGenerator.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">

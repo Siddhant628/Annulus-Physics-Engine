@@ -3,6 +3,7 @@
 
 namespace Annulus
 {
+	class World;
 	class ParticleContact;
 	/**
 	* An abstract class for any particle contact generator.
@@ -17,5 +18,24 @@ namespace Annulus
 		* @return The number of contacts which did get some data written into them.
 		*/
 		virtual std::uint32_t AddContact(ParticleContact* contacts, std::uint32_t limit) const = 0;
+		/**
+		* Initialize the world associated with all the particle force generators.
+		* @param world The world which has to be made as the owner of all particle contact generators.
+		*/
+		static void Initialize(World& world);
+		/**
+		* Register this contact generator to the world.
+		*/
+		virtual ~ParticleContactGenerator();
+		/**
+		* Constructor.
+		* Registers this particle contact generator to the World.
+		*/
+		ParticleContactGenerator();
+	protected:
+		/**
+		* A pointer to the world which contains all the particle contact generators.
+		*/
+		static World* sOwnerWord;
 	};
 }

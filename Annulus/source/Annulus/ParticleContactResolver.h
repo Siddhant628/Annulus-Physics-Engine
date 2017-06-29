@@ -25,10 +25,11 @@ namespace Annulus
 		ParticleContactResolver(const World& world);
 		/**
 		* The routine to resolve a given list of particle contacts.
-		* @param contacts A vector of pointers to ParticleContacts which need to be resolved.
+		* @param contacts An array of ParticleContacts which need to be resolved.
+		* @param numContacts The number of contacts that need to be resolved.
 		* @param seconds The amount of time which has passed in previous frame.
 		*/
-		void ResolveContacts(std::vector<ParticleContact*>& contacts, std::float_t seconds);
+		void ResolveContacts(ParticleContact* contacts, std::uint32_t numContacts, std::float_t seconds);
 		/**
 		*
 		*/

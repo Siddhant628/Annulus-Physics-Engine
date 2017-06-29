@@ -17,8 +17,7 @@ namespace Annulus
 
 	std::uint32_t ParticleRod::AddContact(ParticleContact* contacts, std::uint32_t limit) const
 	{
-		assert(limit >= 0);
-
+		limit;
 		std::uint32_t returnValue = 0;
 
 		std::float_t length = CurrentLength();

@@ -15,7 +15,7 @@ namespace Annulus
 
 	}
 
-	void ParticleContactResolver::ResolveContacts(std::vector<ParticleContact*>& contacts, std::float_t seconds)
+	void ParticleContactResolver::ResolveContacts(ParticleContact* contacts, std::uint32_t numContacts, std::float_t seconds)
 	{
 		std::uint32_t iterations = 0;
 
@@ -23,25 +23,25 @@ namespace Annulus
 		{
 			// Find the contact with the minimum separating velocity.
 			std::float_t max = std::numeric_limits<std::float_t>::max();
-			auto maxIterator = --contacts.end();
+			std::uint32_t maxIndex = numContacts;
 
-			for(auto it = contacts.begin(); it != contacts.end(); ++it)
+			for(std::uint32_t i = 0; i < numContacts; ++i)
 			{
-				std::float_t separatingVelocity = (*it)->CalculateSeparatingVelocity();
+				std::float_t separatingVelocity = contacts[i].CalculateSeparatingVelocity();
 
-				if(separatingVelocity < 0 || (*it)->GetPenetration() > 0)
+				if(separatingVelocity < 0 || contacts[i].GetPenetration() > 0)
 				{
 					max = separatingVelocity;
-					maxIterator = it;
+					maxIndex = i;
 				}
 			}
 			// Check if anything that requires resolving is left.
-			if(maxIterator == contacts.end())
+			if(maxIndex == numContacts)
 			{
 				break;
 			}
 			// Resolve this contact.
-			(*maxIterator)->Resolve(seconds);
+			contacts[maxIndex].Resolve(seconds);
 			++iterations;
 		}
 	}

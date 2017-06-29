@@ -62,6 +62,10 @@ namespace Annulus
 		* The maximum amount of iterations the particle contact resolver will have.
 		*/
 		std::uint32_t mParticleContactResolverIterations;
+		/**
+		* The number of contacts that can be handled each frame.
+		*/
+		std::uint32_t mMaxContacts;
 	public:
 		/**
 		* The amount of time in milliseconds for 30 frames to execute in 1 second.

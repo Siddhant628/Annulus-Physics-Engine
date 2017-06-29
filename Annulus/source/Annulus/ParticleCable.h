@@ -3,7 +3,7 @@
 
 namespace Annulus
 {
-	class ParticleCable : public ParticleLink
+	class ParticleCable final: public ParticleLink
 	{
 	public:
 		/**

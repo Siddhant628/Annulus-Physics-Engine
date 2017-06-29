@@ -5,6 +5,7 @@
 #include <chrono>
 #include <vector>
 #include "ParticleContactResolver.h"
+#include "ParticleContactGenerator.h"
 
 namespace Annulus
 {
@@ -33,13 +34,36 @@ namespace Annulus
 		* @param The amount of time that has passed since last update of the game loop.
 		*/
 		void Update(std::chrono::nanoseconds nanoseconds);
-
+		/**
+		* Create a particle.
+		* @return A pointer to the created particle.
+		*/
 		Particle* CreateParticle();
-
+		/**
+		* Get a reference to the settings associated with this world.
+		*/
 		const Settings& GetSettings() const;
-
+		/**
+		* Get the vector of particles that are present in the world.
+		*/
 		const std::vector<Particle*>& GetParticles() const;
+		/**
+		* Register the particle contact generator from the world.
+		* @param particleContactGenerator The particle that needs to be registered.
+		*/
+		void RegisterParticleContactGenerator(ParticleContactGenerator& particleContactGenerator);
+		/**
+		* Unregister the particle contact generator from the world.
+		* @param particleContactGenerator The particle that needs to be unregistered.
+		*/
+		void UnregisterParticleContactGenerator(ParticleContactGenerator& particleContactGenerator);
 	private:
+		/**
+		* Clears the memory taken by various objects queued for deletion.
+		*/
+		void ClearDeleteQueues();
+
+		std::uint32_t GenerateContacts();
 		/**
 		* The settings with which this world was initialized.
 		*/
@@ -56,5 +80,17 @@ namespace Annulus
 		* The particle contact resolver associated with this world. Created on contruction of the world.
 		*/
 		ParticleContactResolver* mParticleContactResolver;
+		/**
+		* The vecotr of particle contact generators registered to the world.
+		*/
+		std::vector<ParticleContactGenerator*> mParticleContactGenerators;
+		/**
+		* A vecotr of particle contact generators that needs to be cleared.
+		*/
+		std::vector<ParticleContactGenerator*> mParticleContactGeneratorsDelete;
+		/**
+		* The list of particle contacts which are assembled in each update.
+		*/
+		ParticleContact* mContacts;
 	};
 }

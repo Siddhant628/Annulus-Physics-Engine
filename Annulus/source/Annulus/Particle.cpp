@@ -74,7 +74,7 @@ namespace Annulus
 
 	glm::vec2 Particle::GetAcceleration() const
 	{
-		return (mForceAccumulator * mMassInverse);
+		return mAcceleration;
 	}
 
 	void Particle::Integrate(const std::float_t seconds)
@@ -87,6 +87,7 @@ namespace Annulus
 
 			// Estimate acceleration
 			glm::vec2 acceleration = mForceAccumulator * mMassInverse;
+			mAcceleration = acceleration;
 
 			// Update velocity
 			mVelocity += acceleration*seconds;

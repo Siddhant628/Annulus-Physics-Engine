@@ -15,7 +15,8 @@ namespace Annulus
 	Settings::Settings(std::chrono::milliseconds timeStep /* = std::chrono::milliseconds(sTimeFor60FPS) */, glm::vec2 gravity /* = sDefaultGravity */) :
 		mTimeStep(timeStep),
 		mGravity(gravity),
-		mParticleContactResolverIterations(sDefaultParticleContactResolverIterations)
+		mParticleContactResolverIterations(sDefaultParticleContactResolverIterations),
+		mMaxContacts(10)
 	{
 
 	}

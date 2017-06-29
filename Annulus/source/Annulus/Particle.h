@@ -91,6 +91,10 @@ namespace Annulus
 		*/
 		glm::vec2 mForceAccumulator;
 		/**
+		* Cached value of accleration acquired after estimating the force accumulator during integration.
+		*/
+		glm::vec2 mAcceleration;
+		/**
 		* The amount of damping applied to the linear motion.
 		* Ranges between 0 to 1, 1 being without any damping. And 0 being the case when a particle can't move at all without an external force.
 		* Damping is required to remove energy added through numerical instability in the integrator.

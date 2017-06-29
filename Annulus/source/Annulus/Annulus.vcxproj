@@ -192,6 +192,7 @@
     <ClCompile Include="ParticleBungee.cpp" />
     <ClCompile Include="ParticleCable.cpp" />
     <ClCompile Include="ParticleContact.cpp" />
+    <ClCompile Include="ParticleContactGenerator.cpp" />
     <ClCompile Include="ParticleContactResolver.cpp" />
     <ClCompile Include="ParticleForceGenerator.cpp" />
     <ClCompile Include="ParticleGravity.cpp" />
