@@ -14,17 +14,15 @@ namespace Annulus
 {
 	World::World(Settings& settings) : mSettings(&settings), mTimeSinceLastUpdate(nanoseconds(0)), mParticleContactResolver(nullptr)
 	{
-		mParticleContactResolver = new ParticleContactResolver(*this);
-		mParticleContactResolver->SetIterations(mSettings->mParticleContactResolverIterations);
-		
 		ParticleContactGenerator::Initialize(*this);
-		// Create contacts
+
+		mParticleContactResolver = new ParticleContactResolver(*this);		
+		// Allocate memory for contacts equivalent to the maximum contacts the world is allowed to handle.
 		mContacts = new ParticleContact[mSettings->mMaxContacts];
 	}
 
 	World::~World()
 	{
-		delete mParticleContactResolver;
 		// Destroy all particles
 		auto end = mParticles.end();
 		for(auto it = mParticles.begin(); it != end; ++it)
@@ -36,7 +34,8 @@ namespace Annulus
 		{
 			delete *it;
 		}
-		// Delete contacts
+		// Delete memory taken by this world.
+		delete mParticleContactResolver;
 		delete[] mContacts;
 	}
 

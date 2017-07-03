@@ -10,13 +10,12 @@ namespace Annulus
 
 	const glm::vec2 Settings::sDefaultGravity = glm::vec2(0.0f, -10.0f);
 	
-	const std::uint32_t Settings::sDefaultParticleContactResolverIterations = 10;
+	const std::uint32_t Settings::sDefaultMaxContacts = 10;
 
 	Settings::Settings(std::chrono::milliseconds timeStep /* = std::chrono::milliseconds(sTimeFor60FPS) */, glm::vec2 gravity /* = sDefaultGravity */) :
 		mTimeStep(timeStep),
 		mGravity(gravity),
-		mParticleContactResolverIterations(sDefaultParticleContactResolverIterations),
-		mMaxContacts(10)
+		mMaxContacts(sDefaultMaxContacts)
 	{
 
 	}
@@ -50,8 +49,8 @@ namespace Annulus
 		mGravity = gravity;
 	}
 
-	void Settings::SetParticleContactResolverIterations(std::uint32_t iterations)
+	void Settings::SetMaximumContacts(std::uint32_t contacts)
 	{
-		mParticleContactResolverIterations = iterations;
+		mMaxContacts = contacts;
 	}
 }
