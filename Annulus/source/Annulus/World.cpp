@@ -14,6 +14,7 @@ namespace Annulus
 {
 	World::World(Settings& settings) : mSettings(&settings), mTimeSinceLastUpdate(nanoseconds(0)), mParticleContactResolver(nullptr)
 	{
+		Particle::Initialize(*this);
 		ParticleContactGenerator::Initialize(*this);
 
 		mParticleContactResolver = new ParticleContactResolver(*this);		
@@ -89,6 +90,11 @@ namespace Annulus
 		return mParticles;
 	}
 
+	void World::UnregisterParticle(Particle& particle)
+	{
+		mParticlesDelete.push_back(&particle);
+	}
+
 	void World::RegisterParticleContactGenerator(ParticleContactGenerator& particleContactGenerator)
 	{
 		mParticleContactGenerators.push_back(&particleContactGenerator);
@@ -109,6 +115,14 @@ namespace Annulus
 			mParticleContactGenerators.erase(itDelete);
 		}
 		mParticleContactGeneratorsDelete.clear();
+
+		// Clear the memory of obselete particles.
+		for(auto it = mParticlesDelete.begin(); it != mParticlesDelete.end(); ++it)
+		{
+			auto itDelete = std::find(mParticles.begin(), mParticles.end(), *it);
+			mParticles.erase(itDelete);
+		}
+		mParticlesDelete.clear();
 	}
 
 	std::uint32_t World::GenerateContacts()

@@ -5,14 +5,15 @@
 
 namespace Annulus
 {
+	class World;
 	class Particle
 	{
 		friend class World;
 	public:
 		/**
-		* Destructor.
+		* Unregister the particle from the world.
 		*/
-		~Particle() = default;
+		~Particle();
 		/**
 		* Get the inverse of mass of this particle.
 		* @return The inverse of mass.
@@ -106,6 +107,15 @@ namespace Annulus
 		* Initialzes the member with default values.
 		*/
 		Particle();
+		/**
+		* Initialize the world associated with each particle.
+		* @param world The world which has to be made as the owner of all particles.
+		*/
+		static void Initialize(World& world);
+		/**
+		* The world with which each particle is associated.
+		*/
+		static World* sOwnerWorld;
 	public:
 		static const std::float_t sDefaultDamping;
 		static const std::float_t sDefaultMassInverse;

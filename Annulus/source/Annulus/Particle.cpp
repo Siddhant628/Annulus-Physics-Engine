@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Particle.h"
 #include "Settings.h"
+#include "World.h"
 
 #include <iostream>
 
@@ -9,9 +10,22 @@ namespace Annulus
 	const std::float_t Particle::sDefaultDamping = 0.999f;
 	const std::float_t Particle::sDefaultMassInverse = 1;
 
+	World* Particle::sOwnerWorld = nullptr;
+
 	Particle::Particle() : mMassInverse(sDefaultMassInverse), mDamping(sDefaultDamping)
 	{
+		assert(sOwnerWorld != nullptr);
 
+	}
+
+	void Particle::Initialize(World& world)
+	{
+		sOwnerWorld = &world;
+	}
+
+	Particle::~Particle()
+	{
+		sOwnerWorld->UnregisterParticle(*this);
 	}
 
 	std::float_t Particle::GetMassInverse() const

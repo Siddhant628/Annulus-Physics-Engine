@@ -48,6 +48,11 @@ namespace Annulus
 		*/
 		const std::vector<Particle*>& GetParticles() const;
 		/**
+		* Unregister the particle from the world.
+		* @param particle The particle that needs to be unregistered.
+		*/
+		void UnregisterParticle(Particle& particle);
+		/**
 		* Register the particle contact generator from the world.
 		* @param particleContactGenerator The particle that needs to be registered.
 		*/
@@ -77,20 +82,24 @@ namespace Annulus
 		*/
 		std::vector<Particle*> mParticles;
 		/**
-		* The particle contact resolver associated with this world. Created on contruction of the world.
+		* A vector of particles that needs to be deleted.
 		*/
-		ParticleContactResolver* mParticleContactResolver;
+		std::vector<Particle*> mParticlesDelete;
 		/**
 		* The vecotr of particle contact generators registered to the world.
 		*/
 		std::vector<ParticleContactGenerator*> mParticleContactGenerators;
 		/**
-		* A vecotr of particle contact generators that needs to be cleared.
+		* A vector of particle contact generators that needs to be deleted.
 		*/
 		std::vector<ParticleContactGenerator*> mParticleContactGeneratorsDelete;
 		/**
 		* The list of particle contacts which are assembled in each update.
 		*/
 		ParticleContact* mContacts;
+		/**
+		* The particle contact resolver associated with this world. Created on contruction of the world.
+		*/
+		ParticleContactResolver* mParticleContactResolver;
 	};
 }
