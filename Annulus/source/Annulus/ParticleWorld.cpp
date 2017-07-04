@@ -25,6 +25,7 @@ namespace Annulus
 
 	ParticleWorld::~ParticleWorld()
 	{
+		ClearDeleteQueues();
 		// Destroy all particles
 		auto end = mParticles.end();
 		for(auto it = mParticles.begin(); it != end; ++it)

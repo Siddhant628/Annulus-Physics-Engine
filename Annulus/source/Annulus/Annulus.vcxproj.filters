@@ -44,17 +44,17 @@
     <ClInclude Include="ParticleContactResolver.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleLink.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="ParticleCable.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleRod.h">
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="ParticleWorld.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleRod.h">
+      <Filter>Engine\ContactGenerators</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleLink.h">
+      <Filter>Engine\ContactGenerators</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -98,13 +98,7 @@
     <ClCompile Include="ParticleContactResolver.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleLink.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
     <ClCompile Include="ParticleCable.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleRod.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="ParticleContactGenerator.cpp">
@@ -112,6 +106,12 @@
     </ClCompile>
     <ClCompile Include="ParticleWorld.cpp">
       <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleLink.cpp">
+      <Filter>Engine\ContactGenerators</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleRod.cpp">
+      <Filter>Engine\ContactGenerators</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +123,9 @@
     </Filter>
     <Filter Include="Engine\ForceGenerators">
       <UniqueIdentifier>{63bd603d-3de5-4a45-be9a-d3b4ef7ddc9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\ContactGenerators">
+      <UniqueIdentifier>{a459bb0d-cd82-471e-8707-475cd30c8179}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
