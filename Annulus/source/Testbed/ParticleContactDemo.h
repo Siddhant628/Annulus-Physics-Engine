@@ -47,6 +47,16 @@ namespace Demos
 		*/
 		Annulus::Particle* mParticle2;
 		/**
+		* Particle in demo.
+		*/
+		Annulus::Particle* mParticle3;
+		/**
+		* Particle in demo.
+		*/
+		Annulus::Particle* mParticle4;
+
+
+		/**
 		* Circle representing a particle.
 		*/
 		sf::CircleShape* mCircle1;
@@ -55,6 +65,14 @@ namespace Demos
 		*/
 		sf::CircleShape* mCircle2;
 		/**
+		* Circle representing a particle.
+		*/
+		sf::CircleShape* mCircle3;
+		/**
+		* Circle representing a particle.
+		*/
+		sf::CircleShape* mCircle4;
+		/**
 		* The initial position of the particle.
 		*/
 		const static glm::vec2 sParticlePosition1;
@@ -62,5 +80,13 @@ namespace Demos
 		* The initial position of the particle.
 		*/
 		const static glm::vec2 sParticlePosition2;
+		/**
+		* The initial position of the particle.
+		*/
+		const static glm::vec2 sParticlePosition3;
+		/**
+		* The initial position of the particle.
+		*/
+		const static glm::vec2 sParticlePosition4;
 	};
 }
