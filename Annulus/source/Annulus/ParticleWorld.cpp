@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "World.h"
+#include "ParticleWorld.h"
 #include "Settings.h"
 #include "Particle.h"
 #include "ParticleForceGenerator.h"
@@ -12,9 +12,10 @@ using namespace std::chrono;
 
 namespace Annulus
 {
-	World::World(Settings& settings) : mSettings(&settings), mTimeSinceLastUpdate(nanoseconds(0)), mParticleContactResolver(nullptr)
+	ParticleWorld::ParticleWorld(Settings& settings) : mSettings(&settings), mTimeSinceLastUpdate(nanoseconds(0)), mParticleContactResolver(nullptr)
 	{
 		Particle::Initialize(*this);
+		ParticleForceGenerator::Initialize(*this);
 		ParticleContactGenerator::Initialize(*this);
 
 		mParticleContactResolver = new ParticleContactResolver(*this);		
@@ -22,13 +23,18 @@ namespace Annulus
 		mContacts = new ParticleContact[mSettings->mMaxContacts];
 	}
 
-	World::~World()
+	ParticleWorld::~ParticleWorld()
 	{
 		// Destroy all particles
 		auto end = mParticles.end();
 		for(auto it = mParticles.begin(); it != end; ++it)
 		{
 			delete (*it);
+		}
+		// Destroy all particle force generators.
+		for(auto it = mParticleForceGenerators.begin(); it != mParticleForceGenerators.end(); ++it)
+		{
+			delete *it;
 		}
 		// Destroy all particle contact generators.
 		for (auto it = mParticleContactGenerators.begin(); it != mParticleContactGenerators.end(); ++it)
@@ -40,7 +46,7 @@ namespace Annulus
 		delete[] mContacts;
 	}
 
-	void World::Update(std::chrono::nanoseconds nanoseconds)
+	void ParticleWorld::Update(std::chrono::nanoseconds nanoseconds)
 	{
 		mTimeSinceLastUpdate += nanoseconds;
 
@@ -48,7 +54,7 @@ namespace Annulus
 		{
 			std::float_t seconds = mTimeSinceLastUpdate.count() / 1000000000.0f;
 			// Update Forces
-			ParticleForceGenerator::UpdateForces(seconds);
+			UpdateForces(seconds);
 			
 			// Integrate
 			auto end = mParticles.end();
@@ -73,43 +79,60 @@ namespace Annulus
 		ClearDeleteQueues();
 	}
 
-	Particle* World::CreateParticle()
+	Particle* ParticleWorld::CreateParticle()
 	{
 		Particle* newParticle = new Particle();
 		mParticles.push_back(newParticle);
 		return newParticle;
 	}
 
-	const Settings& World::GetSettings() const
+	const Settings& ParticleWorld::GetSettings() const
 	{
 		return *mSettings;
 	}
 
-	const std::vector<Particle*>& World::GetParticles() const
+	const std::vector<Particle*>& ParticleWorld::GetParticles() const
 	{
 		return mParticles;
 	}
 
-	void World::UnregisterParticle(Particle& particle)
+	void ParticleWorld::UnregisterParticle(Particle& particle)
 	{
 		mParticlesDelete.push_back(&particle);
 	}
 
-	void World::RegisterParticleContactGenerator(ParticleContactGenerator& particleContactGenerator)
+	void ParticleWorld::RegisterParticleForceGenerator(ParticleForceGenerator& particleForceGenerator)
+	{
+		mParticleForceGenerators.push_back(&particleForceGenerator);
+	}
+
+	void ParticleWorld::UnregisterParticleForceGenerator(ParticleForceGenerator& particleForceGenerator)
+	{
+		mParticleForceGeneratorsDelete.push_back(&particleForceGenerator);
+	}
+
+	void ParticleWorld::RegisterParticleContactGenerator(ParticleContactGenerator& particleContactGenerator)
 	{
 		mParticleContactGenerators.push_back(&particleContactGenerator);
 	}
 
-	void World::UnregisterParticleContactGenerator(ParticleContactGenerator& particleContactGenerator)
+	void ParticleWorld::UnregisterParticleContactGenerator(ParticleContactGenerator& particleContactGenerator)
 	{
 		mParticleContactGeneratorsDelete.push_back(&particleContactGenerator);
 	}
 
-	void World::ClearDeleteQueues()
+	void ParticleWorld::ClearDeleteQueues()
 	{
+		// Clear the memory of obselete particle force generators.
+		for(auto it = mParticleForceGeneratorsDelete.begin(); it != mParticleForceGeneratorsDelete.end(); ++it)
+		{
+			auto itDelete = std::find(mParticleForceGenerators.begin(), mParticleForceGenerators.end(), *it);
+			mParticleForceGenerators.erase(itDelete);
+		}
+		mParticleForceGeneratorsDelete.clear();
+
 		// Clear the memory of obselete particle contact generators.
-		std::vector<ParticleContactGenerator*>::iterator end = mParticleContactGeneratorsDelete.end();
-		for (auto it = mParticleContactGeneratorsDelete.begin(); it != end; ++it)
+		for (auto it = mParticleContactGeneratorsDelete.begin(); it != mParticleContactGeneratorsDelete.end(); ++it)
 		{
 			auto itDelete = std::find(mParticleContactGenerators.begin(), mParticleContactGenerators.end(), *it);
 			mParticleContactGenerators.erase(itDelete);
@@ -125,7 +148,7 @@ namespace Annulus
 		mParticlesDelete.clear();
 	}
 
-	std::uint32_t World::GenerateContacts()
+	std::uint32_t ParticleWorld::GenerateContacts()
 	{
 		std::uint32_t limit = mSettings->mMaxContacts;
 		ParticleContact* contact = mContacts;
@@ -143,5 +166,18 @@ namespace Annulus
 			}
 		}
 		return mSettings->mMaxContacts - limit;
+	}
+
+	void ParticleWorld::UpdateForces(std::float_t seconds)
+	{
+		for (auto it = mParticleForceGenerators.begin(); it != mParticleForceGenerators.end(); ++it)
+		{
+			auto& particles = (*it)->mParticleList;
+
+			for (auto iter = particles.begin(); iter != particles.end(); ++iter)
+			{
+				(*it)->UpdateForce(**iter, seconds);
+			}
+		}
 	}
 }

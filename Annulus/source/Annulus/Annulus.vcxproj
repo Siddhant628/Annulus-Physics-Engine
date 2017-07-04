@@ -181,7 +181,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="Shape.h" />
-    <ClInclude Include="World.h" />
+    <ClInclude Include="ParticleWorld.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Body.cpp" />
@@ -207,7 +207,7 @@
     </ClCompile>
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Shape.cpp" />
-    <ClCompile Include="World.cpp" />
+    <ClCompile Include="ParticleWorld.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

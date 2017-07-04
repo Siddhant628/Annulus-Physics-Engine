@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "GameClock.h"
 #include "GameTime.h"
-#include "World.h"
+#include "ParticleWorld.h"
 #include "Settings.h"
 
 #include "Particle.h"
@@ -32,7 +32,7 @@ int  main()
 	GameTime gameTime;
 	// Create a world with default settings
 	Settings settings;
-	World world(settings);
+	ParticleWorld world(settings);
 
 	// Create the demo scene
 #if DEMO_COUNT == 1

@@ -6,7 +6,7 @@
 
 namespace Annulus
 {
-	class World;
+	class ParticleWorld;
 
 	/**
 	* A particle force generator which anchors a spring to a specific position in the space.

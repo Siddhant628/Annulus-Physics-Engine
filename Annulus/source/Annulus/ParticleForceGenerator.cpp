@@ -1,12 +1,13 @@
 #include "pch.h"
 #include "ParticleForceGenerator.h"
+#include "ParticleWorld.h"
 
 #include <algorithm>
 #include <cassert>
 
 namespace Annulus
 {
-	std::vector<ParticleForceGenerator*> ParticleForceGenerator::mForceGenerators;
+	ParticleWorld* ParticleForceGenerator::sOwnerWorld = nullptr;
 
 	void ParticleForceGenerator::RegisterParticle(Particle& particle)
 	{
@@ -27,28 +28,20 @@ namespace Annulus
 		mParticleList.clear();
 	}
 
-	void ParticleForceGenerator::UpdateForces(std::float_t seconds)
+	void ParticleForceGenerator::Initialize(ParticleWorld& world)
 	{
-		for(auto it = mForceGenerators.begin(); it != mForceGenerators.end(); ++it)
-		{
-			auto& particles = (*it)->mParticleList;
-			
-			for( auto iter = particles.begin(); iter != particles.end(); ++iter)
-			{
-				(*it)->UpdateForce(**iter, seconds);
-			}
-		}
+		sOwnerWorld = &world;
 	}
 
 	ParticleForceGenerator::ParticleForceGenerator()
 	{
-		mForceGenerators.push_back(this);
+		assert(sOwnerWorld != nullptr);
+		sOwnerWorld->RegisterParticleForceGenerator(*this);
 	}
 
 	ParticleForceGenerator::~ParticleForceGenerator()
 	{
-		auto it = std::find(mForceGenerators.begin(), mForceGenerators.end(), this);
-		assert(it != mForceGenerators.end());
-		mForceGenerators.erase(it);
+		assert(sOwnerWorld != nullptr);
+		sOwnerWorld->UnregisterParticleForceGenerator(*this);
 	}
 }

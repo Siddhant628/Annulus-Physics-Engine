@@ -4,13 +4,13 @@
 
 namespace Annulus
 {
-	class World;
+	class ParticleWorld;
 	/**
 	* The contact resolver routine for the particle contacts that are present in the game.
 	*/
 	class ParticleContactResolver
 	{
-		friend class World;
+		friend class ParticleWorld;
 	public:
 		/**
 		* Set the number of iterations for this resolver.
@@ -22,7 +22,7 @@ namespace Annulus
 		* Constructor.
 		* @param world A reference to the world creating this particle contact resolver.
 		*/
-		ParticleContactResolver(const World& world);
+		ParticleContactResolver(const ParticleWorld& world);
 		/**
 		* The routine to resolve a given list of particle contacts.
 		* @param contacts An array of ParticleContacts which need to be resolved.
@@ -33,7 +33,7 @@ namespace Annulus
 		/**
 		*
 		*/
-		const World& mOwnerWorld;
+		const ParticleWorld& mOwnerWorld;
 		/**
 		* The number of iterations allowed to this contact resolver. Default value is 10.
 		*/

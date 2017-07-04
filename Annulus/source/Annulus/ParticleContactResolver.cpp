@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "ParticleContactResolver.h"
-#include "World.h"
+#include "ParticleWorld.h"
 #include "ParticleContact.h"
 
 namespace Annulus
@@ -10,7 +10,7 @@ namespace Annulus
 		mIterations = iterations;
 	}
 
-	ParticleContactResolver::ParticleContactResolver(const World& world): mOwnerWorld(world), mIterations(10)
+	ParticleContactResolver::ParticleContactResolver(const ParticleWorld& world): mOwnerWorld(world), mIterations(10)
 	{
 
 	}

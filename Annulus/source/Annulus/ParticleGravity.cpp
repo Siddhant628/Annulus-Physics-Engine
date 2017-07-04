@@ -1,12 +1,12 @@
 #include "pch.h"
 #include "ParticleGravity.h"
 #include "Particle.h"
-#include "World.h"
+#include "ParticleWorld.h"
 #include "Settings.h"
 
 namespace Annulus
 {
-	ParticleGravity::ParticleGravity(const World& world) : mWorld(&world)
+	ParticleGravity::ParticleGravity(const ParticleWorld& world) : mWorld(&world)
 	{
 
 	}

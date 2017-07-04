@@ -18,7 +18,7 @@ namespace Demos
 		* @param renderWindow A reference to the RenderWindow for which this demo is created.
 		* @param world A reference to the world for which this demo is created.
 		*/
-		ParticleAnchoredSpringDemo(sf::RenderWindow& renderWindow, Annulus::World& world);
+		ParticleAnchoredSpringDemo(sf::RenderWindow& renderWindow, Annulus::ParticleWorld& world);
 		/**
 		* Destructor.
 		*/

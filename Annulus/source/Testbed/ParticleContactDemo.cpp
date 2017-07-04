@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "ParticleContactDemo.h"
 #include "Particle.h"
-#include "World.h"
+#include "ParticleWorld.h"
 #include "ParticleRod.h"
 #include "ParticleCable.h"
 #include "ParticleGravity.h"
@@ -13,7 +13,7 @@ namespace Demos
 	const glm::vec2 ParticleContactDemo::sParticlePosition1 = glm::vec2(-100.0f, 0.0f);
 	const glm::vec2 ParticleContactDemo::sParticlePosition2 = glm::vec2(100.0f, 0.0f);
 
-	ParticleContactDemo::ParticleContactDemo(sf::RenderWindow& renderWindow, Annulus::World& world) : Demo(renderWindow, world), mParticle1(nullptr), mParticle2(nullptr), mCircle1(nullptr), mCircle2(nullptr)
+	ParticleContactDemo::ParticleContactDemo(sf::RenderWindow& renderWindow, Annulus::ParticleWorld& world) : Demo(renderWindow, world), mParticle1(nullptr), mParticle2(nullptr), mCircle1(nullptr), mCircle2(nullptr)
 	{
 	}
 

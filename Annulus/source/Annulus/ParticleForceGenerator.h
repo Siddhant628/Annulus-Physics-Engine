@@ -4,6 +4,7 @@
 
 namespace Annulus
 {
+	class ParticleWorld;
 	class Particle;
 
 	/**
@@ -11,13 +12,13 @@ namespace Annulus
 	*/
 	class ParticleForceGenerator
 	{
-		friend class World;
+		friend class ParticleWorld;
 	public:
 		/**
 		* Destructor.
 		* Deregisters this force generator from the static manager.
 		*/
-		~ParticleForceGenerator();
+		virtual ~ParticleForceGenerator();
 		/**
 		* Update the force acting on a particle for this frame.
 		* @param particle The particle on which the force needs to be applied.
@@ -50,12 +51,14 @@ namespace Annulus
 		std::vector<Particle*> mParticleList;
 	private:
 		/**
-		* Calls UpdateForce for all the force generators, on all other their associated particles.
+		* The owner world with which this particle force generator is associated.
 		*/
-		static void UpdateForces(std::float_t seconds);
+		static ParticleWorld* sOwnerWorld;
+
 		/**
-		* The list of force generators maintained by the static manager.
+		* Initialize the world associated with all the particle force generators.
+		* @param world The world which has to be made as the owner of all particle force generators.
 		*/
-		static std::vector<ParticleForceGenerator*> mForceGenerators;
+		static void Initialize(ParticleWorld& world);
 	};
 }

@@ -4,7 +4,7 @@
 
 namespace Annulus 
 {
-	class World;
+	class ParticleWorld;
 }
 
 namespace Demos
@@ -35,7 +35,7 @@ namespace Demos
 		* @param renderWindow A reference to the RenderWindow for which this demo is created.
 		* @param world A reference to the world for which this demo is created.
 		*/
-		Demo(sf::RenderWindow& renderWindow, Annulus::World& world);
+		Demo(sf::RenderWindow& renderWindow, Annulus::ParticleWorld& world);
 		/**
 		* A reference to the RenderWindow for which this demo is created.
 		*/
@@ -43,7 +43,7 @@ namespace Demos
 		/**
 		* A reference to the world for which this demo is created.
 		*/
-		Annulus::World& mWorld;
+		Annulus::ParticleWorld& mWorld;
 		/**
 		* The view associated with the rendered window.
 		*/

@@ -15,7 +15,7 @@ namespace Annulus
 	{
 		friend class ParticleCable;
 		friend class ParticleRod;
-		friend class World;
+		friend class ParticleWorld;
 	public:
 		/**
 		* Resloves this contact for both velocity and interpenetration.

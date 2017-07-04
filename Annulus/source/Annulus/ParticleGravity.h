@@ -3,7 +3,7 @@
 
 namespace Annulus
 {
-	class World;
+	class ParticleWorld;
 
 	class ParticleGravity : public ParticleForceGenerator
 	{
@@ -12,7 +12,7 @@ namespace Annulus
 		* Constructor.
 		* @param world A reference to the world for which this force generator is being created.
 		*/
-		ParticleGravity(const World& world);
+		ParticleGravity(const ParticleWorld& world);
 		/**
 		* Destructor.
 		*/
@@ -27,6 +27,6 @@ namespace Annulus
 		/**
 		* A pointer to the world for which this force generator operates.
 		*/
-		const World* mWorld;
+		const ParticleWorld* mWorld;
 	};
 }

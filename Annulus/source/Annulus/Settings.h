@@ -12,7 +12,7 @@ namespace Annulus
 	*/
 	class Settings
 	{
-		friend class World;
+		friend class ParticleWorld;
 	public:
 		/**
 		* Constructor.

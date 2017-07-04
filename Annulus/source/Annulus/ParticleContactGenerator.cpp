@@ -1,18 +1,19 @@
 #include "pch.h"
 #include "ParticleContactGenerator.h"
-#include "World.h"
+#include "ParticleWorld.h"
 
 namespace Annulus
 {
-	World* ParticleContactGenerator::sOwnerWord = nullptr;
+	ParticleWorld* ParticleContactGenerator::sOwnerWord = nullptr;
 
-	void ParticleContactGenerator::Initialize(World& world)
+	void ParticleContactGenerator::Initialize(ParticleWorld& world)
 	{
 		sOwnerWord = &world;
 	}
 
 	ParticleContactGenerator::~ParticleContactGenerator()
 	{
+		assert(sOwnerWord != nullptr);
 		sOwnerWord->UnregisterParticleContactGenerator(*this);
 	}
 
