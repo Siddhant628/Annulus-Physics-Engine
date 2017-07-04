@@ -22,7 +22,6 @@ namespace Annulus
 
 	}
 
-	// TODO Check if the order of execution is affecting GetAcceleration() call.
 	void ParticleContact::ResolveVelocity(std::float_t seconds) const
 	{
 		std::float_t separatingVelocity = CalculateSeparatingVelocity();
@@ -57,7 +56,7 @@ namespace Annulus
 			std::float_t totalInverseMass = mParticle[0]->GetMassInverse();
 			if (mParticle[1])
 			{
-				mParticle[1]->GetMassInverse();
+				totalInverseMass += mParticle[1]->GetMassInverse();
 			}
 			// Proceed to resolving velocity only if both the particles aren't of infinite mass.
 			if (totalInverseMass > 0)
@@ -71,7 +70,7 @@ namespace Annulus
 				mParticle[0]->SetVelocity(mParticle[0]->GetVelocity() + (impulsePerIMass * mParticle[0]->GetMassInverse()));
 				if (mParticle[1] != nullptr)
 				{
-					mParticle[1]->SetVelocity(mParticle[1]->GetVelocity() + (impulsePerIMass * mParticle[1]->GetMassInverse()));
+					mParticle[1]->SetVelocity(mParticle[1]->GetVelocity() - (impulsePerIMass * mParticle[1]->GetMassInverse()));
 				}
 			}
 		}
@@ -97,7 +96,7 @@ namespace Annulus
 				mParticle[0]->SetPosition(mParticle[0]->GetPosition() + (movementPerIMass * mParticle[0]->GetMassInverse()));
 				if (mParticle[1] != nullptr)
 				{
-					mParticle[1]->SetPosition(mParticle[1]->GetPosition() + (movementPerIMass * mParticle[1]->GetMassInverse()));
+					mParticle[1]->SetPosition(mParticle[1]->GetPosition() - (movementPerIMass * mParticle[1]->GetMassInverse()));
 				}
 
 			}

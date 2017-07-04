@@ -12,8 +12,8 @@ namespace Demos
 {
 	const glm::vec2 ParticleContactDemo::sParticlePosition1 = glm::vec2(-100.0f, 0.0f);
 	const glm::vec2 ParticleContactDemo::sParticlePosition2 = glm::vec2(100.0f, 0.0f);
-	const glm::vec2 ParticleContactDemo::sParticlePosition3 = glm::vec2(-120.0f, -50.0f);
-	const glm::vec2 ParticleContactDemo::sParticlePosition4 = glm::vec2(80.0f, -50.0f);
+	const glm::vec2 ParticleContactDemo::sParticlePosition3 = glm::vec2(-140.0f, -40.0f);
+	const glm::vec2 ParticleContactDemo::sParticlePosition4 = glm::vec2(60.0f, -40.0f);
 
 	ParticleContactDemo::ParticleContactDemo(sf::RenderWindow& renderWindow, Annulus::ParticleWorld& world) :
 		Demo(renderWindow, world),
@@ -50,22 +50,21 @@ namespace Demos
 		mParticle3 = mWorld.CreateParticle();
 		mParticle3->SetPosition(sParticlePosition3);
 		mParticle3->SetDamping(0.9f);
-		mParticle3->SetMass(100.0f);
 
 		mParticle4 = mWorld.CreateParticle();
 		mParticle4->SetPosition(sParticlePosition4);
 		mParticle4->SetDamping(0.9f);
-		mParticle4->SetMass(100.0f);
 
-		//ParticleRod* rod = new ParticleRod(*mParticle3, *mParticle4);
-		//rod->SetLength(200);
+		// Create the contacts
+		ParticleRod* rod = new ParticleRod(*mParticle3, *mParticle4);
+		rod->SetLength(200);
 
 		ParticleCable* cable = new ParticleCable(*mParticle3, *mParticle1);
-		cable->SetMaxLength(70);
+		cable->SetMaxLength(100);
 		cable->SetRestitution(0.8f);
 
 		ParticleCable* cable2 = new ParticleCable(*mParticle4, *mParticle2);
-		cable2->SetMaxLength(70);
+		cable2->SetMaxLength(100);
 		cable2->SetRestitution(0.8f);
 
 		ParticleGravity* gravity = new ParticleGravity(mWorld);
