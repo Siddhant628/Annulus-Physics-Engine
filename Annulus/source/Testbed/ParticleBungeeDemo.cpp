@@ -15,7 +15,19 @@ namespace Demos
 
 	ParticleBungeeDemo::ParticleBungeeDemo(sf::RenderWindow& renderWindow, Annulus::ParticleWorld& world) : Demo(renderWindow, world), mParticle1(nullptr), mParticle2(nullptr), mCircle1(nullptr), mCircle2(nullptr), mBungee(nullptr)
 	{
+		mParticle1 = mWorld.CreateParticle();
+		mParticle2 = mWorld.CreateParticle();
 
+		mBungee = new ParticleBungee(*mParticle1, *mParticle2);
+
+		// Create gravitational force generator
+		mGravity = new ParticleGravity(mWorld);
+		mGravity->RegisterParticle(*mParticle1);
+
+		mCircle1 = new sf::CircleShape(sParticleRadius);
+		mCircle2 = new sf::CircleShape(sParticleRadius);
+
+		Initialize();
 	}
 
 	ParticleBungeeDemo::~ParticleBungeeDemo()
@@ -26,30 +38,23 @@ namespace Demos
 
 	void ParticleBungeeDemo::Initialize()
 	{
-		// Create particles
-		mParticle1 = mWorld.CreateParticle();
+		// Initialize particles
 		mParticle1->SetPosition(sParticlePosition1);
 		mParticle1->SetDamping(0.9f);
+		mParticle1->SetVelocity(glm::vec2(0, 0));
 
-		mParticle2 = mWorld.CreateParticle();
 		mParticle2->SetPosition(sParticlePosition2);
 		mParticle2->SetDamping(0.9f);
+		mParticle2->SetVelocity(glm::vec2(0, 0));
 
-		// Create spring force generator
-		mBungee = new ParticleBungee(*mParticle1, *mParticle2);
+		// Initialize spring force generator
 		mBungee->SetRestLength(sSpringRestLength);
 		mBungee->SetSpringConstant(sSpringConstant);
 
-		// Create gravitational force generator
-		mGravity = new ParticleGravity(mWorld);
-		mGravity->RegisterParticle(*mParticle1);
-
-		// Create circles to visualize particles
-		mCircle1 = new sf::CircleShape(sParticleRadius);
+		// Initialize circles to visualize particles
 		mCircle1->setPosition(0, 0);
 		mCircle1->setFillColor(sf::Color::Red);
 
-		mCircle2 = new sf::CircleShape(sParticleRadius);
 		mCircle2->setPosition(0, 0);
 		mCircle2->setFillColor(sf::Color::Black);
 	}

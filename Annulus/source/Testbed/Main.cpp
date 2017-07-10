@@ -24,7 +24,7 @@
 #define SCREEN_WIDTH 1600
 #define SCREEN_HEIGHT 900
 
-#define DEMO_COUNT 5
+#define DEMO_COUNT 4
 
 using namespace Annulus;
 using namespace Demos;
@@ -47,17 +47,13 @@ int  main()
 
 	// Create the demo scene
 #if DEMO_COUNT == 1
-	ParticleSpringDemo springDemo(window, world);
-	springDemo.Initialize();
+	ParticleSpringDemo demo(window, world);
 #elif DEMO_COUNT == 2
-	ParticleAnchoredSpringDemo anchoredSpringDemo(window, world);
-	anchoredSpringDemo.Initialize();
+	ParticleAnchoredSpringDemo demo(window, world);
 #elif DEMO_COUNT == 3
-	ParticleBungeeDemo bungeeDemo(window, world);
-	bungeeDemo.Initialize();
+	ParticleBungeeDemo demo(window, world);
 #elif DEMO_COUNT == 4
-	ParticleContactDemo contactDemo(window, world);
-	contactDemo.Initialize();
+	ParticleContactDemo demo(window, world);
 #endif
 
 	while (window.isOpen())
@@ -76,6 +72,11 @@ int  main()
 				sf::FloatRect visibleArea(0, 0, static_cast<std::float_t>(event.size.width), static_cast<std::float_t>(event.size.height));
 				window.setView(sf::View(visibleArea));
 			}
+			// If user presses R then reset the demo.
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+			{
+				demo.Initialize();
+			}
 		}
 		// Update game time
 		gameClock.UpdateGameTime(gameTime);
@@ -84,30 +85,15 @@ int  main()
 		// Perform physics update, rendering, etc.
 		world.Update(deltaNanoseconds);
 		//std::cout << "Total Time: " << (gameTime.TotalGameTime().count() / 1000000000.0f) << std::endl;
-		
 		// Update the demo scene
-#if DEMO_COUNT == 1
-		springDemo.Update(deltaNanoseconds);
-#elif DEMO_COUNT == 2
-		anchoredSpringDemo.Update(deltaNanoseconds);
-#elif DEMO_COUNT == 3
-		bungeeDemo.Update(deltaNanoseconds);
-#elif DEMO_COUNT == 4
-		contactDemo.Update(deltaNanoseconds);
-#endif
+		demo.Update(deltaNanoseconds);
+
 		// Rendering
 		window.clear(sf::Color(100, 149, 237, 1));
 		
 		// Draw the demo scene
-#if DEMO_COUNT == 1
-		springDemo.Draw();
-#elif DEMO_COUNT == 2
-		anchoredSpringDemo.Draw();
-#elif DEMO_COUNT == 3
-		bungeeDemo.Draw();
-#elif DEMO_COUNT == 4
-		contactDemo.Draw();
-#endif
+		demo.Draw();
+
 
 		window.display();
 	}

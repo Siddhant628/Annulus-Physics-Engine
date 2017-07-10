@@ -26,34 +26,10 @@ namespace Demos
 		mCircle3(nullptr),
 		mCircle4(nullptr)
 	{
-	}
-
-	ParticleContactDemo::~ParticleContactDemo()
-	{
-
-	}
-
-	void ParticleContactDemo::Initialize()
-	{
-		// Create particles
 		mParticle1 = mWorld.CreateParticle();
-		mParticle1->SetPosition(sParticlePosition1);
-		mParticle1->SetDamping(0.9f);
-		mParticle1->SetInverseMass(0.0f);
-		
-
 		mParticle2 = mWorld.CreateParticle();
-		mParticle2->SetPosition(sParticlePosition2);
-		mParticle2->SetDamping(0.9f);
-		mParticle2->SetInverseMass(0.0f);
-
 		mParticle3 = mWorld.CreateParticle();
-		mParticle3->SetPosition(sParticlePosition3);
-		mParticle3->SetDamping(0.9f);
-
 		mParticle4 = mWorld.CreateParticle();
-		mParticle4->SetPosition(sParticlePosition4);
-		mParticle4->SetDamping(0.9f);
 
 		// Create the contacts
 		ParticleRod* rod = new ParticleRod(*mParticle3, *mParticle4);
@@ -71,20 +47,51 @@ namespace Demos
 		gravity->RegisterParticle(*mParticle3);
 		gravity->RegisterParticle(*mParticle4);
 
-		// Create circles to visualize particles
+
 		mCircle1 = new sf::CircleShape(sParticleRadius);
+		mCircle2 = new sf::CircleShape(sParticleRadius);
+		mCircle3 = new sf::CircleShape(sParticleRadius);
+		mCircle4 = new sf::CircleShape(sParticleRadius);
+
+		Initialize();
+	}
+
+	ParticleContactDemo::~ParticleContactDemo()
+	{
+
+	}
+
+	void ParticleContactDemo::Initialize()
+	{
+		// Initialize particles
+		mParticle1->SetPosition(sParticlePosition1);
+		mParticle1->SetDamping(0.9f);
+		mParticle1->SetInverseMass(0.0f);
+		mParticle1->SetVelocity(glm::vec2(0, 0));
+		
+		mParticle2->SetPosition(sParticlePosition2);
+		mParticle2->SetDamping(0.9f);
+		mParticle2->SetInverseMass(0.0f);
+		mParticle2->SetVelocity(glm::vec2(0, 0));
+
+		mParticle3->SetPosition(sParticlePosition3);
+		mParticle3->SetDamping(0.9f);
+		mParticle3->SetVelocity(glm::vec2(0, 0));
+
+		mParticle4->SetPosition(sParticlePosition4);
+		mParticle4->SetDamping(0.9f);
+		mParticle4->SetVelocity(glm::vec2(0, 0));
+
+		// Initialize circles to visualize particles
 		mCircle1->setPosition(0, 0);
 		mCircle1->setFillColor(sf::Color::Black);
 
-		mCircle2 = new sf::CircleShape(sParticleRadius);
 		mCircle2->setPosition(0, 0);
 		mCircle2->setFillColor(sf::Color::Black);
 
-		mCircle3 = new sf::CircleShape(sParticleRadius);
 		mCircle3->setPosition(0, 0);
 		mCircle3->setFillColor(sf::Color::Red);
 
-		mCircle4 = new sf::CircleShape(sParticleRadius);
 		mCircle4->setPosition(0, 0);
 		mCircle4->setFillColor(sf::Color::Red);
 	}
