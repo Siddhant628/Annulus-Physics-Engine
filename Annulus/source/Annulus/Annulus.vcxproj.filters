@@ -14,15 +14,6 @@
     <ClInclude Include="Body.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Shape.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Particle.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleForceGenerator.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="ParticleGravity.h">
       <Filter>Engine\ForceGenerators</Filter>
     </ClInclude>
@@ -35,26 +26,35 @@
     <ClInclude Include="ParticleBungee.h">
       <Filter>Engine\ForceGenerators</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleContact.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleContactGenerator.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleContactResolver.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleCable.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleWorld.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="ParticleRod.h">
       <Filter>Engine\ContactGenerators</Filter>
     </ClInclude>
     <ClInclude Include="ParticleLink.h">
       <Filter>Engine\ContactGenerators</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleWorld.h">
+      <Filter>Engine\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Engine\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleCable.h">
+      <Filter>Engine\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContact.h">
+      <Filter>Engine\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactResolver.h">
+      <Filter>Engine\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactGenerator.h">
+      <Filter>Engine\ContactGenerators</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleForceGenerator.h">
+      <Filter>Engine\ForceGenerators</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -71,15 +71,6 @@
     <ClCompile Include="Body.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Shape.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Particle.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleForceGenerator.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
     <ClCompile Include="ParticleGravity.cpp">
       <Filter>Engine\ForceGenerators</Filter>
     </ClCompile>
@@ -92,26 +83,35 @@
     <ClCompile Include="ParticleBungee.cpp">
       <Filter>Engine\ForceGenerators</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleContact.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleContactResolver.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleCable.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleContactGenerator.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleWorld.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
     <ClCompile Include="ParticleLink.cpp">
       <Filter>Engine\ContactGenerators</Filter>
     </ClCompile>
     <ClCompile Include="ParticleRod.cpp">
       <Filter>Engine\ContactGenerators</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>Engine\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleCable.cpp">
+      <Filter>Engine\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleContact.cpp">
+      <Filter>Engine\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleContactResolver.cpp">
+      <Filter>Engine\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleWorld.cpp">
+      <Filter>Engine\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleContactGenerator.cpp">
+      <Filter>Engine\ContactGenerators</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleForceGenerator.cpp">
+      <Filter>Engine\ForceGenerators</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +126,9 @@
     </Filter>
     <Filter Include="Engine\ContactGenerators">
       <UniqueIdentifier>{a459bb0d-cd82-471e-8707-475cd30c8179}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Particle">
+      <UniqueIdentifier>{d372e581-17ea-4ba3-be55-de694fcee2eb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

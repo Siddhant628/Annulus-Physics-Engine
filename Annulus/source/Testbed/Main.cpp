@@ -1,15 +1,21 @@
+// Common for both mass aggregate and rigid body Dynamics.
 #include "pch.h"
 #include "GameClock.h"
 #include "GameTime.h"
-#include "ParticleWorld.h"
 #include "Settings.h"
-
-#include "Particle.h"
-
 #include <SFML/Graphics.hpp>
 #include <chrono>
 #include <iostream>
 
+// Mass aggregate engine specific headers.
+#include "Particle.h"
+#include "ParticleWorld.h"
+
+// Rigid body dynamics specfic headers.
+#include "World.h"
+
+
+// Demos
 #include "ParticleSpringDemo.h"
 #include "ParticleAnchoredSpringDemo.h"
 #include "ParticleBungeeDemo.h"
@@ -18,7 +24,7 @@
 #define SCREEN_WIDTH 1600
 #define SCREEN_HEIGHT 900
 
-#define DEMO_COUNT 4
+#define DEMO_COUNT 5
 
 using namespace Annulus;
 using namespace Demos;
@@ -30,9 +36,14 @@ int  main()
 	// Create a clock and game time objecs
 	GameClock gameClock;
 	GameTime gameTime;
+
 	// Create a world with default settings
 	Settings settings;
+#if DEMO_COUNT <= 4
 	ParticleWorld world(settings);
+#elif DEMO_COUNT > 4
+	World world(settings);
+#endif
 
 	// Create the demo scene
 #if DEMO_COUNT == 1
@@ -96,7 +107,7 @@ int  main()
 		bungeeDemo.Draw();
 #elif DEMO_COUNT == 4
 		contactDemo.Draw();
-#endif	
+#endif
 
 		window.display();
 	}

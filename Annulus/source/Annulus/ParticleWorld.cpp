@@ -12,15 +12,21 @@ using namespace std::chrono;
 
 namespace Annulus
 {
-	ParticleWorld::ParticleWorld(Settings& settings) : mSettings(&settings), mTimeSinceLastUpdate(nanoseconds(0)), mParticleContactResolver(nullptr)
+	ParticleWorld::ParticleWorld(Settings& settings) : 
+		mSettings(&settings),
+		mTimeSinceLastUpdate(nanoseconds(0)),
+		mParticleContactResolver(nullptr),
+		mContactsCount(0)
 	{
+		// Initialize associated classes for this world.
 		Particle::Initialize(*this);
 		ParticleForceGenerator::Initialize(*this);
 		ParticleContactGenerator::Initialize(*this);
 
+		// Generate instances of classes required by the world.
 		mParticleContactResolver = new ParticleContactResolver(*this);		
-		// Allocate memory for contacts equivalent to the maximum contacts the world is allowed to handle.
-		mContacts = new ParticleContact[mSettings->mMaxContacts];
+		mContactsCount = mSettings->mMaxContacts;
+		mContacts = new ParticleContact[mContactsCount];
 	}
 
 	ParticleWorld::~ParticleWorld()
@@ -151,7 +157,8 @@ namespace Annulus
 
 	std::uint32_t ParticleWorld::GenerateContacts()
 	{
-		std::uint32_t limit = mSettings->mMaxContacts;
+		assert(mContactsCount != 0);
+		std::uint32_t limit = mContactsCount;
 		ParticleContact* contact = mContacts;
 
 		for(auto it = mParticleContactGenerators.begin(); it != mParticleContactGenerators.end(); ++it)

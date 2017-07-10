@@ -59,11 +59,11 @@ namespace Demos
 		ParticleRod* rod = new ParticleRod(*mParticle3, *mParticle4);
 		rod->SetLength(200);
 
-		ParticleCable* cable = new ParticleCable(*mParticle3, *mParticle1);
+		ParticleCable* cable = new ParticleCable(*mParticle1, *mParticle3);
 		cable->SetMaxLength(100);
 		cable->SetRestitution(0.8f);
 
-		ParticleCable* cable2 = new ParticleCable(*mParticle4, *mParticle2);
+		ParticleCable* cable2 = new ParticleCable(*mParticle2, *mParticle4);
 		cable2->SetMaxLength(100);
 		cable2->SetRestitution(0.8f);
 

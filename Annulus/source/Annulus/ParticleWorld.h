@@ -26,7 +26,7 @@ namespace Annulus
 		ParticleWorld(Settings& settings);
 		/**
 		* Destructor.
-		* Destroys and frees the memory allocated to any physics simulation objects in the world.s
+		* Destroys and frees the memory allocated to any physics simulation objects in the world.
 		*/
 		~ParticleWorld();
 		// TODO Discuss fixed time stepping with Paul.
@@ -100,6 +100,10 @@ namespace Annulus
 		* The list of particle contacts which are assembled in each update.
 		*/
 		ParticleContact* mContacts;
+		/**
+		* The number of contacts that can be generated in each update call.
+		*/
+		std::uint32_t mContactsCount;
 		/**
 		* The particle contact resolver associated with this world. Created on contruction of the world.
 		*/

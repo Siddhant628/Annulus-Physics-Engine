@@ -107,7 +107,7 @@ namespace Annulus
 			mVelocity += acceleration*seconds;
 			mVelocity *= glm::pow(mDamping, seconds);
 
-			DebugParticle();
+			//DebugParticle();
 			// Clear the forces
 			mForceAccumulator = glm::vec2(0.0f, 0.0f);
 		}
