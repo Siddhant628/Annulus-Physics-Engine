@@ -187,10 +187,11 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Demo.cpp" />
     <ClCompile Include="ParticleBungeeDemo.cpp" />
     <ClCompile Include="ParticleContactDemo.cpp" />
     <ClCompile Include="ParticleSpringDemo.cpp" />
-    <ClCompile Include="Demo.cpp" />
+    <ClCompile Include="ParticleDemo.cpp" />
     <ClCompile Include="Main.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">pch.h</PrecompiledHeaderFile>
@@ -212,14 +213,17 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="TorqueDemo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Demo.h" />
     <ClInclude Include="ParticleBungeeDemo.h" />
     <ClInclude Include="ParticleContactDemo.h" />
     <ClInclude Include="ParticleSpringDemo.h" />
-    <ClInclude Include="Demo.h" />
+    <ClInclude Include="ParticleDemo.h" />
     <ClInclude Include="ParticleAnchoredSpringDemo.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="TorqueDemo.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Annulus\Annulus.vcxproj">

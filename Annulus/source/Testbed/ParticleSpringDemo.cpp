@@ -16,7 +16,7 @@ namespace Demos
 	const glm::vec2 ParticleSpringDemo::sParticlePosition1 = glm::vec2(-140.0f, 0.0f);
 	const glm::vec2 ParticleSpringDemo::sParticlePosition2 = glm::vec2(140.0f, 0.0f);
 
-	ParticleSpringDemo::ParticleSpringDemo(sf::RenderWindow& renderWindow, Annulus::ParticleWorld& world) : Demo(renderWindow, world), mParticle1(nullptr), mParticle2(nullptr), mSpring(nullptr), mCircle1(nullptr), mCircle2(nullptr)
+	ParticleSpringDemo::ParticleSpringDemo(sf::RenderWindow& renderWindow, Annulus::ParticleWorld& world) : ParticleDemo(renderWindow, world), mParticle1(nullptr), mParticle2(nullptr), mSpring(nullptr), mCircle1(nullptr), mCircle2(nullptr)
 	{
 		mParticle1 = mWorld.CreateParticle();
 		mParticle2 = mWorld.CreateParticle();

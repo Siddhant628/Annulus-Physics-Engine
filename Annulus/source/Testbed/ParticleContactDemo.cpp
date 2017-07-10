@@ -16,7 +16,7 @@ namespace Demos
 	const glm::vec2 ParticleContactDemo::sParticlePosition4 = glm::vec2(60.0f, -40.0f);
 
 	ParticleContactDemo::ParticleContactDemo(sf::RenderWindow& renderWindow, Annulus::ParticleWorld& world) :
-		Demo(renderWindow, world),
+		ParticleDemo(renderWindow, world),
 		mParticle1(nullptr),
 		mParticle2(nullptr),
 		mParticle3(nullptr),

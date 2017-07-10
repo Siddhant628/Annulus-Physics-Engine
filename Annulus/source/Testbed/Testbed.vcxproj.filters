@@ -6,16 +6,22 @@
     <ClCompile Include="Demo.cpp">
       <Filter>Demos</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleAnchoredSpringDemo.cpp">
-      <Filter>Demos</Filter>
+    <ClCompile Include="ParticleDemo.cpp">
+      <Filter>Demos\Particle</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleSpringDemo.cpp">
-      <Filter>Demos</Filter>
+    <ClCompile Include="ParticleAnchoredSpringDemo.cpp">
+      <Filter>Demos\Particle</Filter>
     </ClCompile>
     <ClCompile Include="ParticleBungeeDemo.cpp">
-      <Filter>Demos</Filter>
+      <Filter>Demos\Particle</Filter>
     </ClCompile>
     <ClCompile Include="ParticleContactDemo.cpp">
+      <Filter>Demos\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSpringDemo.cpp">
+      <Filter>Demos\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="TorqueDemo.cpp">
       <Filter>Demos</Filter>
     </ClCompile>
   </ItemGroup>
@@ -24,16 +30,22 @@
     <ClInclude Include="Demo.h">
       <Filter>Demos</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleAnchoredSpringDemo.h">
-      <Filter>Demos</Filter>
+    <ClInclude Include="ParticleDemo.h">
+      <Filter>Demos\Particle</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleSpringDemo.h">
-      <Filter>Demos</Filter>
+    <ClInclude Include="ParticleAnchoredSpringDemo.h">
+      <Filter>Demos\Particle</Filter>
     </ClInclude>
     <ClInclude Include="ParticleBungeeDemo.h">
-      <Filter>Demos</Filter>
+      <Filter>Demos\Particle</Filter>
     </ClInclude>
     <ClInclude Include="ParticleContactDemo.h">
+      <Filter>Demos\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSpringDemo.h">
+      <Filter>Demos\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="TorqueDemo.h">
       <Filter>Demos</Filter>
     </ClInclude>
   </ItemGroup>
@@ -43,6 +55,9 @@
   <ItemGroup>
     <Filter Include="Demos">
       <UniqueIdentifier>{4609bbe4-252c-4107-bc29-ea36b8d695cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Demos\Particle">
+      <UniqueIdentifier>{d7162739-dde4-49b8-83ae-e4f6d1099bd5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

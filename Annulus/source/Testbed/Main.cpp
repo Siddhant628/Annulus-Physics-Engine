@@ -20,11 +20,12 @@
 #include "ParticleAnchoredSpringDemo.h"
 #include "ParticleBungeeDemo.h"
 #include "ParticleContactDemo.h"
+#include "TorqueDemo.h"
 
 #define SCREEN_WIDTH 1600
 #define SCREEN_HEIGHT 900
 
-#define DEMO_COUNT 4
+#define DEMO_COUNT 5
 
 using namespace Annulus;
 using namespace Demos;
@@ -54,6 +55,8 @@ int  main()
 	ParticleBungeeDemo demo(window, world);
 #elif DEMO_COUNT == 4
 	ParticleContactDemo demo(window, world);
+#elif DEMO_COUNT == 5
+	TorqueDemo demo(window, world);
 #endif
 
 	while (window.isOpen())
@@ -78,20 +81,18 @@ int  main()
 				demo.Initialize();
 			}
 		}
-		// Update game time
+
+		// Update Time
 		gameClock.UpdateGameTime(gameTime);
 		std::chrono::nanoseconds deltaNanoseconds = gameTime.ElapsedGameTime();
 		
-		// Perform physics update, rendering, etc.
+		// Physics Update
 		world.Update(deltaNanoseconds);
-		//std::cout << "Total Time: " << (gameTime.TotalGameTime().count() / 1000000000.0f) << std::endl;
-		// Update the demo scene
 		demo.Update(deltaNanoseconds);
+		//std::cout << "Total Time: " << (gameTime.TotalGameTime().count() / 1000000000.0f) << std::endl;
 
 		// Rendering
 		window.clear(sf::Color(100, 149, 237, 1));
-		
-		// Draw the demo scene
 		demo.Draw();
 
 

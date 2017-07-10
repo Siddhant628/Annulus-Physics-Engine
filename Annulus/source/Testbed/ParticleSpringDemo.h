@@ -1,5 +1,5 @@
 #pragma once
-#include "Demo.h"
+#include "ParticleDemo.h"
 
 #define GLM_FORCE_CXX98
 #include <glm/glm.hpp>
@@ -12,7 +12,7 @@ namespace Annulus
 
 namespace Demos
 {
-	class ParticleSpringDemo : public Demo
+	class ParticleSpringDemo : public ParticleDemo
 	{
 	public:
 		/**

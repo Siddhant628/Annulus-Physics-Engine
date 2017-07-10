@@ -1,5 +1,5 @@
 #pragma once
-#include "Demo.h"
+#include "ParticleDemo.h"
 
 #include "ParticleAnchoredSpring.h"
 #include "ParticleGravity.h"
@@ -10,7 +10,7 @@
 namespace Demos
 {
 
-	class ParticleAnchoredSpringDemo : public Demo
+	class ParticleAnchoredSpringDemo : public ParticleDemo
 	{
 	public:
 		/**

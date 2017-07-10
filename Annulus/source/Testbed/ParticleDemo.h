@@ -2,20 +2,20 @@
 #include <SFML/Graphics.hpp>
 #include <chrono>
 
-namespace Annulus
+namespace Annulus 
 {
-	class World;
+	class ParticleWorld;
 }
 
 namespace Demos
 {
-	class Demo
+	class ParticleDemo
 	{
 	public:
 		/**
 		* Destructor.
 		*/
-		virtual ~Demo() = default;
+		virtual ~ParticleDemo() = default;
 		/**
 		* Initialize this demo.
 		*/
@@ -35,7 +35,7 @@ namespace Demos
 		* @param renderWindow A reference to the RenderWindow for which this demo is created.
 		* @param world A reference to the world for which this demo is created.
 		*/
-		Demo(sf::RenderWindow& renderWindow, Annulus::World& world);
+		ParticleDemo(sf::RenderWindow& renderWindow, Annulus::ParticleWorld& world);
 		/**
 		* A reference to the RenderWindow for which this demo is created.
 		*/
@@ -43,7 +43,7 @@ namespace Demos
 		/**
 		* A reference to the world for which this demo is created.
 		*/
-		Annulus::World& mWorld;
+		Annulus::ParticleWorld& mWorld;
 		/**
 		* The view associated with the rendered window.
 		*/
@@ -52,5 +52,9 @@ namespace Demos
 		* The magnitude with each position is scaled to get the pixel position for rendering on the display.
 		*/
 		const static std::float_t sPixelPositionScaler;
+		/**
+		* The radius of the circles representing each particle.
+		*/
+		const static std::float_t sParticleRadius;
 	};
 }
