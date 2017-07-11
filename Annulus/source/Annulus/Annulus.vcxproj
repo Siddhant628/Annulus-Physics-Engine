@@ -163,9 +163,9 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Body.h" />
     <ClInclude Include="GameClock.h" />
     <ClInclude Include="GameTime.h" />
+    <ClInclude Include="Orientation.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleAnchoredSpring.h" />
     <ClInclude Include="ParticleBungee.h" />
@@ -179,14 +179,15 @@
     <ClInclude Include="ParticleRod.h" />
     <ClInclude Include="ParticleSpring.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="RigidBody.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="ParticleWorld.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Body.cpp" />
     <ClCompile Include="GameClock.cpp" />
     <ClCompile Include="GameTime.cpp" />
+    <ClCompile Include="Orientation.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleAnchoredSpring.cpp" />
     <ClCompile Include="ParticleBungee.cpp" />
@@ -205,6 +206,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="ParticleWorld.cpp" />
     <ClCompile Include="World.cpp" />

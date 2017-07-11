@@ -3,7 +3,7 @@
 
 namespace Demos
 {
-	class TorqueDemo : public Demo
+	class TorqueDemo final: public Demo
 	{
 	public:
 		/**
