@@ -12,7 +12,10 @@ namespace Annulus
 		mMassInverse(1),
 		mRotation(0),
 		mInertiaInverse(1),
-		mTorqueAccumulator(0.0f)
+		mLinearDamping(1.0f),
+		mAngularDamping(1.0f),
+		mTorqueAccumulator(0.0f),
+		mCachedAngularAcceleration(0.0f)
 	{
 		assert(mOwnerWorld != nullptr);
 		mOwnerWorld->RegisterBody(*this);
@@ -54,7 +57,7 @@ namespace Annulus
 		mVelocity = velocity;
 	}
 
-	const std::float_t& RigidBody::GetRotation() const
+	std::float_t RigidBody::GetRotation() const
 	{
 		return mRotation;
 	}
@@ -64,7 +67,7 @@ namespace Annulus
 		mRotation = rotation;
 	}
 
-	const std::float_t& RigidBody::GetMassInverse() const
+	std::float_t RigidBody::GetMassInverse() const
 	{
 		return mMassInverse;
 	}
@@ -81,7 +84,7 @@ namespace Annulus
 		mMassInverse = 1.0f / mass;
 	}
 
-	const std::float_t& RigidBody::GetInertiaInverse() const
+	std::float_t RigidBody::GetInertiaInverse() const
 	{
 		return mInertiaInverse;
 	}
@@ -98,6 +101,32 @@ namespace Annulus
 		mInertiaInverse = (1.0f / inertia);
 	}
 
+	std::float_t RigidBody::GetLinearDamping() const
+	{
+		return mLinearDamping;
+	}
+
+	void RigidBody::SetLinearDamping(std::float_t damping)
+	{
+		if (damping >= 0.0f && damping <= 0.0f)
+		{
+			mLinearDamping = damping;
+		}
+	}
+
+	std::float_t RigidBody::GetAngularDamping() const
+	{
+		return mAngularDamping;
+	}
+
+	void RigidBody::SetAngularDamping(std::float_t damping)
+	{
+		if (damping >= 0.0f && damping <= 0.0f)
+		{
+			mAngularDamping = damping;
+		}
+	}
+
 	void RigidBody::AddForce(const glm::vec2& force)
 	{
 		mForceAccumulator += force;
@@ -105,21 +134,38 @@ namespace Annulus
 
 	void RigidBody::AddForce(const glm::vec2& force, const glm::vec2& point)
 	{
-		// Account for force
+		// Account for force.
 		mForceAccumulator += force;
-		// Account for torque
+		// Account for torque.
 		glm::vec2 relativePosition = point - mPosition;
+		// Essentially this is a cross product in 2D, the resultant should be along -ve or +ve z axis, so we can represent it as a scalar quantity. (Torque = Relative Position X Force)
 		mTorqueAccumulator += (relativePosition.x * force.y - relativePosition.y - force.x);
 	}
 
-	// TODO Implement
 	void RigidBody::Integrate(std::float_t seconds)
 	{
-		if (mMassInverse > 0.0f)
-		{
+		seconds;
+		// Estimate the linear and angular accelerations.
+		mCachedAcceleration = mForceAccumulator * mMassInverse;
+		mCachedAngularAcceleration = mTorqueAccumulator * mInertiaInverse;
 
-			mForceAccumulator = glm::vec2(0.0f, 0.0f);
-		}
+		// Update velocity and rotation and account for their drag.
+		mVelocity += mCachedAcceleration * seconds;
+		mVelocity *= glm::pow(mLinearDamping, seconds);
+		
+		mRotation += mCachedAngularAcceleration * seconds;
+		mRotation *= glm::pow(mAngularDamping, seconds);
+
+		// Update position and orientation
+		mPosition += mVelocity*seconds;
+		
+		std::float_t orientation = static_cast<std::float_t>(mOrientation.GetOrientationDegrees());
+		orientation += mRotation*seconds;
+		mOrientation.SetOrientationDegrees(static_cast<std::uint32_t>(orientation));
+
+		// Clear out the accumulators.
+		mForceAccumulator = glm::vec2(0.0f, 0.0f);
+		mTorqueAccumulator = 0.0f;
 	}
 
 	void RigidBody::Initialize(World& world)

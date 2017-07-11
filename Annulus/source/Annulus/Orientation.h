@@ -10,6 +10,7 @@ namespace Annulus
 	*/
 	class Orientation final
 	{
+		friend class RigidBody;
 	public:
 		/**
 		* Constructor.
@@ -44,5 +45,13 @@ namespace Annulus
 		* The angle theta thus increase in the counterclockwise direction.
 		*/
 		glm::vec2 mOrientation;
+		/**
+		* The cached value of rotation for this orientation.
+		*/
+		std::float_t mCachedDegrees;
+		/**
+		* If the cached value of degrees needs to be updated.
+		*/
+		bool mDegreesNeedUpdate;
 	};
 }
