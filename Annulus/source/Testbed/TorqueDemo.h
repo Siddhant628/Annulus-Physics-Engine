@@ -1,6 +1,11 @@
 #pragma once
 #include "Demo.h"
 
+namespace Annulus
+{
+	class RigidBody;
+}
+
 namespace Demos
 {
 	class TorqueDemo final: public Demo
@@ -30,6 +35,8 @@ namespace Demos
 		*/
 		virtual void Draw() override;
 	private:
+		Annulus::RigidBody* mRigigBody;
+
 		sf::RectangleShape* mRectangle;
 	};
 }

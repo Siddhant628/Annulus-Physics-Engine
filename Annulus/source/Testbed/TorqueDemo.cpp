@@ -1,12 +1,17 @@
 #include "pch.h"
 #include "TorqueDemo.h"
 
+#include "RigidBody.h"
+
+using namespace Annulus;
+
 namespace Demos
 {
 	TorqueDemo::TorqueDemo(sf::RenderWindow& renderWindow, Annulus::World& world) :
 		Demo(renderWindow, world)
 	{
 		mRectangle = new sf::RectangleShape(sf::Vector2f(100, 70));
+		mRigigBody = new RigidBody();
 
 		Initialize();
 	}

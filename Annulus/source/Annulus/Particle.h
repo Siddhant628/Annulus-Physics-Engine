@@ -87,8 +87,7 @@ namespace Annulus
 		*/
 		std::float_t mMassInverse;
 		/**
-		* The constant acceleration acting on the particle, like gravity, etc. Defaults to gravity.
-		* It is assumed that the force acting on the particle is constant.
+		* The sum total of all forces acting on a particle which is calculated each update.
 		*/
 		glm::vec2 mForceAccumulator;
 		/**
