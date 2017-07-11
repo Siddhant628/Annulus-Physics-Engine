@@ -89,7 +89,7 @@ int  main()
 		// Physics Update
 		world.Update(deltaNanoseconds);
 		demo.Update(deltaNanoseconds);
-		//std::cout << "Total Time: " << (gameTime.TotalGameTime().count() / 1000000000.0f) << std::endl;
+		std::cout << "Total Time: " << (gameTime.TotalGameTime().count() / 1000000000.0f) << std::endl;
 
 		// Rendering
 		window.clear(sf::Color(100, 149, 237, 1));

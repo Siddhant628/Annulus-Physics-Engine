@@ -2,6 +2,7 @@
 #include "Orientation.h"
 
 #include <cmath>
+
 #define PI 3.14159265359f
 
 namespace Annulus
@@ -14,7 +15,7 @@ namespace Annulus
 
 	}
 
-	std::uint32_t Orientation::GetOrientationDegrees()
+	std::float_t Orientation::GetOrientationDegrees() const
 	{
 		std::float_t valueToReturn = -1;
 
@@ -27,6 +28,7 @@ namespace Annulus
 			// Convert the angle to degrees.
 			angle = angle * (180.0f / PI);
 			// Convert the angle value to [0, 2pi].
+			
 			// In case the angle is in first two quadrants.
 			if (mOrientation.y > 0)
 			{
@@ -37,6 +39,10 @@ namespace Annulus
 				else if (mOrientation.x < 0)
 				{
 					valueToReturn = 180 - angle;
+				}
+				else
+				{
+					valueToReturn = 90;
 				}
 			}
 			// In case the angle is in last two quadrants.
@@ -49,6 +55,10 @@ namespace Annulus
 				else if (mOrientation.x > 0)
 				{
 					valueToReturn = 360 + angle;
+				}
+				else
+				{
+					valueToReturn = 270;
 				}
 			}
 			// In case the sine of angle is 0.
@@ -63,24 +73,26 @@ namespace Annulus
 					valueToReturn = 180;
 				}
 			}
+			const_cast<std::float_t&>(mCachedDegrees) = valueToReturn;
+			const_cast<bool&>(mDegreesNeedUpdate) = false;
 		}
 		else
 		{
 			valueToReturn = mCachedDegrees;
 		}
 		assert(valueToReturn != -1);
-		return static_cast<std::uint32_t>(valueToReturn);
+		return valueToReturn;
 	}
 
-	void Orientation::SetOrientationDegrees(std::uint32_t degrees)
+	void Orientation::SetOrientationDegrees(std::float_t degrees)
 	{
-		std::float_t radians = PI * degrees / 180.0f;
+		std::float_t radians = degrees * (PI / 180.0f);
 		mOrientation.x = cos(radians);
 		mOrientation.y = sin(radians);
 		mDegreesNeedUpdate = true;
 	}
 
-	const glm::vec2 Orientation::GetOrientationVector()
+	const glm::vec2 Orientation::GetOrientationVector() const
 	{
 		// Normalize the vector to minimize errors.
 		mOrientation = glm::normalize(mOrientation);
@@ -91,5 +103,25 @@ namespace Annulus
 	{
 		mOrientation = orientation;
 		mDegreesNeedUpdate = true;
+	}
+
+	void Orientation::TransformByDegrees(std::float_t degrees)
+	{
+		std::float_t cosine = mOrientation.x;
+		std::float_t sine = mOrientation.y;
+		std::float_t radians = degrees * (PI / 180.0f);
+		// Update the orientaion.
+		mOrientation.x = cosine * cos(radians) - sine * sin(radians);
+		mOrientation.y = sine * cos(radians) + cosine * sin(radians);
+		// Cache the rotation.
+		mCachedDegrees += degrees;
+		if(mCachedDegrees >= 360)
+		{
+			mCachedDegrees -= 360;
+		}
+		else if(mCachedDegrees < 0)
+		{
+			mCachedDegrees += 360;
+		}
 	}
 }

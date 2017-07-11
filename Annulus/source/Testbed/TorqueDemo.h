@@ -35,8 +35,12 @@ namespace Demos
 		*/
 		virtual void Draw() override;
 	private:
-		Annulus::RigidBody* mRigigBody;
+		Annulus::RigidBody* mRigidBody;
 
 		sf::RectangleShape* mRectangle;
+
+		static const std::float_t sRectangleLength;
+
+		static const std::float_t sRectangleHeight;
 	};
 }

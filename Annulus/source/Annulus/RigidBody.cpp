@@ -3,6 +3,7 @@
 
 #include "World.h"
 
+#include <iostream>
 
 namespace Annulus
 {
@@ -44,7 +45,7 @@ namespace Annulus
 
 	void RigidBody::SetOrientation(const Orientation& orientation)
 	{
-		mOrientation = orientation;
+		mOrientation.SetOrientationVector(orientation.mOrientation);
 	}
 
 	const glm::vec2& RigidBody::GetVelocity() const
@@ -139,7 +140,7 @@ namespace Annulus
 		// Account for torque.
 		glm::vec2 relativePosition = point - mPosition;
 		// Essentially this is a cross product in 2D, the resultant should be along -ve or +ve z axis, so we can represent it as a scalar quantity. (Torque = Relative Position X Force)
-		mTorqueAccumulator += (relativePosition.x * force.y - relativePosition.y - force.x);
+		mTorqueAccumulator += (relativePosition.x * force.y - relativePosition.y * force.x);
 	}
 
 	void RigidBody::Integrate(std::float_t seconds)
@@ -158,19 +159,30 @@ namespace Annulus
 
 		// Update position and orientation
 		mPosition += mVelocity*seconds;
+		mOrientation.TransformByDegrees(mRotation*seconds);
 		
-		std::float_t orientation = static_cast<std::float_t>(mOrientation.GetOrientationDegrees());
-		orientation += mRotation*seconds;
-		mOrientation.SetOrientationDegrees(static_cast<std::uint32_t>(orientation));
-
 		// Clear out the accumulators.
 		mForceAccumulator = glm::vec2(0.0f, 0.0f);
 		mTorqueAccumulator = 0.0f;
+
+		DebugRigidBody();
 	}
 
 	void RigidBody::Initialize(World& world)
 	{
 		assert(mOwnerWorld == nullptr);
 		mOwnerWorld = &world;
+	}
+
+	void RigidBody::DebugRigidBody()
+	{
+		std::cout << std::endl;
+		std::cout << "Position: X = " << mPosition.x << " Y = " << mPosition.y << std::endl;
+		std::cout << "Velocity: " << mVelocity.x << " " << mVelocity.y << std::endl;
+		std::cout << "Acceleration: X = " << mCachedAcceleration.x << " Y = " << mCachedAcceleration.y << std::endl;
+		std::cout << "Orientation: " << mOrientation.GetOrientationDegrees() << std::endl;
+		std::cout << "Angular Velocity: " << mRotation << std::endl;
+		std::cout << "Angular Acceleration: " << mCachedAngularAcceleration << std::endl;
+		std::cout << std::endl;
 	}
 }

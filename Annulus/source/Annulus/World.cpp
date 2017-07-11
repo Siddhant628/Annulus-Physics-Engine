@@ -34,11 +34,15 @@ namespace Annulus
 		if (mTimeSinceLastUpdate > mSettings->GetTimeStep())
 		{
 			std::float_t seconds = mTimeSinceLastUpdate.count() / 1000000000.0f;
-			seconds;
+			
+			for(auto body : mBodies)
+			{
+				body->Integrate(seconds);
+			}
 
 			// Reset the time since last update.
 			mTimeSinceLastUpdate = std::chrono::nanoseconds(0);
-		
+			// Remove pointers to entities no longer in this simulation.
 			ClearDeleteQueues();
 		}
 	}

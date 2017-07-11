@@ -24,27 +24,32 @@ namespace Annulus
 		/**
 		* Get the orientation in degrees between [0,2pi)
 		*/
-		std::uint32_t GetOrientationDegrees();
+		std::float_t GetOrientationDegrees() const;
 		/**
 		* Set the orientation in degrees between [0,2pi)
 		* @param degrees The rotation to set in degres.
 		*/
-		void SetOrientationDegrees(std::uint32_t degrees);
+		void SetOrientationDegrees(std::float_t degrees);
 		/**
 		* Get this orientation as a vector of cosine and sine of the angle theta between this orientation and the positive x-axis.
 		*/
-		const glm::vec2 GetOrientationVector();
+		const glm::vec2 GetOrientationVector() const;
 		/**
 		* Set this orientation as a vector of cosine and sine of the angle theta between this orientation and the positive x-axis.
 		* @param orientation The vector containing the orientation to set.
 		*/
 		void SetOrientationVector(const glm::vec2& orientation);
+		/**
+		* For any orientation, transform it by adding some degrees to it.
+		*  @param degrees The amount of degrees to be added to this orientaion.
+		*/
+		void TransformByDegrees(std::float_t degrees);
 	private:
 		/**
 		* A vector whose x-component is the cosine of theta and y-component is sine of theta (Theta is the angle between this orientation and the positive x-axis).
 		* The angle theta thus increase in the counterclockwise direction.
 		*/
-		glm::vec2 mOrientation;
+		mutable glm::vec2 mOrientation;
 		/**
 		* The cached value of rotation for this orientation.
 		*/

@@ -175,6 +175,12 @@ namespace Annulus
 		* @param world The world that contains this rigid body.
 		*/
 		static void Initialize(World& world);
+		
+		// Debugging associated.
+		/**
+		* Output the state of rigid body.
+		*/
+		void DebugRigidBody();
 
 		// Simulation associated.
 		/**
