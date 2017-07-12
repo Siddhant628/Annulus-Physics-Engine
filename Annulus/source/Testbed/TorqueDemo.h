@@ -48,6 +48,10 @@ namespace Demos
 		* The rectangle to visualize the simulation.
 		*/
 		sf::RectangleShape* mRectangle;
+		/**
+		* The center anchor point.
+		*/
+		sf::CircleShape* mCircle;
 		
 		/**
 		* The length of the rigid body rectangle.
