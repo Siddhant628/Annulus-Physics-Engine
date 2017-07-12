@@ -178,7 +178,7 @@ namespace Annulus
 	private:
 		// Initialization associated.
 		/**
-		* Initialize the static members of this class. Called in the constructor of the world
+		* Initialize the static members of this class. Called in the constructor of the world.
 		* @param world The world that contains this rigid body.
 		*/
 		static void Initialize(World& world);

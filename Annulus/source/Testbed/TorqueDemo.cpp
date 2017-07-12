@@ -31,10 +31,6 @@ namespace Demos
 
 	void TorqueDemo::Initialize()
 	{
-		//mRigidBody->SetOrientation(Orientation(glm::vec2(0, 1)));
-		//mRigidBody->SetRotation(10.0f);
-		//mRigidBody->AddForce(glm::vec2(1000, 0), mRigidBody->GetPosition());
-		//mRigidBody->AddForce(glm::vec2(1000, 0), mRigidBody->GetPosition() + glm::vec2(0, 2));
 		mRigidBody->AddForceRelative(glm::vec2(1000, 0), glm::vec2(0, 2));
 		mRigidBody->SetAngularDamping(0.2f);
 		mRigidBody->SetLinearDamping(0.3f);

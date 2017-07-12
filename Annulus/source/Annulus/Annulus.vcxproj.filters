@@ -11,53 +11,56 @@
     <ClInclude Include="GameClock.h">
       <Filter>Misc</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleGravity.h">
-      <Filter>Engine\ForceGenerators</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleSpring.h">
-      <Filter>Engine\ForceGenerators</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleAnchoredSpring.h">
-      <Filter>Engine\ForceGenerators</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleBungee.h">
-      <Filter>Engine\ForceGenerators</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleRod.h">
-      <Filter>Engine\ContactGenerators</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleLink.h">
-      <Filter>Engine\ContactGenerators</Filter>
-    </ClInclude>
     <ClInclude Include="ParticleWorld.h">
       <Filter>Engine\Particle</Filter>
     </ClInclude>
     <ClInclude Include="Particle.h">
       <Filter>Engine\Particle</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleCable.h">
-      <Filter>Engine\Particle</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleContact.h">
-      <Filter>Engine\Particle</Filter>
-    </ClInclude>
     <ClInclude Include="ParticleContactResolver.h">
       <Filter>Engine\Particle</Filter>
     </ClInclude>
     <ClInclude Include="ParticleContactGenerator.h">
-      <Filter>Engine\ContactGenerators</Filter>
+      <Filter>Engine\Particle\ContactGenerators</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleLink.h">
+      <Filter>Engine\Particle\ContactGenerators</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleRod.h">
+      <Filter>Engine\Particle\ContactGenerators</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleAnchoredSpring.h">
+      <Filter>Engine\Particle\ForceGenerators</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleBungee.h">
+      <Filter>Engine\Particle\ForceGenerators</Filter>
     </ClInclude>
     <ClInclude Include="ParticleForceGenerator.h">
-      <Filter>Engine\ForceGenerators</Filter>
+      <Filter>Engine\Particle\ForceGenerators</Filter>
     </ClInclude>
-    <ClInclude Include="World.h">
-      <Filter>Engine</Filter>
+    <ClInclude Include="ParticleSpring.h">
+      <Filter>Engine\Particle\ForceGenerators</Filter>
     </ClInclude>
-    <ClInclude Include="RigidBody.h">
-      <Filter>Engine</Filter>
+    <ClInclude Include="ParticleCable.h">
+      <Filter>Engine\Particle\ContactGenerators</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContact.h">
+      <Filter>Engine\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleGravity.h">
+      <Filter>Engine\Particle\ForceGenerators</Filter>
     </ClInclude>
     <ClInclude Include="Orientation.h">
-      <Filter>Engine</Filter>
+      <Filter>Engine\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBody.h">
+      <Filter>Engine\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Engine\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceGenerator.h">
+      <Filter>Engine\RigidBody\ForceGenerators</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -71,31 +74,7 @@
     <ClCompile Include="GameClock.cpp">
       <Filter>Misc</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleGravity.cpp">
-      <Filter>Engine\ForceGenerators</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleSpring.cpp">
-      <Filter>Engine\ForceGenerators</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleAnchoredSpring.cpp">
-      <Filter>Engine\ForceGenerators</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleBungee.cpp">
-      <Filter>Engine\ForceGenerators</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleLink.cpp">
-      <Filter>Engine\ContactGenerators</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleRod.cpp">
-      <Filter>Engine\ContactGenerators</Filter>
-    </ClCompile>
     <ClCompile Include="Particle.cpp">
-      <Filter>Engine\Particle</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleCable.cpp">
-      <Filter>Engine\Particle</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleContact.cpp">
       <Filter>Engine\Particle</Filter>
     </ClCompile>
     <ClCompile Include="ParticleContactResolver.cpp">
@@ -105,19 +84,46 @@
       <Filter>Engine\Particle</Filter>
     </ClCompile>
     <ClCompile Include="ParticleContactGenerator.cpp">
-      <Filter>Engine\ContactGenerators</Filter>
+      <Filter>Engine\Particle\ContactGenerators</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleLink.cpp">
+      <Filter>Engine\Particle\ContactGenerators</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleRod.cpp">
+      <Filter>Engine\Particle\ContactGenerators</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleAnchoredSpring.cpp">
+      <Filter>Engine\Particle\ForceGenerators</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleBungee.cpp">
+      <Filter>Engine\Particle\ForceGenerators</Filter>
     </ClCompile>
     <ClCompile Include="ParticleForceGenerator.cpp">
-      <Filter>Engine\ForceGenerators</Filter>
+      <Filter>Engine\Particle\ForceGenerators</Filter>
     </ClCompile>
-    <ClCompile Include="World.cpp">
-      <Filter>Engine</Filter>
+    <ClCompile Include="ParticleSpring.cpp">
+      <Filter>Engine\Particle\ForceGenerators</Filter>
     </ClCompile>
-    <ClCompile Include="RigidBody.cpp">
-      <Filter>Engine</Filter>
+    <ClCompile Include="ParticleCable.cpp">
+      <Filter>Engine\Particle\ContactGenerators</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleContact.cpp">
+      <Filter>Engine\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleGravity.cpp">
+      <Filter>Engine\Particle\ForceGenerators</Filter>
     </ClCompile>
     <ClCompile Include="Orientation.cpp">
-      <Filter>Engine</Filter>
+      <Filter>Engine\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBody.cpp">
+      <Filter>Engine\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Engine\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="ForceGenerator.cpp">
+      <Filter>Engine\RigidBody\ForceGenerators</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -127,14 +133,20 @@
     <Filter Include="Misc">
       <UniqueIdentifier>{e1349ccf-788e-49fa-8404-f718f818a81b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\ForceGenerators">
-      <UniqueIdentifier>{63bd603d-3de5-4a45-be9a-d3b4ef7ddc9a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\ContactGenerators">
-      <UniqueIdentifier>{a459bb0d-cd82-471e-8707-475cd30c8179}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Particle">
       <UniqueIdentifier>{d372e581-17ea-4ba3-be55-de694fcee2eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Particle\ContactGenerators">
+      <UniqueIdentifier>{7c7b058b-a2da-4afb-823a-770f87f833eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Particle\ForceGenerators">
+      <UniqueIdentifier>{6d664399-7d0a-4d75-a8f5-ce41db41c1cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\RigidBody">
+      <UniqueIdentifier>{0a332dd6-95df-43e8-ac4c-28e63d2764d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\RigidBody\ForceGenerators">
+      <UniqueIdentifier>{63bd603d-3de5-4a45-be9a-d3b4ef7ddc9a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

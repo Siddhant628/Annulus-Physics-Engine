@@ -35,12 +35,21 @@ namespace Demos
 		*/
 		virtual void Draw() override;
 	private:
+		/**
+		* A rigid body in the simulation.
+		*/
 		Annulus::RigidBody* mRigidBody;
-
+		/**
+		* The rectangle to visualize the simulation.
+		*/
 		sf::RectangleShape* mRectangle;
-
+		/**
+		* The length of the rigid body rectangle.
+		*/
 		static const std::float_t sRectangleLength;
-
+		/**
+		* The height of the rigid body rectangle.
+		*/
 		static const std::float_t sRectangleHeight;
 	};
 }

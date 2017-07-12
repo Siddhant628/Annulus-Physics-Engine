@@ -3,6 +3,7 @@
 
 #include "Settings.h"
 #include "RigidBody.h"
+#include "ForceGenerator.h"
 
 #include <chrono>
 
@@ -19,8 +20,12 @@ namespace Annulus
 	{
 		ClearDeleteQueues();
 		// Destroy all the rigid bodies.
-		auto end = mBodies.end();
-		for (auto it = mBodies.begin(); it != end; ++it)
+		for (auto it = mBodies.begin(); it != mBodies.end(); ++it)
+		{
+			delete (*it);
+		}
+		// Destroy all the force generators.
+		for (auto it = mForceGenerators.begin(); it != mForceGenerators.end(); ++it)
 		{
 			delete (*it);
 		}
@@ -34,8 +39,14 @@ namespace Annulus
 		if (mTimeSinceLastUpdate > mSettings->GetTimeStep())
 		{
 			std::float_t seconds = mTimeSinceLastUpdate.count() / 1000000000.0f;
-			
-			for(auto body : mBodies)
+
+			// Update forces
+			for (auto forceGenerator : mForceGenerators)
+			{
+				forceGenerator->UpdateForce(seconds);
+			}
+			// Integrate
+			for (auto body : mBodies)
 			{
 				body->Integrate(seconds);
 			}
@@ -62,6 +73,16 @@ namespace Annulus
 		mBodiesDelete.push_back(&body);
 	}
 
+	void World::RegisterForceGenerator(ForceGenerator& generator)
+	{
+		mForceGenerators.push_back(&generator);
+	}
+
+	void World::UnregisterForceGenerator(ForceGenerator& generator)
+	{
+		mForceGeneratorsDelete.push_back(&generator);
+	}
+
 	void World::ClearDeleteQueues()
 	{
 		// Clear the pointers to the bodies which are out of scope.
@@ -71,5 +92,12 @@ namespace Annulus
 			mBodies.erase(itDelete);
 		}
 		mBodiesDelete.clear();
+		// Clear the pointers to the force generators which are out of scope.
+		for (auto it = mForceGeneratorsDelete.begin(); it != mForceGeneratorsDelete.end(); ++it)
+		{
+			auto itDelete = std::find(mForceGenerators.begin(), mForceGenerators.end(), *it);
+			mForceGenerators.erase(itDelete);
+		}
+		mForceGeneratorsDelete.clear();
 	}
 }

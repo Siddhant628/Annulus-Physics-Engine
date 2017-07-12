@@ -163,6 +163,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ForceGenerator.h" />
     <ClInclude Include="GameClock.h" />
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="Orientation.h" />
@@ -185,6 +186,7 @@
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ForceGenerator.cpp" />
     <ClCompile Include="GameClock.cpp" />
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="Orientation.cpp" />

@@ -8,6 +8,7 @@ namespace Annulus
 {
 	class Settings;
 	class RigidBody;
+	class ForceGenerator;
 
 	/**
 	* A class which manages all physics entities for the 2D rigid body physics engine.
@@ -46,6 +47,16 @@ namespace Annulus
 		* @param body The rigid body which has to be unregistered from this world.
 		*/
 		void UnregisterBody(RigidBody& body);
+		/**
+		* Register a force generator to this world.
+		* @param generator The force generator which has to be registered to this world.
+		*/
+		void RegisterForceGenerator(ForceGenerator& generator);
+		/**
+		* Unregister a force generator from this world.
+		* @param generator The force generator which has to be unregistered from this world.
+		*/
+		void UnregisterForceGenerator(ForceGenerator& generator);
 	private:
 		/**
 		* Clears the pointers to instances of classes which are out of scope.
@@ -66,8 +77,16 @@ namespace Annulus
 		*/
 		std::vector<RigidBody*> mBodies;
 		/**
-		* A vector of pointers to all the rigid bodies which are to be removed from this simulation.
+		* A vector of pointers to all the rigid bodies which are to be removed from this simulation since out of scope.
 		*/
 		std::vector<RigidBody*> mBodiesDelete;
+		/**
+		* A vector of pointers to all the force generators contained in this simulation.
+		*/
+		std::vector<ForceGenerator*> mForceGenerators;
+		/**
+		* A vector of pointers to all the force generators which are to be removed from this simulation since out of scope.
+		*/
+		std::vector<ForceGenerator*> mForceGeneratorsDelete;
 	};
 }
