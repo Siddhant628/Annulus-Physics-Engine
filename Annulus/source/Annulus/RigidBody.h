@@ -113,11 +113,18 @@ namespace Annulus
 		void AddForce(const glm::vec2& force);
 		/**
 		* Add a force to the rigid body at a specific point.
-		* Since this force is acting on a point of the object, which can be other than the conet of mass, this may generate torque.
+		* Since this force is acting on a point on the object, which can be other than the conet of mass, this may generate torque.
 		* @param force The force which is to be added to the rigid body.
 		* @param point The point at which the force is being added.
 		*/
 		void AddForce(const glm::vec2& force, const glm::vec2& point);
+		/**
+		* Add a force to the rigid body at a specific point relative to its center of mass / origin.
+		* Since this force is acting on a point on the object, which can be other than the conet of mass, this may generate torque.
+		* @param force The force which is to be added to the rigid body.
+		* @param point The relative position at which the force is being added.
+		*/
+		void AddForceRelative(const glm::vec2& force, const glm::vec2& point);
 	protected:
 		/**
 		* Updates the position and velocity of the particle based on the calculated acceleration. (Integrator)
@@ -151,11 +158,11 @@ namespace Annulus
 		*/
 		std::float_t mInertiaInverse;
 		/**
-		* The proportion of linear velocity that would sucessfully transfer to next update [0,1].
+		* The ratio of linear velocity that is lost each frame due to damping [0,1].
 		*/
 		std::float_t mLinearDamping;
 		/**
-		* The proportion of angular velocity that would sucessfully transfer to next update [0,1].
+		* The ratio of angular velocity that is lost each frame due to damping [0,1].
 		*/
 		std::float_t mAngularDamping;
 

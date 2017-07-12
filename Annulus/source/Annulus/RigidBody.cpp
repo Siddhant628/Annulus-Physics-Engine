@@ -13,8 +13,8 @@ namespace Annulus
 		mMassInverse(1),
 		mRotation(0),
 		mInertiaInverse(1),
-		mLinearDamping(1.0f),
-		mAngularDamping(1.0f),
+		mLinearDamping(0.0f),
+		mAngularDamping(0.0f),
 		mTorqueAccumulator(0.0f),
 		mCachedAngularAcceleration(0.0f)
 	{
@@ -109,7 +109,7 @@ namespace Annulus
 
 	void RigidBody::SetLinearDamping(std::float_t damping)
 	{
-		if (damping >= 0.0f && damping <= 0.0f)
+		if (damping >= 0.0f && damping <= 1.0f)
 		{
 			mLinearDamping = damping;
 		}
@@ -122,7 +122,7 @@ namespace Annulus
 
 	void RigidBody::SetAngularDamping(std::float_t damping)
 	{
-		if (damping >= 0.0f && damping <= 0.0f)
+		if (damping >= 0.0f && damping <= 1.0f)
 		{
 			mAngularDamping = damping;
 		}
@@ -143,6 +143,15 @@ namespace Annulus
 		mTorqueAccumulator += (relativePosition.x * force.y - relativePosition.y * force.x);
 	}
 
+	void RigidBody::AddForceRelative(const glm::vec2& force, const glm::vec2& point)
+	{
+		// Account for force.
+		mForceAccumulator += force;
+		// Account for torque.
+		// Essentially this is a cross product in 2D, the resultant should be along -ve or +ve z axis, so we can represent it as a scalar quantity. (Torque = Relative Position X Force)
+		mTorqueAccumulator += (point.x * force.y - point.y * force.x);
+	}
+
 	void RigidBody::Integrate(std::float_t seconds)
 	{
 		seconds;
@@ -152,10 +161,10 @@ namespace Annulus
 
 		// Update velocity and rotation and account for their drag.
 		mVelocity += mCachedAcceleration * seconds;
-		mVelocity *= glm::pow(mLinearDamping, seconds);
+		mVelocity *= glm::pow(1.0f - mLinearDamping, seconds);
 		
 		mRotation += mCachedAngularAcceleration * seconds;
-		mRotation *= glm::pow(mAngularDamping, seconds);
+		mRotation *= glm::pow(1.0f - mAngularDamping, seconds);
 
 		// Update position and orientation
 		mPosition += mVelocity*seconds;
