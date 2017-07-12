@@ -10,6 +10,7 @@ namespace Annulus
 	*/
 	class ForceGenerator
 	{
+		friend class World;
 	public:
 		/**
 		* Destructor.
@@ -23,16 +24,17 @@ namespace Annulus
 		virtual void UpdateForce(std::float_t seconds) = 0;
 	private:
 		/**
+		* Initialize the static members of this class. Called in the constructor of the world.
+		* @param world The world that contains this rigid body.
+		*/
+		static void Initialize(World& world);
+	protected:
+		/**
 		* Constructor.
 		* Registers this force generator to the associated world.
 		*/
 		ForceGenerator();
 
-		/**
-		* Initialize the static members of this class. Called in the constructor of the world.
-		* @param world The world that contains this rigid body.
-		*/
-		static void Initialize(World& world);
 		/**
 		* The world with which all the force generators are associated.
 		*/

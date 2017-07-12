@@ -62,6 +62,12 @@
     <ClInclude Include="ForceGenerator.h">
       <Filter>Engine\RigidBody\ForceGenerators</Filter>
     </ClInclude>
+    <ClInclude Include="Gravity.h">
+      <Filter>Engine\RigidBody\ForceGenerators</Filter>
+    </ClInclude>
+    <ClInclude Include="AnchoredSpring.h">
+      <Filter>Engine\RigidBody\ForceGenerators</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -123,6 +129,12 @@
       <Filter>Engine\RigidBody</Filter>
     </ClCompile>
     <ClCompile Include="ForceGenerator.cpp">
+      <Filter>Engine\RigidBody\ForceGenerators</Filter>
+    </ClCompile>
+    <ClCompile Include="Gravity.cpp">
+      <Filter>Engine\RigidBody\ForceGenerators</Filter>
+    </ClCompile>
+    <ClCompile Include="AnchoredSpring.cpp">
       <Filter>Engine\RigidBody\ForceGenerators</Filter>
     </ClCompile>
   </ItemGroup>

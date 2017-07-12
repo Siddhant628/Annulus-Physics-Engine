@@ -125,6 +125,13 @@ namespace Annulus
 		* @param point The relative position at which the force is being added.
 		*/
 		void AddForceRelative(const glm::vec2& force, const glm::vec2& point);
+		// TODO Rewrite with transformations
+		/**
+		* For some point in the local space, get the corresponding point in world space.
+		* @param point The point in local space of the rigid body.
+		* @param outputPoint Output parameter with the point in world space.
+		*/
+		void GetPointInWorldSpace(const glm::vec2& point, glm::vec2& outputPoint);
 	protected:
 		/**
 		* Updates the position and velocity of the particle based on the calculated acceleration. (Integrator)

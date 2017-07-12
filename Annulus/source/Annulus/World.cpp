@@ -14,6 +14,7 @@ namespace Annulus
 		mTimeSinceLastUpdate(std::chrono::nanoseconds(0))
 	{
 		RigidBody::Initialize(*this);
+		ForceGenerator::Initialize(*this);
 	}
 
 	World::~World()

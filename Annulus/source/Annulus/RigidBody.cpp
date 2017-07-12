@@ -3,6 +3,7 @@
 
 #include "World.h"
 
+#include <cmath>
 #include <iostream>
 
 namespace Annulus
@@ -150,6 +151,17 @@ namespace Annulus
 		// Account for torque.
 		// Essentially this is a cross product in 2D, the resultant should be along -ve or +ve z axis, so we can represent it as a scalar quantity. (Torque = Relative Position X Force)
 		mTorqueAccumulator += (point.x * force.y - point.y * force.x);
+	}
+
+	void RigidBody::GetPointInWorldSpace(const glm::vec2& point, glm::vec2& outputPoint)
+	{
+		std::float_t angle = atan2(point.y, point.x);
+		std::float_t cosine = cos(angle);
+		std::float_t sine = sin(angle);
+		std::float_t length = glm::length(point);
+
+		outputPoint.x = mPosition.x + length * (mOrientation.mOrientation.x*cosine - mOrientation.mOrientation.y*sine);
+		outputPoint.y = mPosition.y + length * (mOrientation.mOrientation.y*cosine + mOrientation.mOrientation.x*sine);
 	}
 
 	void RigidBody::Integrate(std::float_t seconds)

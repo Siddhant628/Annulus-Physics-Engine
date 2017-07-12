@@ -4,6 +4,7 @@
 namespace Annulus
 {
 	class RigidBody;
+	class Gravity;
 }
 
 namespace Demos
@@ -40,9 +41,14 @@ namespace Demos
 		*/
 		Annulus::RigidBody* mRigidBody;
 		/**
+		* A pointer to the gravitational force generator in the demo.
+		*/
+		Annulus::Gravity* mGravity;
+		/**
 		* The rectangle to visualize the simulation.
 		*/
 		sf::RectangleShape* mRectangle;
+		
 		/**
 		* The length of the rigid body rectangle.
 		*/

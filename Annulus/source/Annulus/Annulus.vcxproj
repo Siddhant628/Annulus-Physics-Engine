@@ -163,9 +163,11 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AnchoredSpring.h" />
     <ClInclude Include="ForceGenerator.h" />
     <ClInclude Include="GameClock.h" />
     <ClInclude Include="GameTime.h" />
+    <ClInclude Include="Gravity.h" />
     <ClInclude Include="Orientation.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleAnchoredSpring.h" />
@@ -186,9 +188,11 @@
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnchoredSpring.cpp" />
     <ClCompile Include="ForceGenerator.cpp" />
     <ClCompile Include="GameClock.cpp" />
     <ClCompile Include="GameTime.cpp" />
+    <ClCompile Include="Gravity.cpp" />
     <ClCompile Include="Orientation.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleAnchoredSpring.cpp" />
