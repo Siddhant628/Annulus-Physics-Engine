@@ -8,7 +8,7 @@ namespace Annulus
 	const std::int32_t Settings::sTimeFor30FPS = 33;
 	const std::int32_t Settings::sTimeFor60FPS = 16;
 
-	const glm::vec2 Settings::sDefaultGravity = glm::vec2(0.0f, -10.0f);
+	const glm::vec2 Settings::sDefaultGravity = glm::vec2(0.0f, -20.0f);
 	
 	const std::uint32_t Settings::sDefaultMaxContacts = 10;
 

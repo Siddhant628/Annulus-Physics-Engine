@@ -1,6 +1,9 @@
 #pragma once
 #include "Demo.h"
 
+#define GLM_FORCE_CXX98
+#include "glm/glm.hpp"
+
 namespace Annulus
 {
 	class RigidBody;
@@ -52,6 +55,14 @@ namespace Demos
 		* The center anchor point.
 		*/
 		sf::CircleShape* mCircle;
+		/**
+		* The center of mass point.
+		*/
+		sf::CircleShape* mCircleCOM;
+		/**
+		* The center connection point.
+		*/
+		sf::CircleShape* mCircleConnection;
 		
 		/**
 		* The length of the rigid body rectangle.
@@ -61,5 +72,9 @@ namespace Demos
 		* The height of the rigid body rectangle.
 		*/
 		static const std::float_t sRectangleHeight;
+		/**
+		* The relative connection point on the rigidbody.
+		*/
+		static const glm::vec2 sConnectionPoint;
 	};
 }

@@ -10,6 +10,7 @@ namespace Demos
 {
 
 	const std::float_t Demo::sPixelPositionScaler = 1.0f;
+	const std::float_t Demo::sPointSize = 2.0f;
 
 	Demo::Demo(sf::RenderWindow& renderWindow, Annulus::World& world) : mRenderWindow(renderWindow), mWorld(world), mView(&renderWindow.getView())
 	{

@@ -52,5 +52,9 @@ namespace Demos
 		* The magnitude with each position is scaled to get the pixel position for rendering on the display.
 		*/
 		const static std::float_t sPixelPositionScaler;
+		/**
+		* The size for a point / particle in demo.
+		*/
+		const static std::float_t sPointSize;
 	};
 }
