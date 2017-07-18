@@ -25,7 +25,7 @@
 #define SCREEN_WIDTH 1600
 #define SCREEN_HEIGHT 900
 
-#define DEMO_COUNT 4
+#define DEMO_COUNT 5
 
 using namespace Annulus;
 using namespace Demos;

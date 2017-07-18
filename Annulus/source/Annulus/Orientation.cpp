@@ -86,10 +86,11 @@ namespace Annulus
 
 	void Orientation::SetOrientationDegrees(std::float_t degrees)
 	{
+		assert(degrees >= 0 && degrees < 360);
 		std::float_t radians = degrees * (PI / 180.0f);
 		mOrientation.x = cos(radians);
 		mOrientation.y = sin(radians);
-		mDegreesNeedUpdate = true;
+		mCachedDegrees = degrees;
 	}
 
 	const glm::vec2 Orientation::GetOrientationVector() const
