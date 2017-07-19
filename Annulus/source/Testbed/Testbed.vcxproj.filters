@@ -24,6 +24,9 @@
     <ClCompile Include="TorqueDemo.cpp">
       <Filter>Demos\RigidBody</Filter>
     </ClCompile>
+    <ClCompile Include="CircleContactDemo.cpp">
+      <Filter>Demos\RigidBody</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -46,6 +49,9 @@
       <Filter>Demos\RigidBody</Filter>
     </ClInclude>
     <ClInclude Include="TorqueDemo.h">
+      <Filter>Demos\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleContactDemo.h">
       <Filter>Demos\RigidBody</Filter>
     </ClInclude>
   </ItemGroup>

@@ -187,6 +187,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CircleContactDemo.cpp" />
     <ClCompile Include="Demo.cpp" />
     <ClCompile Include="ParticleBungeeDemo.cpp" />
     <ClCompile Include="ParticleContactDemo.cpp" />
@@ -216,6 +217,7 @@
     <ClCompile Include="TorqueDemo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CircleContactDemo.h" />
     <ClInclude Include="Demo.h" />
     <ClInclude Include="ParticleBungeeDemo.h" />
     <ClInclude Include="ParticleContactDemo.h" />

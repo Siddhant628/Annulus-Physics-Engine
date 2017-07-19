@@ -21,11 +21,12 @@
 #include "ParticleBungeeDemo.h"
 #include "ParticleContactDemo.h"
 #include "TorqueDemo.h"
+#include "CircleContactDemo.h"
 
 #define SCREEN_WIDTH 1600
 #define SCREEN_HEIGHT 900
 
-#define DEMO_COUNT 5
+#define DEMO_COUNT 6
 
 using namespace Annulus;
 using namespace Demos;
@@ -57,6 +58,8 @@ int  main()
 	ParticleContactDemo demo(window, world);
 #elif DEMO_COUNT == 5
 	TorqueDemo demo(window, world);
+#elif DEMO_COUNT == 6
+	CircleContactDemo demo(window, world);
 #endif
 
 	while (window.isOpen())
@@ -89,7 +92,7 @@ int  main()
 		// Physics Update
 		world.Update(deltaNanoseconds);
 		demo.Update(deltaNanoseconds);
-		std::cout << "Total Time: " << (gameTime.TotalGameTime().count() / 1000000000.0f) << std::endl;
+		//std::cout << "Total Time: " << (gameTime.TotalGameTime().count() / 1000000000.0f) << std::endl;
 
 		// Rendering
 		window.clear(sf::Color(100, 149, 237, 1));

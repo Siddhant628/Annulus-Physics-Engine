@@ -186,7 +186,7 @@ namespace Annulus
 		mForceAccumulator = glm::vec2(0.0f, 0.0f);
 		mTorqueAccumulator = 0.0f;
 
-		DebugRigidBody();
+		//DebugRigidBody();
 	}
 
 	void RigidBody::Initialize(World& world)
