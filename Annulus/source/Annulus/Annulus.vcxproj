@@ -164,6 +164,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AnchoredSpring.h" />
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="Contact.h" />
     <ClInclude Include="ForceGenerator.h" />
     <ClInclude Include="GameClock.h" />
     <ClInclude Include="GameTime.h" />
@@ -189,6 +191,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnchoredSpring.cpp" />
+    <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="Contact.cpp" />
     <ClCompile Include="ForceGenerator.cpp" />
     <ClCompile Include="GameClock.cpp" />
     <ClCompile Include="GameTime.cpp" />

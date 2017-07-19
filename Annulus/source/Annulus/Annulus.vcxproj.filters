@@ -68,6 +68,12 @@
     <ClInclude Include="AnchoredSpring.h">
       <Filter>Engine\RigidBody\ForceGenerators</Filter>
     </ClInclude>
+    <ClInclude Include="Contact.h">
+      <Filter>Engine\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Engine\RigidBody</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -136,6 +142,12 @@
     </ClCompile>
     <ClCompile Include="AnchoredSpring.cpp">
       <Filter>Engine\RigidBody\ForceGenerators</Filter>
+    </ClCompile>
+    <ClCompile Include="Contact.cpp">
+      <Filter>Engine\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Engine\RigidBody</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
