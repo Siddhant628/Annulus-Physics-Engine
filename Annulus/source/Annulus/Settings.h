@@ -13,6 +13,7 @@ namespace Annulus
 	class Settings
 	{
 		friend class ParticleWorld;
+		friend class World;
 	public:
 		/**
 		* Constructor.
@@ -49,6 +50,10 @@ namespace Annulus
 		* @param contacts The number of contacts that may be generated.
 		*/
 		void SetMaximumContacts(std::uint32_t contacts);
+		/**
+		* Get the maximum number of contacts that could be there in a simulation.
+		*/
+		std::uint32_t GetMaxContacts() const;
 	private:
 		/**
 		* The amount of fixed time after which a physics update should be performed for a world.

@@ -2,6 +2,7 @@
 #include "Collider.h"
 
 #include "World.h"
+#include "RigidBody.h"
 
 namespace Annulus
 {
@@ -12,12 +13,12 @@ namespace Annulus
 		mOwnerWord->UnregisterCollider(*this);
 	}
 
-	ColliderType Collider::GetColliderType()
+	ColliderType Collider::GetColliderType() const
 	{
 		return mColliderType;
 	}
 
-	CollisionLayer Collider::GetCollisionLayer()
+	CollisionLayer Collider::GetCollisionLayer() const
 	{
 		return  mCollisionLayer;
 	}
@@ -25,6 +26,11 @@ namespace Annulus
 	void Collider::SetCollisionLayer(CollisionLayer layer)
 	{
 		mCollisionLayer = layer;
+	}
+
+	const glm::vec2& Collider::GetPosition() const
+	{
+		return mRigidBody->GetPosition();
 	}
 
 	Collider::Collider(const RigidBody& body) : mRigidBody(&body), mColliderType(ColliderType::Default), mCollisionLayer(CollisionLayer::DefaultLayer)

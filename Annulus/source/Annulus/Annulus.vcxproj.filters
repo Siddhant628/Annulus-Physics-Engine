@@ -77,6 +77,9 @@
     <ClInclude Include="Circle.h">
       <Filter>Engine\RigidBody\Colliders</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionDetector.h">
+      <Filter>Engine\RigidBody</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -154,6 +157,9 @@
     </ClCompile>
     <ClCompile Include="Collider.cpp">
       <Filter>Engine\RigidBody\Colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionDetector.cpp">
+      <Filter>Engine\RigidBody</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

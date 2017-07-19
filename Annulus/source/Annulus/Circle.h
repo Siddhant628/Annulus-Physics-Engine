@@ -16,6 +16,10 @@ namespace Annulus
 		*/
 		Circle(const RigidBody& body, std::float_t radius);
 		/**
+		* Get the radius of this collider.
+		*/
+		std::float_t GetRadius() const;
+		/**
 		* Destructor.
 		*/
 		virtual ~Circle() = default;

@@ -42,16 +42,20 @@ namespace Annulus
 		/**
 		* Get the collider type for this collider.
 		*/
-		ColliderType GetColliderType();
+		ColliderType GetColliderType() const;
 		/**
 		* Get the collision layer for this collider.
 		*/
-		CollisionLayer GetCollisionLayer();
+		CollisionLayer GetCollisionLayer() const;
 		/**
 		* Set the collision layer for this collider.
 		* @param layer The collision layer to set.
 		*/
 		void SetCollisionLayer(CollisionLayer layer);
+		/**
+		* Get the position of this collider.
+		*/
+		const glm::vec2& GetPosition() const;
 		/**
 		* Deleted copy and move operations.
 		*/

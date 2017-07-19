@@ -11,24 +11,18 @@ namespace Annulus
 	*/
 	class Contact final
 	{
+		friend class CollisionDetector;
 	public:
 		/**
 		* Constructor.
 		* @param collider1 The first of the two colliders involed in the contact.
 		* @param collider2 The second of the two colliders involed in the contact.
 		*/
-		Contact(Collider& collider1, Collider& collider2);
+		Contact(const Collider& collider1, const Collider& collider2);
 		/**
 		* Destructor.
 		*/
 		~Contact() = default;
-		/**
-		* Intilialize the collision related data.
-		* @param normal The contact normal for this contact.
-		* @param contact The position of contact in world coordinates.
-		* @param penetration The depth of penetration between the two colliders.
-		*/
-		void Initialize(const glm::vec2& normal, const glm::vec2& contact, std::float_t penetration);
 		/**
 		* Set the restitution of this contact prior to its resolution, once it is created. Defaults to 1 (elastic collision).
 		* @param restitution The magnitude of restitution to set in [0,1].
@@ -42,7 +36,7 @@ namespace Annulus
 		Contact(Contact&& rhs) = delete;
 		Contact& operator=(Contact&& rhs) = delete;
 	private:
-		Collider* mColliders[2];
+		const Collider* mColliders[2];
 		/**
 		* The coefficient of restitution for this specific collision.
 		*/

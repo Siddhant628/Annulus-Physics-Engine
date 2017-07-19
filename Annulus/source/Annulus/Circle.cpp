@@ -7,4 +7,9 @@ namespace Annulus
 	{
 		mColliderType = ColliderType::Circle;
 	}
+
+	std::float_t Circle::GetRadius() const
+	{
+		return mRadius;
+	}
 }

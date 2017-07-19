@@ -173,6 +173,7 @@ namespace Annulus
 				break;
 			}
 		}
+		// TODO Change to mContactsCount
 		return mSettings->mMaxContacts - limit;
 	}
 

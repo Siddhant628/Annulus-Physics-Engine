@@ -53,4 +53,9 @@ namespace Annulus
 	{
 		mMaxContacts = contacts;
 	}
+
+	std::uint32_t Settings::GetMaxContacts() const
+	{
+		return mMaxContacts;
+	}
 }

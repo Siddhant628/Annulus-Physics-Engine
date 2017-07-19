@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "Contact.h"
 
 //#define GLM_FORCE_CXX98
 //#include "glm/glm.hpp"
@@ -10,6 +11,7 @@ namespace Annulus
 	class RigidBody;
 	class ForceGenerator;
 	class Collider;
+	class CollisionDetector;
 
 	/**
 	* A class which manages all physics entities for the 2D rigid body physics engine.
@@ -62,12 +64,17 @@ namespace Annulus
 		* Register a collider to this world.
 		* @param collider The collider which has to be registered to this world.
 		*/
-		void RegisterCollider(Collider& collider);
+		void RegisterCollider(const Collider& collider);
 		/**
 		* Unregister a colliderr from this world.
 		* @param collider The force generator which has to be unregistered from this world.
 		*/
-		void UnregisterCollider(Collider& collider);
+		void UnregisterCollider(const Collider& collider);
+
+		/**
+		* Get the vector of contacts which will be handled by the contact resolver.
+		*/
+		std::vector<const Contact*>& GetContacts();
 	private:
 		/**
 		* Clears the pointers to instances of classes which are out of scope.
@@ -102,10 +109,19 @@ namespace Annulus
 		/**
 		* A vector of pointers to all the colliders contained in this simulation.
 		*/
-		std::vector<Collider*> mColliders;
+		std::vector<const Collider*> mColliders;
 		/**
 		* A vector of pointers to all the colliders which are to be removed from this simulation since out of scope.
 		*/
-		std::vector<Collider*> mCollidersDelete;
+		std::vector<const Collider*> mCollidersDelete;
+
+		/**
+		* The contacts which were generated this update and need to be handled.
+		*/
+		std::vector<const Contact*> mContacts;
+		/**
+		* The collision detector associated with this world. Created and destroyed by the world implicity.
+		*/
+		CollisionDetector* mCollisionDetector;
 	};
 }

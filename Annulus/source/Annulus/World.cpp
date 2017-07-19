@@ -5,6 +5,7 @@
 #include "RigidBody.h"
 #include "ForceGenerator.h"
 #include "Collider.h"
+#include "CollisionDetector.h"
 
 #include <chrono>
 
@@ -14,9 +15,12 @@ namespace Annulus
 		mSettings(&settings),
 		mTimeSinceLastUpdate(std::chrono::nanoseconds(0))
 	{
+		mCollisionDetector = new CollisionDetector();
+
 		RigidBody::Initialize(*this);
 		ForceGenerator::Initialize(*this);
 		Collider::Initialize(*this);
+		mCollisionDetector->Initialize(*this);
 	}
 
 	World::~World()
@@ -33,10 +37,12 @@ namespace Annulus
 			delete (*it);
 		}
 		// Destroy all the colliders.
-		for(auto it = mColliders.begin(); it != mColliders.end(); ++it)
+		for (auto it = mColliders.begin(); it != mColliders.end(); ++it)
 		{
 			delete (*it);
 		}
+		// Destroy other members on heap.
+		delete mCollisionDetector;
 	}
 
 	void World::Update(std::chrono::nanoseconds nanoseconds)
@@ -58,6 +64,10 @@ namespace Annulus
 			{
 				body->Integrate(seconds);
 			}
+			// Generate contacts
+			mCollisionDetector->GenerateContacts(mColliders);
+
+			// TODO Resolve contacts
 
 			// Reset the time since last update.
 			mTimeSinceLastUpdate = std::chrono::nanoseconds(0);
@@ -91,14 +101,19 @@ namespace Annulus
 		mForceGeneratorsDelete.push_back(&generator);
 	}
 
-	void World::RegisterCollider(Collider& collider)
+	void World::RegisterCollider(const Collider& collider)
 	{
 		mColliders.push_back(&collider);
 	}
 
-	void World::UnregisterCollider(Collider& collider)
+	void World::UnregisterCollider(const Collider& collider)
 	{
 		mCollidersDelete.push_back(&collider);
+	}
+
+	std::vector<const Contact*>& World::GetContacts()
+	{
+		return mContacts;
 	}
 
 	void World::ClearDeleteQueues()
