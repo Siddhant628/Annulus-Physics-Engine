@@ -19,7 +19,6 @@ namespace Annulus
 
 	void ForceGenerator::Initialize(World& world)
 	{
-		assert(sOwnerWorld == nullptr);
 		sOwnerWorld = &world;
 	}
 }

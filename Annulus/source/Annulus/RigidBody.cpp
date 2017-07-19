@@ -191,7 +191,6 @@ namespace Annulus
 
 	void RigidBody::Initialize(World& world)
 	{
-		assert(mOwnerWorld == nullptr);
 		mOwnerWorld = &world;
 	}
 

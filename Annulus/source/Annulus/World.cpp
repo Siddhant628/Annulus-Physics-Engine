@@ -4,6 +4,7 @@
 #include "Settings.h"
 #include "RigidBody.h"
 #include "ForceGenerator.h"
+#include "Collider.h"
 
 #include <chrono>
 
@@ -15,6 +16,7 @@ namespace Annulus
 	{
 		RigidBody::Initialize(*this);
 		ForceGenerator::Initialize(*this);
+		Collider::Initialize(*this);
 	}
 
 	World::~World()
@@ -27,6 +29,11 @@ namespace Annulus
 		}
 		// Destroy all the force generators.
 		for (auto it = mForceGenerators.begin(); it != mForceGenerators.end(); ++it)
+		{
+			delete (*it);
+		}
+		// Destroy all the colliders.
+		for(auto it = mColliders.begin(); it != mColliders.end(); ++it)
 		{
 			delete (*it);
 		}
@@ -84,6 +91,16 @@ namespace Annulus
 		mForceGeneratorsDelete.push_back(&generator);
 	}
 
+	void World::RegisterCollider(Collider& collider)
+	{
+		mColliders.push_back(&collider);
+	}
+
+	void World::UnregisterCollider(Collider& collider)
+	{
+		mCollidersDelete.push_back(&collider);
+	}
+
 	void World::ClearDeleteQueues()
 	{
 		// Clear the pointers to the bodies which are out of scope.
@@ -100,5 +117,12 @@ namespace Annulus
 			mForceGenerators.erase(itDelete);
 		}
 		mForceGeneratorsDelete.clear();
+		// Clear the pointers to the colliders which are out of scope.
+		for (auto it = mCollidersDelete.begin(); it != mCollidersDelete.end(); ++it)
+		{
+			auto itDelete = std::find(mColliders.begin(), mColliders.end(), *it);
+			mColliders.erase(itDelete);
+		}
+		mCollidersDelete.clear();
 	}
 }

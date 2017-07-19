@@ -14,7 +14,7 @@ namespace Annulus
 		* @param body The rigid body with which this collider is associated.
 		* @param radius The radius of the circular collider.
 		*/
-		explicit Circle(const RigidBody& body, std::float_t radius);
+		Circle(const RigidBody& body, std::float_t radius);
 		/**
 		* Destructor.
 		*/

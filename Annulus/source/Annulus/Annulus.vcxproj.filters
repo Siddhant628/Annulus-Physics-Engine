@@ -72,7 +72,10 @@
       <Filter>Engine\RigidBody</Filter>
     </ClInclude>
     <ClInclude Include="Collider.h">
-      <Filter>Engine\RigidBody</Filter>
+      <Filter>Engine\RigidBody\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle.h">
+      <Filter>Engine\RigidBody\Colliders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -146,8 +149,11 @@
     <ClCompile Include="Contact.cpp">
       <Filter>Engine\RigidBody</Filter>
     </ClCompile>
+    <ClCompile Include="Circle.cpp">
+      <Filter>Engine\RigidBody\Colliders</Filter>
+    </ClCompile>
     <ClCompile Include="Collider.cpp">
-      <Filter>Engine\RigidBody</Filter>
+      <Filter>Engine\RigidBody\Colliders</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +177,9 @@
     </Filter>
     <Filter Include="Engine\RigidBody\ForceGenerators">
       <UniqueIdentifier>{63bd603d-3de5-4a45-be9a-d3b4ef7ddc9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\RigidBody\Colliders">
+      <UniqueIdentifier>{1afb131c-58b2-4cb9-a793-fb004adf893f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -24,17 +24,20 @@ namespace Annulus
 	};
 
 	class RigidBody;
+	class World;
 	
 	/**
 	* The primitive which can participate in rigid body collisions.
 	*/
 	class Collider
 	{
+		friend class World;
 	public:
 		/**
 		* Destructor.
+		* Unregister this collider from the world.
 		*/
-		virtual ~Collider() = default;
+		virtual ~Collider();
 		
 		/**
 		* Get the collider type for this collider.
@@ -59,6 +62,7 @@ namespace Annulus
 	protected:
 		/**
 		* Constructor.
+		* Register this collider to the world.
 		* @param body The rigid body with which this collider is associated.
 		*/
 		Collider(const RigidBody& body);
@@ -75,5 +79,15 @@ namespace Annulus
 		* The collision layer for this collider.
 		*/
 		CollisionLayer mCollisionLayer;
+	private:
+		/**
+		* Initialize colliders for this specific world. The colliders will register to this world.
+		* @param world The world with which colliders should get associated.
+		*/
+		static void Initialize(World& world);
+		/**
+		* A pointer to the world which will own all the colliders.
+		*/
+		static World* mOwnerWord;
 	};
 }
