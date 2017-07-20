@@ -17,4 +17,14 @@ namespace Annulus
 		assert(restitution >= 0.0f && restitution <= 1.0f);
 		mRestitution = restitution;
 	}
+
+	const glm::vec2& Contact::GetPosition() const
+	{
+		return mContactPoint;
+	}
+
+	const glm::vec2& Contact::GetNormal() const
+	{
+		return mContactNormal;
+	}
 }

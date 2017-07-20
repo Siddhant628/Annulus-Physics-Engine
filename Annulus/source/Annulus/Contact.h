@@ -29,6 +29,15 @@ namespace Annulus
 		*/
 		void SetRestitution(std::float_t restitution);
 		/**
+		* Get the position of contact.
+		*/
+		const glm::vec2& GetPosition() const;
+		/**
+		* Get the normal direction involed in contact.
+		*/
+		const glm::vec2& GetNormal() const;
+
+		/**
 		* Delete copy and move operations.
 		*/
 		Contact(const Contact&) = delete;

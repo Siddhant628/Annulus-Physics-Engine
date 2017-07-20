@@ -53,6 +53,9 @@ namespace Annulus
 		if (mTimeSinceLastUpdate > mSettings->GetTimeStep())
 		{
 			std::float_t seconds = mTimeSinceLastUpdate.count() / 1000000000.0f;
+			// Reset contacts.
+			mContacts.clear();
+			mCollisionDetector->DestroyContacts();
 			// Update forces
 			for (auto forceGenerator : mForceGenerators)
 			{

@@ -9,9 +9,9 @@ using namespace Annulus;
 
 namespace Demos
 {
-	const float_t CircleContactDemo::sCircleRadius = 20.0f;
-	const glm::vec2 CircleContactDemo::sInitialPosition1 = glm::vec2(-200.0f, -10.0f);
-	const glm::vec2 CircleContactDemo::sInitialPosition2 = glm::vec2(200.0f, 10.0f);
+	const float_t CircleContactDemo::sCircleRadius = 100.0f;
+	const glm::vec2 CircleContactDemo::sInitialPosition1 = glm::vec2(-200.0f, 0.0f);
+	const glm::vec2 CircleContactDemo::sInitialPosition2 = glm::vec2(200.0f, 100.0f);
 	const glm::vec2 CircleContactDemo::sInitialVelocity1 = glm::vec2(50.0f, 0.0f);
 	const glm::vec2 CircleContactDemo::sInitialVelocity2 = glm::vec2(-50.0f, 0.0f);
 
@@ -82,16 +82,21 @@ namespace Demos
 		// Update the position of the rigid body.
 		mCircle1->setPosition(centerX + mCircleCollider1->GetPosition().x, centerY - mCircleCollider1->GetPosition().y);
 		mCircle2->setPosition(centerX + mCircleCollider2->GetPosition().x, centerY - mCircleCollider2->GetPosition().y);
+		if (mWorld.GetContacts().size() > 0)
+		{
+			mCircle1->setFillColor(sf::Color::Blue);
+			mCircle2->setFillColor(sf::Color::Blue);
+		}
+		else
+		{
+			mCircle1->setFillColor(sf::Color::Magenta);
+			mCircle2->setFillColor(sf::Color::Magenta);
+		}
 	}
 
 	void CircleContactDemo::Draw()
 	{
 		mRenderWindow.draw(*mCircle1);
 		mRenderWindow.draw(*mCircle2);
-		if( mWorld.GetContacts().size() > 0)
-		{
-			mCircle1->setFillColor(sf::Color::Blue);
-			mCircle2->setFillColor(sf::Color::Blue);
-		}
 	}
 }

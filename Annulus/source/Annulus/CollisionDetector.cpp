@@ -10,6 +10,11 @@
 
 namespace Annulus
 {
+	CollisionDetector::~CollisionDetector()
+	{
+		DestroyContacts();
+		free(mContacts);
+	}
 
 	CollisionDetector::CollisionDetector() :
 		mUsedContacts(0),
@@ -45,7 +50,7 @@ namespace Annulus
 			return 0;
 		}
 		// Create the contact with its data.
-		Contact* contact = new Contact(collider1, collider2);
+		Contact* contact = new (mContacts + mUsedContacts)Contact(collider1, collider2);
 		contact->mContactNormal = normal / distance;
 		std::float_t radius1 = collider1.GetRadius();
 		std::float_t radius2 = collider2.GetRadius();
@@ -60,6 +65,7 @@ namespace Annulus
 	{
 		mOwnerWorld = &world;
 		mContactsCount = world.GetSettings().GetMaxContacts();
+		mContacts = static_cast<Contact*>(malloc(sizeof(Contact)*mContactsCount));
 	}
 
 	void CollisionDetector::GenerateContacts(const std::vector<const Collider*> colliders)
@@ -79,5 +85,14 @@ namespace Annulus
 				break;
 			}
 		}
+	}
+
+	void CollisionDetector::DestroyContacts()
+	{
+		for(std::uint32_t i = 0; i < mUsedContacts; ++i)
+		{
+			(mContacts + i)->~Contact();
+		}
+		mUsedContacts = 0;
 	}
 }
