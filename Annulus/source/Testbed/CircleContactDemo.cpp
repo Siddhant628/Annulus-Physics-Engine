@@ -10,7 +10,7 @@ using namespace Annulus;
 namespace Demos
 {
 	const float_t CircleContactDemo::sCircleRadius = 100.0f;
-	const glm::vec2 CircleContactDemo::sInitialPosition1 = glm::vec2(-200.0f, 0.0f);
+	const glm::vec2 CircleContactDemo::sInitialPosition1 = glm::vec2(-200.0f, -20.0f);
 	const glm::vec2 CircleContactDemo::sInitialPosition2 = glm::vec2(200.0f, 100.0f);
 	const glm::vec2 CircleContactDemo::sInitialVelocity1 = glm::vec2(50.0f, 0.0f);
 	const glm::vec2 CircleContactDemo::sInitialVelocity2 = glm::vec2(-50.0f, 0.0f);
@@ -49,6 +49,11 @@ namespace Demos
 		mCircle2 = new sf::CircleShape(sCircleRadius);
 		mCircle2->setOrigin(sCircleRadius, sCircleRadius);
 
+		// Create the contact visulaization.
+		mCircle3 = new sf::CircleShape(sPointSize);
+		mCircle3->setOrigin(sPointSize, sPointSize);
+		mCircle3->setFillColor(sf::Color::Cyan);
+
 		Initialize();
 	}
 
@@ -82,7 +87,7 @@ namespace Demos
 		// Update the position of the rigid body.
 		mCircle1->setPosition(centerX + mCircleCollider1->GetPosition().x, centerY - mCircleCollider1->GetPosition().y);
 		mCircle2->setPosition(centerX + mCircleCollider2->GetPosition().x, centerY - mCircleCollider2->GetPosition().y);
-		if (mWorld.GetContacts().size() > 0)
+		if (mWorld.GetContacts().size() == 1)
 		{
 			mCircle1->setFillColor(sf::Color::Blue);
 			mCircle2->setFillColor(sf::Color::Blue);
@@ -98,5 +103,26 @@ namespace Demos
 	{
 		mRenderWindow.draw(*mCircle1);
 		mRenderWindow.draw(*mCircle2);
+
+		if (mWorld.GetContacts().size() == 1)
+		{
+			std::float_t centerX = mView->getSize().x / 2;
+			std::float_t centerY = mView->getSize().y / 2;
+			// Draw the point of contact.
+			const Contact& contact = *mWorld.GetContacts().at(0);
+			sf::Vector2f contactPoint(centerX + contact.GetPosition().x, centerY - contact.GetPosition().y);
+			mCircle3->setPosition(contactPoint.x, contactPoint.y);
+			mRenderWindow.draw(*mCircle3);
+			// Draw the contact normal.
+			const glm::vec2& normal = contact.GetNormal();
+			sf::Vector2f normalEnd(centerX + normal.x * sCircleRadius * 2, centerY - normal.y * sCircleRadius * 2);
+
+			sf::Vertex contactNormal[] =
+			{
+				sf::Vertex(contactPoint, sf::Color::Cyan),
+				sf::Vertex(normalEnd, sf::Color::Cyan)
+			};
+			mRenderWindow.draw(contactNormal, 2, sf::Lines);
+		}
 	}
 }

@@ -65,6 +65,10 @@ namespace Demos
 		*/
 		sf::CircleShape* mCircle2;
 		/**
+		* The circle which represents the point of contact.
+		*/
+		sf::CircleShape* mCircle3;
+		/**
 		* The initial position of rigid body.
 		*/
 		static const glm::vec2 sInitialPosition1;

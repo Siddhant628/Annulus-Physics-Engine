@@ -98,7 +98,6 @@ int  main()
 		window.clear(sf::Color(100, 149, 237, 1));
 		demo.Draw();
 
-
 		window.display();
 	}
 	return 0;
