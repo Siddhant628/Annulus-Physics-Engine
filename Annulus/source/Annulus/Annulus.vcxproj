@@ -168,6 +168,7 @@
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CollisionDetector.h" />
     <ClInclude Include="Contact.h" />
+    <ClInclude Include="ContactResolver.h" />
     <ClInclude Include="ForceGenerator.h" />
     <ClInclude Include="GameClock.h" />
     <ClInclude Include="GameTime.h" />
@@ -197,6 +198,7 @@
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionDetector.cpp" />
     <ClCompile Include="Contact.cpp" />
+    <ClCompile Include="ContactResolver.cpp" />
     <ClCompile Include="ForceGenerator.cpp" />
     <ClCompile Include="GameClock.cpp" />
     <ClCompile Include="GameTime.cpp" />

@@ -12,6 +12,7 @@ namespace Annulus
 	class ForceGenerator;
 	class Collider;
 	class CollisionDetector;
+	class ContactResolver;
 
 	/**
 	* A class which manages all physics entities for the 2D rigid body physics engine.
@@ -123,5 +124,9 @@ namespace Annulus
 		* The collision detector associated with this world. Created and destroyed by the world implicity.
 		*/
 		CollisionDetector* mCollisionDetector;
+		/**
+		* The contact resolver associated with this world. Created and destroyed by the world implicitly.
+		*/
+		ContactResolver* mContactResolver;
 	};
 }

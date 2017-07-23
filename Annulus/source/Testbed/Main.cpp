@@ -14,7 +14,6 @@
 // Rigid body dynamics specfic headers.
 #include "World.h"
 
-
 // Demos
 #include "ParticleSpringDemo.h"
 #include "ParticleAnchoredSpringDemo.h"

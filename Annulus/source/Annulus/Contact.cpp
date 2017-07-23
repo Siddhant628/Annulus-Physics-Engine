@@ -5,9 +5,9 @@
 
 namespace Annulus
 {
-	Contact::Contact(const Collider& collider1, const Collider& collider2) : 
-		mColliders{&collider1, &collider2},
-		mRestitution(1.0f)
+	Contact::Contact(const Collider& collider1, const Collider& collider2) :
+		mRestitution(1.0f),
+		mColliders{ &collider1, &collider2 }
 	{
 
 	}

@@ -40,14 +40,14 @@ namespace Demos
 		// Create the colliders associated with rigid bodies.
 		mCircleCollider1 = new Circle(*mRigidBody1, sCircleRadius);
 		
-		mCircleCollider2 = new Circle(*mRigidBody2, sCircleRadius);
+		mCircleCollider2 = new Circle(*mRigidBody2, sCircleRadius + 30.0f);
 
 		// Create the visualization circles.
 		mCircle1 = new sf::CircleShape(sCircleRadius);
 		mCircle1->setOrigin(sCircleRadius, sCircleRadius);
 
-		mCircle2 = new sf::CircleShape(sCircleRadius);
-		mCircle2->setOrigin(sCircleRadius, sCircleRadius);
+		mCircle2 = new sf::CircleShape(sCircleRadius + 30.0f);
+		mCircle2->setOrigin(sCircleRadius + 30.0f, sCircleRadius + 30.0f);
 
 		// Create the contact visulaization.
 		mCircle3 = new sf::CircleShape(sPointSize);

@@ -6,6 +6,7 @@
 #include "ForceGenerator.h"
 #include "Collider.h"
 #include "CollisionDetector.h"
+#include "ContactResolver.h"
 
 #include <chrono>
 
@@ -16,6 +17,7 @@ namespace Annulus
 		mTimeSinceLastUpdate(std::chrono::nanoseconds(0))
 	{
 		mCollisionDetector = new CollisionDetector();
+		mContactResolver = new ContactResolver();
 
 		RigidBody::Initialize(*this);
 		ForceGenerator::Initialize(*this);
@@ -43,6 +45,7 @@ namespace Annulus
 		}
 		// Destroy other members on heap.
 		delete mCollisionDetector;
+		delete mContactResolver;
 	}
 
 	void World::Update(std::chrono::nanoseconds nanoseconds)
@@ -69,7 +72,8 @@ namespace Annulus
 			// Generate contacts
 			mCollisionDetector->GenerateContacts(mColliders);
 
-			// TODO Resolve contacts
+			// Resolve contacts
+			mContactResolver->ResolveContacts(mContacts, seconds);
 
 			// Reset the time since last update.
 			mTimeSinceLastUpdate = std::chrono::nanoseconds(0);
