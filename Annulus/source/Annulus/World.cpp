@@ -73,6 +73,8 @@ namespace Annulus
 			mCollisionDetector->GenerateContacts(mColliders);
 
 			// Resolve contacts
+			mContactResolver->SetVelocityIterations(mContacts.size() * 4);
+			mContactResolver->SetPositionIterations(mContacts.size() * 4);
 			mContactResolver->ResolveContacts(mContacts, seconds);
 
 			// Reset the time since last update.

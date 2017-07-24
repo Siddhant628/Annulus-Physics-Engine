@@ -14,10 +14,10 @@ namespace Annulus
 	}
 
 	ParticleContact::ParticleContact(Particle* particle1, Particle* particle2, std::float_t restitution, std::float_t penetration, const glm::vec2& contactNormal) :
-		mParticle{ particle1, particle2 },
 		mRestitution(restitution),
 		mPenetration(penetration),
-		mContactNormal(contactNormal)
+		mContactNormal(contactNormal),
+		mParticle{ particle1, particle2 }
 	{
 
 	}

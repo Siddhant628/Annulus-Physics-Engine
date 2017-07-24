@@ -57,6 +57,10 @@ namespace Annulus
 		*/
 		const glm::vec2& GetPosition() const;
 		/**
+		* Get a reference to the rigid body associated with this collider.
+		*/
+		const RigidBody& GetBody() const;
+		/**
 		* Deleted copy and move operations.
 		*/
 		Collider(const Collider&) = delete;

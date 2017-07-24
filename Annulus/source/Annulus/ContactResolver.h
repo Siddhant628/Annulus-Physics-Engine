@@ -18,5 +18,35 @@ namespace Annulus
 		* @param seconds The amount of time which has passed in previous frame.
 		*/
 		void ResolveContacts(const std::vector<const Contact*>& contacts, std::float_t seconds);
+		/**
+		* Set the number of iterations that the position resolution may use.
+		* @param iterations The number of iterations.
+		*/
+		void SetPositionIterations(std::uint32_t iterations);
+		/**
+		* Set the number of iterations that the velocity resolution may use.
+		* @param iterations The number of iterations.
+		*/
+		void SetVelocityIterations(std::uint32_t iterations);
+	private:
+		/**
+		* Calculates and caches the data associated with contacts which is required for resolution of contacts when resolving both velocity and interpenetration.
+		* @param contacts The contacts which require preparation of their contact data.
+		* @param seconds The amount of time which has passed in previous frame.
+		*/
+		void PrepareContacts(const std::vector<const Contact*>& contacts, std::float_t seconds);
+		/**
+		* Resolve the interpenetration of contacts.
+		* @param contacts The contacts which require resolution.
+		*/
+		void AdjustContacts(const std::vector<const Contact*>& contacts);
+		/**
+		* The number of iterations that the position resolution may use.
+		*/
+		std::uint32_t mPositionIterations;
+		/**
+		* The number of iterations that the velocity resolution may use.
+		*/
+		std::uint32_t mVelocityIterations;
 	};
 }

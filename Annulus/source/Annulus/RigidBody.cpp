@@ -129,6 +129,11 @@ namespace Annulus
 		}
 	}
 
+	const glm::vec2& RigidBody::GetLastFrameAccelerationLinear() const
+	{
+		return mCachedAcceleration;
+	}
+
 	void RigidBody::AddForce(const glm::vec2& force)
 	{
 		mForceAccumulator += force;

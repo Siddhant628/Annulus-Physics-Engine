@@ -33,6 +33,11 @@ namespace Annulus
 		return mRigidBody->GetPosition();
 	}
 
+	const RigidBody& Collider::GetBody() const
+	{
+		return *mRigidBody;
+	}
+
 	Collider::Collider(const RigidBody& body) : mRigidBody(&body), mColliderType(ColliderType::Default), mCollisionLayer(CollisionLayer::DefaultLayer)
 	{
 		mOwnerWord->RegisterCollider(*this);

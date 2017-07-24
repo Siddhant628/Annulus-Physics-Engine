@@ -104,6 +104,10 @@ namespace Annulus
 		* @param damping The damping factor to set [0,1].
 		*/
 		void SetAngularDamping(std::float_t damping);
+		/**
+		* Get the linear acceleration for last frame update.
+		*/
+		const glm::vec2& GetLastFrameAccelerationLinear() const;
 
 		// Simulation associated.
 		/**
