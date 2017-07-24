@@ -43,8 +43,9 @@ namespace Annulus
 		/**
 		* Resolve the velocities of contacts.
 		* @param contacts The contacts which require resolution.
+		* @param seconds The amount of time which has passed in previous frame.
 		*/
-		void AdjustVelocities(const std::vector<const Contact*>& contacts);
+		void AdjustVelocities(const std::vector<const Contact*>& contacts, std::float_t seconds);
 		/**
 		* The number of iterations that the position resolution may use.
 		*/

@@ -10,8 +10,8 @@ using namespace Annulus;
 namespace Demos
 {
 	const float_t CircleContactDemo::sCircleRadius = 100.0f;
-	const glm::vec2 CircleContactDemo::sInitialPosition1 = glm::vec2(-200.0f, -20.0f);
-	const glm::vec2 CircleContactDemo::sInitialPosition2 = glm::vec2(200.0f, 100.0f);
+	const glm::vec2 CircleContactDemo::sInitialPosition1 = glm::vec2(-200.0f, -50.0f);
+	const glm::vec2 CircleContactDemo::sInitialPosition2 = glm::vec2(200.0f, 50.0f);
 	const glm::vec2 CircleContactDemo::sInitialVelocity1 = glm::vec2(50.0f, 0.0f);
 	const glm::vec2 CircleContactDemo::sInitialVelocity2 = glm::vec2(-50.0f, 0.0f);
 
@@ -27,12 +27,14 @@ namespace Demos
 		// Create the rigid bodies.
 		mRigidBody1 = new RigidBody();
 		mRigidBody1->SetInertia(30);
+		mRigidBody1->SetMass(10);
 
 		mRigidBody1->SetAngularDamping(0.2f);
 		mRigidBody1->SetLinearDamping(0.1f);
 
 		mRigidBody2 = new RigidBody();
 		mRigidBody2->SetInertia(30);
+		mRigidBody2->SetMass(10);
 
 		mRigidBody2->SetAngularDamping(0.2f);
 		mRigidBody2->SetLinearDamping(0.1f);
@@ -40,14 +42,14 @@ namespace Demos
 		// Create the colliders associated with rigid bodies.
 		mCircleCollider1 = new Circle(*mRigidBody1, sCircleRadius);
 		
-		mCircleCollider2 = new Circle(*mRigidBody2, sCircleRadius + 30.0f);
+		mCircleCollider2 = new Circle(*mRigidBody2, sCircleRadius);
 
 		// Create the visualization circles.
 		mCircle1 = new sf::CircleShape(sCircleRadius);
 		mCircle1->setOrigin(sCircleRadius, sCircleRadius);
 
-		mCircle2 = new sf::CircleShape(sCircleRadius + 30.0f);
-		mCircle2->setOrigin(sCircleRadius + 30.0f, sCircleRadius + 30.0f);
+		mCircle2 = new sf::CircleShape(sCircleRadius);
+		mCircle2->setOrigin(sCircleRadius, sCircleRadius);
 
 		// Create the contact visulaization.
 		mCircle3 = new sf::CircleShape(sPointSize);

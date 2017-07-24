@@ -17,7 +17,7 @@ namespace Annulus
 		{
 			PrepareContacts(contacts, seconds);
 			AdjustPositions(contacts);
-			AdjustVelocities(contacts);
+			AdjustVelocities(contacts, seconds);
 		}
 	}
 
@@ -90,7 +90,7 @@ namespace Annulus
 		}
 	}
 
-	void ContactResolver::AdjustVelocities(const std::vector<const Contact*>& contacts)
+	void ContactResolver::AdjustVelocities(const std::vector<const Contact*>& contacts, std::float_t seconds)
 	{
 
 		std::uint32_t iterationsUsed = 0;
@@ -118,7 +118,34 @@ namespace Annulus
 			// Resolve the velocity for this contact.
 			const_cast<Contact*>(*contactIt)->ResolveVelocity();
 
-			// TODO Update cached data.
+			// Update the desired delta velocities for the contacts which might have been affected.
+			for(auto it = contacts.begin(); it != contacts.end(); ++it)
+			{
+				// Check for each body in this contact.
+				for(std::uint32_t bodyIndex = 0; bodyIndex < 2; ++bodyIndex)
+				{
+					// Check against each body in the newly resolved contact.
+					for(std::uint32_t resolvedContactIndex = 0; resolvedContactIndex < 2; ++resolvedContactIndex)
+					{
+						if (&(*it)->mColliders[bodyIndex]->GetBody() == &(*contactIt)->mColliders[resolvedContactIndex]->GetBody())
+						{
+							const auto& rotationChange = (*contactIt)->mRotationChange[resolvedContactIndex];
+							const auto& relativePosition = (*contactIt)->mRelativeContactPosition[resolvedContactIndex];
+							glm::vec2 velocityChange = (*contactIt)->mVelocityChange[resolvedContactIndex] + glm::vec2(-rotationChange * relativePosition.y, rotationChange * relativePosition.x);
+							
+							// Transpose the velocity change into world-coordinates.
+							glm::vec2 temp = velocityChange;
+							std::float_t cosine = glm::dot(-(*contactIt)->mContactNormal, glm::vec2(1, 0));
+							std::float_t sine = sqrt(1 - cosine * cosine);
+							velocityChange.x = temp.x * cosine - temp.y * sine;
+							velocityChange.y = temp.x * sine + temp.y * cosine;
+
+							const_cast<Contact*>(*it)->mContactVelocity += velocityChange * (bodyIndex ? 1.0f : -1.0f);
+							const_cast<Contact*>(*it)->CalculateDesiredVelocityChange(seconds);
+						}
+					}
+				}
+			}
 			++iterationsUsed;
 		}
 	}
