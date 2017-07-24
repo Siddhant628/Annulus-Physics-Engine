@@ -48,5 +48,9 @@ namespace Annulus
 		* The number of iterations that the velocity resolution may use.
 		*/
 		std::uint32_t mVelocityIterations;
+		/**
+		* The margin of error allowed in position resolution.
+		*/
+		const static std::float_t sPositionEpsilion;
 	};
 }

@@ -49,8 +49,8 @@ namespace Annulus
 	{
 		if (mPenetration > 0)
 		{
-			auto body1 = const_cast<RigidBody&>(mColliders[0]->GetBody());
-			auto body2 = const_cast<RigidBody&>(mColliders[1]->GetBody());
+			auto& body1 = const_cast<RigidBody&>(mColliders[0]->GetBody());
+			auto& body2 = const_cast<RigidBody&>(mColliders[1]->GetBody());
 
 			std::float_t totalInverseMass = body1.GetMassInverse();
 			totalInverseMass += body2.GetMassInverse();

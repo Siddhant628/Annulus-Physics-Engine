@@ -6,6 +6,8 @@
 
 namespace Annulus
 {
+	const std::float_t ContactResolver::sPositionEpsilion = 0.01f;
+
 	void ContactResolver::ResolveContacts(const std::vector<const Contact*>& contacts, std::float_t seconds)
 	{
 		std::uint32_t numberOfContacts = contacts.size();
@@ -50,7 +52,7 @@ namespace Annulus
 		// Iteratively resolve interpenetrations in order of severity.
 		while(iterationsUsed < mPositionIterations)
 		{
-			maxPenetration = 0.0f;
+			maxPenetration = sPositionEpsilion;
 			contactIt = contacts.end();
 			for(auto it = contacts.begin(); it != contacts.end(); ++it)
 			{
@@ -84,6 +86,7 @@ namespace Annulus
 					}
 				}
 			}
+			++iterationsUsed;
 		}
 	}
 }
