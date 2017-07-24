@@ -46,6 +46,15 @@ namespace Annulus
 		* Resolve the interpenetration for this contact.
 		*/
 		void ResolveInterpenetration();
+		/**
+		* Resolve the velocity for this contact.
+		*/
+		void ResolveVelocity();
+		/**
+		* Get the frictionless impulse in the contact-coordinates which is required to resolve this contact.
+		* @param impulse Output parameter containing the impulse in contact-coordinates.
+		*/
+		void CalculateFrictionlessImpulse(glm::vec2& impulse);
 
 		/**
 		* Delete copy and move operations.
@@ -63,9 +72,8 @@ namespace Annulus
 		/**
 		* Calculate the desired change in velocity in order to resolve this contact.
 		* @param seconds The amount of time taken in the previous update call.
-		* @return The desired change in velocity.
 		*/
-		std::float_t CalculateDesiredVelocityChange(std::float_t seconds);
+		void CalculateDesiredVelocityChange(std::float_t seconds);
 
 		/* The data associated with the contact object. */
 		/**
@@ -106,6 +114,14 @@ namespace Annulus
 		* The linear change in position when the collision is resolved.
 		*/
 		glm::vec2 mLinearPositionChange[2];
+		/**
+		* The change in rotation (angular velocity) on resolving velocity.
+		*/
+		std::float_t mRotationChange[2];
+		/**
+		* The change in velocity on resolving velocity.
+		*/
+		glm::vec2 mVelocityChange[2];
 
 		/**
 		* The closing velocity below which resitution is limited in order to produce good collisions.

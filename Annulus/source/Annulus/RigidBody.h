@@ -50,6 +50,11 @@ namespace Annulus
 		*/
 		void SetVelocity(const glm::vec2& velocity);
 		/**
+		* Update the velocity of this rigidbody.
+		* @param deltaVelocity The velocity change.
+		*/
+		void AddVelocity(const glm::vec2& deltaVelocity);
+		/**
 		* Get the rotation / angular velocity of this rigid body.
 		*/
 		std::float_t GetRotation() const;
@@ -58,6 +63,11 @@ namespace Annulus
 		* @param rotation The rotation / angular velocity to set.
 		*/
 		void SetRotation(std::float_t rotation);
+		/**
+		* Update the rotation of this rigidbody.
+		* @param deltaRotation The rotation change;
+		*/
+		void AddRotation(std::float_t deltaRotation);
 		/**
 		* Get the inverse of mass of this rigid body.
 		*/

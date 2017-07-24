@@ -59,6 +59,11 @@ namespace Annulus
 		mVelocity = velocity;
 	}
 
+	void RigidBody::AddVelocity(const glm::vec2& deltaVelocity)
+	{
+		mVelocity += deltaVelocity;
+	}
+
 	std::float_t RigidBody::GetRotation() const
 	{
 		return mRotation;
@@ -67,6 +72,11 @@ namespace Annulus
 	void RigidBody::SetRotation(std::float_t rotation)
 	{
 		mRotation = rotation;
+	}
+
+	void RigidBody::AddRotation(std::float_t deltaRotation)
+	{
+		mRotation += deltaRotation;
 	}
 
 	std::float_t RigidBody::GetMassInverse() const
@@ -191,7 +201,7 @@ namespace Annulus
 		mForceAccumulator = glm::vec2(0.0f, 0.0f);
 		mTorqueAccumulator = 0.0f;
 
-		//DebugRigidBody();
+		DebugRigidBody();
 	}
 
 	void RigidBody::Initialize(World& world)

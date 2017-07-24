@@ -42,7 +42,7 @@ namespace Annulus
 		mContactVelocity += CalculateLocalVelocity(1);
 
 		// Calculate the desired change in velocity for resolution.
-		CalculateDesiredVelocityChange(seconds);
+		  CalculateDesiredVelocityChange(seconds);
 	}
 
 	void Contact::ResolveInterpenetration()
@@ -67,6 +67,68 @@ namespace Annulus
 		}
 	}
 
+	void Contact::ResolveVelocity()
+	{
+		std::float_t sign = -1;
+		const RigidBody* bodies[2] = { nullptr, nullptr };
+		bodies[0] = &mColliders[0]->GetBody();
+		bodies[1] = &mColliders[1]->GetBody();
+		// Get the impulse to apply for desired velocity in contact-coordinates.
+		glm::vec2 impulse;
+		CalculateFrictionlessImpulse(impulse);
+
+		// Convert the impulse to world-coordinates.
+		glm::vec2 temp = impulse;
+		
+		std::float_t cosine = glm::dot(-mContactNormal, glm::vec2(1, 0));
+		std::float_t sine = sqrt(1 - cosine * cosine);
+		impulse.x = temp.x * cosine - temp.y * sine;
+		impulse.y = temp.x * sine + temp.y * cosine;
+
+		// Split the impulse and apply to the bodies.
+		for(std::uint32_t index = 0; index < 2; ++index)
+		{
+			if(index == 1)
+			{
+				sign = 1;
+			}
+			// Splitting.
+			std::float_t impulsiveTorque = mRelativeContactPosition[index].x * impulse.y - mRelativeContactPosition[index].y * impulse.x;
+			mRotationChange[index] = sign * bodies[index]->GetInertiaInverse() * impulsiveTorque;
+			mVelocityChange[index] = sign * impulse * bodies[index]->GetMassInverse();
+
+			// Applying.
+			const_cast<RigidBody*>(bodies[index])->AddVelocity(mVelocityChange[index]);
+			const_cast<RigidBody*>(bodies[index])->AddRotation(mRotationChange[index]);
+		}
+	}
+
+	void Contact::CalculateFrictionlessImpulse(glm::vec2& impulse)
+	{
+		const RigidBody* bodies[2];
+		bodies[0] = &mColliders[0]->GetBody();
+		bodies[1] = &mColliders[0]->GetBody();
+
+		// Delta velocity is the change in velocity at the point of contact per unit impulse.
+		std::float_t deltaVelocity = 0.0f;
+		
+		// Add the change in velocity per unit impulse for linear component of velocity change.
+		deltaVelocity += bodies[0]->GetMassInverse();
+		deltaVelocity += bodies[1]->GetMassInverse();
+
+		// Add the change in velocity per unit impulse due to angular component of velocity change.
+		for (std::uint32_t index = 0; index < 2; ++index)
+		{
+			std::float_t deltaVelocityWorld = mRelativeContactPosition[index].x * mContactNormal.y - mRelativeContactPosition[index].y * mContactNormal.x;
+			deltaVelocityWorld *= bodies[index]->GetInertiaInverse();
+			glm::vec2 deltaVelocityOfPoint = glm::vec2(- deltaVelocityWorld * mRelativeContactPosition[index].y , deltaVelocityWorld * mRelativeContactPosition[index].x);
+			deltaVelocity += glm::dot(deltaVelocityOfPoint, mContactNormal);
+		}
+
+		impulse.x = mDesiredDeltaVelocity / deltaVelocity;
+		impulse.y = 0.0f;
+	}
+
 	glm::vec2 Contact::CalculateLocalVelocity(std::uint32_t index)
 	{
 		assert(index == 0 || index == 1);
@@ -83,19 +145,19 @@ namespace Annulus
 		temp = calculatedVelocity;
 		if (index == 0)
 		{
-			calculatedVelocity.x = glm::dot(temp, -1.0f * mContactNormal);
-			calculatedVelocity.y = glm::dot(temp, -1.0f * glm::vec2(-mContactNormal.y, mContactNormal.x));
+			calculatedVelocity.x = glm::dot(temp, mContactNormal);
+			calculatedVelocity.y = glm::dot(temp, glm::vec2(-mContactNormal.y, mContactNormal.x));
 		}
 		else
 		{
-			calculatedVelocity.x = glm::dot(temp, mContactNormal);
-			calculatedVelocity.y = glm::dot(temp, glm::vec2(-mContactNormal.y, mContactNormal.x));
+			calculatedVelocity.x = glm::dot(temp, -1.0f * mContactNormal);
+			calculatedVelocity.y = glm::dot(temp, -1.0f * glm::vec2(-mContactNormal.y, mContactNormal.x));
 		}
 
 		return calculatedVelocity;
 	}
 
-	std::float_t Contact::CalculateDesiredVelocityChange(std::float_t seconds)
+	void Contact::CalculateDesiredVelocityChange(std::float_t seconds)
 	{
 		const RigidBody& body1 = mColliders[0]->GetBody();
 		const RigidBody& body2 = mColliders[1]->GetBody();
@@ -106,12 +168,12 @@ namespace Annulus
 		velocityDueToAcceleration += glm::dot(body2.GetLastFrameAccelerationLinear() * seconds, -mContactNormal);
 
 		// Limit the resitution if the velocity is very low.
-		if (mContactVelocity.x < sResitutionLimitingVelocity)
+		if (std::abs(mContactVelocity.x) < sResitutionLimitingVelocity)
 		{
 			mRestitution = 0.0f;
 		}
 
 		// Calculate the desired delta velocity.
-		return -mContactVelocity.x - (mContactVelocity.x - velocityDueToAcceleration) * mRestitution;
+		mDesiredDeltaVelocity = -mContactVelocity.x - (mContactVelocity.x - velocityDueToAcceleration) * mRestitution;
 	}
 }

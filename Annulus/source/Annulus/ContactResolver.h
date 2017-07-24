@@ -39,7 +39,12 @@ namespace Annulus
 		* Resolve the interpenetration of contacts.
 		* @param contacts The contacts which require resolution.
 		*/
-		void AdjustContacts(const std::vector<const Contact*>& contacts);
+		void AdjustPositions(const std::vector<const Contact*>& contacts);
+		/**
+		* Resolve the velocities of contacts.
+		* @param contacts The contacts which require resolution.
+		*/
+		void AdjustVelocities(const std::vector<const Contact*>& contacts);
 		/**
 		* The number of iterations that the position resolution may use.
 		*/
@@ -48,9 +53,14 @@ namespace Annulus
 		* The number of iterations that the velocity resolution may use.
 		*/
 		std::uint32_t mVelocityIterations;
+		
 		/**
 		* The margin of error allowed in position resolution.
 		*/
 		const static std::float_t sPositionEpsilion;
+		/**
+		* The margin of error allowed in velocity resolution.
+		*/
+		const static std::float_t sVelocityEpsilon;
 	};
 }

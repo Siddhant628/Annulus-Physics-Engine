@@ -7,6 +7,7 @@
 namespace Annulus
 {
 	const std::float_t ContactResolver::sPositionEpsilion = 0.01f;
+	const std::float_t ContactResolver::sVelocityEpsilon = 0.01f;
 
 	void ContactResolver::ResolveContacts(const std::vector<const Contact*>& contacts, std::float_t seconds)
 	{
@@ -15,9 +16,8 @@ namespace Annulus
 		if(numberOfContacts > 0)
 		{
 			PrepareContacts(contacts, seconds);
-			AdjustContacts(contacts);
-
-			// TODO Resolve Velocity. 
+			AdjustPositions(contacts);
+			AdjustVelocities(contacts);
 		}
 	}
 
@@ -40,11 +40,11 @@ namespace Annulus
 		}
 	}
 
-	void ContactResolver::AdjustContacts(const std::vector<const Contact*>& contacts)
+	void ContactResolver::AdjustPositions(const std::vector<const Contact*>& contacts)
 	{
+		std::uint32_t iterationsUsed = 0;
 		auto contactIt = contacts.end();
 		std::float_t maxPenetration;
-		std::uint32_t iterationsUsed = 0;
 
 		glm::vec2 linearChange[2], angularChange[2];
 		glm::vec2 deltaPosition;
@@ -86,6 +86,39 @@ namespace Annulus
 					}
 				}
 			}
+			++iterationsUsed;
+		}
+	}
+
+	void ContactResolver::AdjustVelocities(const std::vector<const Contact*>& contacts)
+	{
+
+		std::uint32_t iterationsUsed = 0;
+
+		// Iteratively resolve interpenetrations in order of severity.
+		while(iterationsUsed < mVelocityIterations)
+		{
+			std::float_t maxVelocity = sVelocityEpsilon;
+			auto contactIt = contacts.end();
+
+			// Find the contact with maximum closing velocity (i.e. maximum desired change).
+			for(auto it = contacts.begin(); it != contacts.end(); ++it)
+			{
+				if((*it)->mDesiredDeltaVelocity > maxVelocity)
+				{
+					contactIt = it;
+					maxVelocity = (*it)->mDesiredDeltaVelocity;
+				}
+			}
+			// If no contact with closing velocity was found, break.
+			if(contactIt == contacts.end())
+			{
+				break;
+			}
+			// Resolve the velocity for this contact.
+			const_cast<Contact*>(*contactIt)->ResolveVelocity();
+
+			// TODO Update cached data.
 			++iterationsUsed;
 		}
 	}
