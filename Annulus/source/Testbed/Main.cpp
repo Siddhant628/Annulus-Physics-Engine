@@ -81,9 +81,10 @@ int  main()
 				window.setView(sf::View(visibleArea));
 			}
 			// If user presses R then reset the demo.
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+			if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Key::R)
 			{
 				demo.Initialize();
+				std::cout << "\n\n DEMO INITIALIZED \n" << std::endl;
 			}
 			// Handle Input other than resetting of the demo scene in case of RigidBody demos.
 #if DEMO_COUNT > 4

@@ -91,7 +91,7 @@ namespace Demos
 
 	void RigidBodiesDemo::ProcessInput(const sf::Event& event)
 	{
-		if(event.type == sf::Event::MouseButtonReleased)
+		if(event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
 		{
 			SpawnCircle(sf::Mouse::getPosition(mRenderWindow));
 		}
