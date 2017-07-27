@@ -65,7 +65,7 @@ namespace Demos
 		delete mCircle2;
 	}
 
-	void CircleContactDemo::Initialize()
+	void CircleContactDemo::Initialize() 
 	{
 		mRigidBody1->SetVelocity(sInitialVelocity1);
 		mRigidBody1->SetPosition(sInitialPosition1);

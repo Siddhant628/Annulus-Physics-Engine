@@ -1,5 +1,8 @@
 #pragma once
 #include "Demo.h"
+#include <unordered_map>
+#include "RigidBody.h"
+#include "Collider.h"
 
 namespace Demos
 {
@@ -16,9 +19,10 @@ namespace Demos
 		*/
 		RigidBodiesDemo(sf::RenderWindow& renderWindow, Annulus::World& world);
 		/**
-		*
+		* Destructor.
+		* Clear all the memory allocated to the shapes.
 		*/
-		~RigidBodiesDemo() = default;
+		virtual ~RigidBodiesDemo();
 		/**
 		* Initialize this demo.
 		*/
@@ -38,6 +42,32 @@ namespace Demos
 		*/
 		virtual void ProcessInput(const sf::Event& event) override;
 	private:
+		/**
+		* Spawn a circle at a specific position in the simulation.
+		* @param position The position of circle in local window space.
+		*/
+		void SpawnCircle(const sf::Vector2i& position);
 
+		/**
+		* A hashmap which maps each shape drawn in the demo to a rigidbody.
+		*/
+		std::unordered_map<sf::Shape*, Annulus::RigidBody*> mBodies;
+		/**
+		* The shapes which are present in the demo.
+		*/
+		std::vector<sf::Shape*> mShapes;
+		/**
+		* The colliders which are present in the demo.
+		*/
+		std::vector<Annulus::Collider*> mColliders;
+
+		static const std::float_t sPlanetRadius;
+		static const std::float_t sMinSatteliteRadius;
+		static const std::float_t sMaxSatteliteRadius;
+		static const std::float_t sDensityOfCircle;
+		static const std::float_t sMinRotation;
+		static const std::float_t sMaxRotation;
+		static const std::float_t sMinSpeed;
+		static const std::float_t sMaxSpeed;
 	};
 }
