@@ -29,6 +29,11 @@ namespace Demos
 		* Draw the demo.
 		*/
 		virtual void Draw() = 0;
+		/**
+		* Process the input for this demo.
+		* @param event The event to process.
+		*/
+		virtual void ProcessInput(const sf::Event& event);
 	protected:
 		/**
 		* Constructor.

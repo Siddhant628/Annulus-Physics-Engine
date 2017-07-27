@@ -12,8 +12,8 @@ namespace Demos
 	const float_t CircleContactDemo::sCircleRadius = 100.0f;
 	const glm::vec2 CircleContactDemo::sInitialPosition1 = glm::vec2(-200.0f, -50.0f);
 	const glm::vec2 CircleContactDemo::sInitialPosition2 = glm::vec2(200.0f, 50.0f);
-	const glm::vec2 CircleContactDemo::sInitialVelocity1 = glm::vec2(50.0f, 0.0f);
-	const glm::vec2 CircleContactDemo::sInitialVelocity2 = glm::vec2(-50.0f, 0.0f);
+	const glm::vec2 CircleContactDemo::sInitialVelocity1 = glm::vec2(200.0f, 0.0f);
+	const glm::vec2 CircleContactDemo::sInitialVelocity2 = glm::vec2(-200.0f, 0.0f);
 
 	CircleContactDemo::CircleContactDemo(sf::RenderWindow& renderWindow, Annulus::World& world) : 
 		Demo(renderWindow, world),

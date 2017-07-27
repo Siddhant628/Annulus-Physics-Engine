@@ -21,11 +21,12 @@
 #include "ParticleContactDemo.h"
 #include "TorqueDemo.h"
 #include "CircleContactDemo.h"
+#include "RigidBodiesDemo.h"
 
 #define SCREEN_WIDTH 1600
 #define SCREEN_HEIGHT 900
 
-#define DEMO_COUNT 6
+#define DEMO_COUNT 7
 
 using namespace Annulus;
 using namespace Demos;
@@ -59,6 +60,8 @@ int  main()
 	TorqueDemo demo(window, world);
 #elif DEMO_COUNT == 6
 	CircleContactDemo demo(window, world);
+#elif DEMO_COUNT == 7
+	RigidBodiesDemo demo(window, world);
 #endif
 
 	while (window.isOpen())
@@ -82,6 +85,10 @@ int  main()
 			{
 				demo.Initialize();
 			}
+			// Handle Input other than resetting of the demo scene in case of RigidBody demos.
+#if DEMO_COUNT > 4
+			demo.ProcessInput(event);
+#endif
 		}
 
 		// Update Time

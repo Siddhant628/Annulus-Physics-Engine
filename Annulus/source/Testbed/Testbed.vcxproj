@@ -214,6 +214,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="RigidBodiesDemo.cpp" />
     <ClCompile Include="TorqueDemo.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -225,6 +226,7 @@
     <ClInclude Include="ParticleDemo.h" />
     <ClInclude Include="ParticleAnchoredSpringDemo.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="RigidBodiesDemo.h" />
     <ClInclude Include="TorqueDemo.h" />
   </ItemGroup>
   <ItemGroup>
