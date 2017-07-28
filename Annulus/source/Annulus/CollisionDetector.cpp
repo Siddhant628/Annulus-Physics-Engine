@@ -52,11 +52,11 @@ namespace Annulus
 		// Create the contact with its data.
 		Contact* contact = new (mContacts + mUsedContacts)Contact(collider1, collider2);
 		contact->mContactNormal = normal / distance;
-		std::cout << "Contact Normal: X= " << contact->mContactNormal.x << "  Y= " << contact->mContactNormal.y << std::endl;
+		//std::cout << "Contact Normal: X= " << contact->mContactNormal.x << "  Y= " << contact->mContactNormal.y << std::endl;
 		std::float_t radius1 = collider1.GetRadius();
 		std::float_t radius2 = collider2.GetRadius();
 		contact->mPenetration = (radius1 + radius2 - distance);
-		std::cout << "Contact Penetration: " << contact->mPenetration << std::endl;
+		//std::cout << "Contact Penetration: " << contact->mPenetration << std::endl;
 		contact->mContactPoint = (collider1.GetPosition() * radius2 + collider2.GetPosition() * radius1) / (radius1 + radius2);
 		// Add the contact to the world.
 		contacts.push_back(contact);

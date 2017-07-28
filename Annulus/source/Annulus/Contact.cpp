@@ -77,8 +77,9 @@ namespace Annulus
 		bodies[1] = &mColliders[1]->GetBody();
 		// Get the impulse to apply for desired velocity in contact-coordinates.
 		glm::vec2 impulse;
+		// TODO Calculated impulse is too high.
 		CalculateFrictionlessImpulse(impulse);
-
+		
 		// Convert the impulse to world-coordinates.
 		glm::vec2 temp = impulse;
 		
@@ -100,9 +101,14 @@ namespace Annulus
 			mVelocityChange[index] = sign * impulse * bodies[index]->GetMassInverse();
 
 			// Applying.
+			std::cout << "Initial Velocity X = " << bodies[index]->GetVelocity().x << " Y = " << bodies[index]->GetVelocity().y << std::endl;
+			std::cout << "Velocity Change: X = " << mVelocityChange[index].x << "  Y = " << mVelocityChange[index].y << std::endl;
+			std::cout << "Initial Rotation: " << bodies[index]->GetRotation() << std::endl;
+			std::cout << "Rotation Change: " << mRotationChange[index] << std::endl;
 			const_cast<RigidBody*>(bodies[index])->AddVelocity(mVelocityChange[index]);
 			const_cast<RigidBody*>(bodies[index])->AddRotation(mRotationChange[index]);
 		}
+		std::cout << std::endl;
 	}
 
 	void Contact::CalculateFrictionlessImpulse(glm::vec2& impulse)
@@ -121,10 +127,11 @@ namespace Annulus
 		// Add the change in velocity per unit impulse due to angular component of velocity change.
 		for (std::uint32_t index = 0; index < 2; ++index)
 		{
-			std::float_t deltaVelocityWorld = mRelativeContactPosition[index].x * mContactNormal.y - mRelativeContactPosition[index].y * mContactNormal.x;
+			// TODO Changed this.
+			std::float_t deltaVelocityWorld = (mRelativeContactPosition[index].x * mContactNormal.y - mRelativeContactPosition[index].y * mContactNormal.x) * (index ? -1 : 1);
 			deltaVelocityWorld *= bodies[index]->GetInertiaInverse();
 			glm::vec2 deltaVelocityOfPoint = glm::vec2(- deltaVelocityWorld * mRelativeContactPosition[index].y , deltaVelocityWorld * mRelativeContactPosition[index].x);
-			deltaVelocity += glm::dot(deltaVelocityOfPoint, mContactNormal);
+			deltaVelocity += glm::dot(deltaVelocityOfPoint, (mContactNormal * (index? 1.0f : -1.0f)));
 		}
 
 		impulse.x = mDesiredDeltaVelocity / deltaVelocity;
@@ -138,7 +145,8 @@ namespace Annulus
 		const RigidBody& body = mColliders[index]->GetBody();
 
 		// Calculate the velocity in world coordinates.
-		glm::vec3 velocity = glm::cross(glm::vec3(mRelativeContactPosition[index].x, mRelativeContactPosition[index].y, 0), glm::vec3(0, 0, body.GetRotation()));
+		// TODO Changed this.
+		glm::vec3 velocity = glm::cross(glm::vec3(0, 0, body.GetRotation()), glm::vec3(mRelativeContactPosition[index].x, mRelativeContactPosition[index].y, 0));
 		calculatedVelocity.x = velocity.x;
 		calculatedVelocity.y = velocity.y;
 		calculatedVelocity += body.GetVelocity();
