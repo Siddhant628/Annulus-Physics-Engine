@@ -63,6 +63,8 @@ namespace Annulus
 				mLinearPositionChange[1] = -(movementPerIMass * body2.GetMassInverse());
 				body1.SetPosition(body1.GetPosition() + mLinearPositionChange[0]);
 				body2.SetPosition(body2.GetPosition() + mLinearPositionChange[1]);
+				//std::cout << "Position Change 1 : X = " << mLinearPositionChange[0].x << " Y = " << mLinearPositionChange[0].y << std::endl;
+				//std::cout << "Position Change 2 : X = " << mLinearPositionChange[1].x << " Y = " << mLinearPositionChange[1].y << std::endl;
 			}
 		}
 	}

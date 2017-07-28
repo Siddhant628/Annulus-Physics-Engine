@@ -115,6 +115,8 @@ namespace Demos
 		mBodies[shape] = new RigidBody(); 
 		mBodies[shape]->SetMass(PI * radius * radius);
 		mBodies[shape]->SetInertia(PI * radius * radius);
+		//mBodies[shape]->SetMass(10);
+		//mBodies[shape]->SetInertia(30);
 		mBodies[shape]->SetVelocity(glm::circularRand(1.0f) * (rand() % static_cast<std::int32_t>(sMaxSpeed - sMinSpeed) + sMinSpeed + 1) );
 		mBodies[shape]->SetRotation(rand() % static_cast<std::int32_t>(sMaxRotation - sMinRotation) + sMinRotation + 1);
 		mBodies[shape]->SetPosition(glm::vec2(position.x - centerX, centerY - position.y));
