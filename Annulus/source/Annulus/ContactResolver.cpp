@@ -17,7 +17,7 @@ namespace Annulus
 		{
 			PrepareContacts(contacts, seconds);
 			AdjustPositions(contacts);
-			//AdjustVelocities(contacts, seconds);
+			AdjustVelocities(contacts, seconds);
 		}
 	}
 
@@ -132,17 +132,17 @@ namespace Annulus
 						if (&(*it)->mColliders[bodyIndex]->GetBody() == &(*contactIt)->mColliders[resolvedContactIndex]->GetBody())
 						{
 							const auto& rotationChange = (*contactIt)->mRotationChange[resolvedContactIndex];
-							const auto& relativePosition = (*contactIt)->mRelativeContactPosition[resolvedContactIndex];
+							const auto& relativePosition = (*it)->mRelativeContactPosition[bodyIndex];
 							glm::vec2 velocityChange = (*contactIt)->mVelocityChange[resolvedContactIndex] + glm::vec2(-rotationChange * relativePosition.y, rotationChange * relativePosition.x);
 							
 							// Transpose the velocity change into world-coordinates.
 							glm::vec2 temp = velocityChange;
-							std::float_t cosine = glm::dot(-(*contactIt)->mContactNormal, glm::vec2(1, 0));
+							std::float_t cosine = glm::dot((*it)->mContactNormal, glm::vec2(1, 0));
 							std::float_t sine = sqrt(1 - cosine * cosine);
 							velocityChange.x = temp.x * cosine - temp.y * sine;
 							velocityChange.y = temp.x * sine + temp.y * cosine;
 
-							const_cast<Contact*>(*it)->mContactVelocity += velocityChange * (bodyIndex ? 1.0f : -1.0f);
+							const_cast<Contact*>(*it)->mContactVelocity += velocityChange * (bodyIndex? -1.0f : 1.0f);
 							const_cast<Contact*>(*it)->CalculateDesiredVelocityChange(seconds);
 						}
 					}
