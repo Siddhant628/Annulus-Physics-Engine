@@ -85,15 +85,19 @@ namespace Demos
 		// Initialize circles to visualize particles
 		mCircle1->setPosition(0, 0);
 		mCircle1->setFillColor(sf::Color::Black);
+		mCircle1->setOrigin(sParticleRadius, sParticleRadius);
 
 		mCircle2->setPosition(0, 0);
 		mCircle2->setFillColor(sf::Color::Black);
+		mCircle2->setOrigin(sParticleRadius, sParticleRadius);
 
 		mCircle3->setPosition(0, 0);
 		mCircle3->setFillColor(sf::Color::Red);
+		mCircle3->setOrigin(sParticleRadius, sParticleRadius);
 
 		mCircle4->setPosition(0, 0);
 		mCircle4->setFillColor(sf::Color::Red);
+		mCircle4->setOrigin(sParticleRadius, sParticleRadius);
 	}
 
 	void ParticleContactDemo::Update(std::chrono::nanoseconds nanoseconds)
@@ -109,9 +113,19 @@ namespace Demos
 
 	void ParticleContactDemo::Draw()
 	{
+		std::float_t centerX = mView->getSize().x / 2;
+		std::float_t centerY = mView->getSize().y / 2;
+
 		mRenderWindow.draw(*mCircle1);
 		mRenderWindow.draw(*mCircle2);
 		mRenderWindow.draw(*mCircle3);
 		mRenderWindow.draw(*mCircle4);
+
+		sf::Vertex line[] =
+		{
+			sf::Vertex(sf::Vector2f(centerX + mParticle3->GetPosition().x * sPixelPositionScaler, centerY - mParticle3->GetPosition().y * sPixelPositionScaler), sf::Color::Black),
+			sf::Vertex(sf::Vector2f(centerX + mParticle4->GetPosition().x * sPixelPositionScaler, centerY - mParticle4->GetPosition().y * sPixelPositionScaler), sf::Color::Black)
+		};
+		mRenderWindow.draw(line, 2, sf::Lines);
 	}
 }

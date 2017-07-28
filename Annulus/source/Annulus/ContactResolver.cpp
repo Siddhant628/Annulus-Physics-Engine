@@ -82,8 +82,7 @@ namespace Annulus
 						if(&(*it)->mColliders[contactBody]->GetBody() == &(*contactIt)->mColliders[resolvedBody]->GetBody())
 						{
 							const_cast<Contact*>(*it)->mPenetration += glm::dot((*it)->mLinearPositionChange[contactBody], (*it)->mContactNormal) * (contactBody ? 1 : -1);
-							// TODO Occurs repeatedly.
-							std::cout << "New Penetration: " << (*it)->mPenetration << std::endl;
+							//std::cout << "New Penetration: " << (*it)->mPenetration << std::endl;
 						}
 					}
 				}
