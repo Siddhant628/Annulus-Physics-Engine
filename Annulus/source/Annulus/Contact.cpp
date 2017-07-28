@@ -71,7 +71,7 @@ namespace Annulus
 
 	void Contact::ResolveVelocity()
 	{
-		std::float_t sign = -1;
+		std::float_t sign = 1;
 		const RigidBody* bodies[2] = { nullptr, nullptr };
 		bodies[0] = &mColliders[0]->GetBody();
 		bodies[1] = &mColliders[1]->GetBody();
@@ -87,24 +87,25 @@ namespace Annulus
 		std::float_t sine = sqrt(1 - cosine * cosine);
 		impulse.x = temp.x * cosine - temp.y * sine;
 		impulse.y = temp.x * sine + temp.y * cosine;
+		//std::cout << "Impulse: X = " << impulse.x << "  Y = " << impulse.y << std::endl;
 
 		// Split the impulse and apply to the bodies.
 		for(std::uint32_t index = 0; index < 2; ++index)
 		{
 			if(index == 1)
 			{
-				sign = 1;
+				sign = -1;
 			}
 			// Splitting.
-			std::float_t impulsiveTorque = mRelativeContactPosition[index].x * impulse.y - mRelativeContactPosition[index].y * impulse.x;
-			mRotationChange[index] = sign * bodies[index]->GetInertiaInverse() * impulsiveTorque;
-			mVelocityChange[index] = sign * impulse * bodies[index]->GetMassInverse();
+			std::float_t impulsiveTorque = (mRelativeContactPosition[index].x * impulse.y - mRelativeContactPosition[index].y * impulse.x) * sign;
+			mRotationChange[index] = bodies[index]->GetInertiaInverse() * impulsiveTorque;
+			mVelocityChange[index] = impulse * bodies[index]->GetMassInverse() * sign;
 
 			// Applying.
-			std::cout << "Initial Velocity X = " << bodies[index]->GetVelocity().x << " Y = " << bodies[index]->GetVelocity().y << std::endl;
-			std::cout << "Velocity Change: X = " << mVelocityChange[index].x << "  Y = " << mVelocityChange[index].y << std::endl;
-			std::cout << "Initial Rotation: " << bodies[index]->GetRotation() << std::endl;
-			std::cout << "Rotation Change: " << mRotationChange[index] << std::endl;
+			//std::cout << "Initial Velocity X = " << bodies[index]->GetVelocity().x << " Y = " << bodies[index]->GetVelocity().y << std::endl;
+			//std::cout << "Velocity Change: X = " << mVelocityChange[index].x << "  Y = " << mVelocityChange[index].y << std::endl;
+			//std::cout << "Initial Rotation: " << bodies[index]->GetRotation() << std::endl;
+			//std::cout << "Rotation Change: " << mRotationChange[index] << std::endl;
 			const_cast<RigidBody*>(bodies[index])->AddVelocity(mVelocityChange[index]);
 			const_cast<RigidBody*>(bodies[index])->AddRotation(mRotationChange[index]);
 		}
@@ -185,5 +186,6 @@ namespace Annulus
 
 		// Calculate the desired delta velocity.
 		mDesiredDeltaVelocity = -mContactVelocity.x - (mContactVelocity.x - velocityDueToAcceleration) * mRestitution;
+		//std::cout << "Desired Delta Velocity: X = " << mDesiredDeltaVelocity << std::endl;
 	}
 }
