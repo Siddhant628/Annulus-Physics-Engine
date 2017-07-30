@@ -11,7 +11,7 @@ namespace Annulus
 
 	void ContactResolver::ResolveContacts(const std::vector<const Contact*>& contacts, std::float_t seconds)
 	{
-		std::uint32_t numberOfContacts = contacts.size();
+		std::uint32_t numberOfContacts = static_cast<std::uint32_t>(contacts.size());
 		// Return if there are no contacts to resolve.
 		if(numberOfContacts > 0)
 		{
