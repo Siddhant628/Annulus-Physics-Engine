@@ -23,9 +23,9 @@ Annulus is an **impluse based 2D physics engine** I worked on as a personal proj
 
 A rigid body under the infulence of gravity and an anchored spring:
 
-<img src = "https://siddhantgrover.files.wordpress.com/2017/07/anchored-spring-demo.gif" width = "400" height = "400" />
+<img src = "https://www.gamedevgrover.com/assets/img/posts/annulus-week-7-8/anchored-spring-demo.gif" width = "400" height = "400" />
 
 
 Collision detection and resolution for two circles:
 
-<img src = "https://siddhantgrover.files.wordpress.com/2018/01/circle-collision.gif" width = "400" />
+<img src = "https://www.gamedevgrover.com/assets/img/posts/annulus-week-7-8/circle-collision-demo.gif" width = "400" />
